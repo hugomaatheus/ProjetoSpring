@@ -1,0 +1,142 @@
+﻿body{
+	font: normal 20px tahoma,arial,serif; 
+	color: black;
+	background-image: url("../Imagens/cafe.jpg");
+	background-size: 1600px 900px;
+}
+
+table{
+	font: normal 14px tahoma,arial,serif;
+	}
+
+table,th,td{
+	border-collapse: collapse;
+	}
+	
+th,td{
+	border-bottom: 1px solid #000000;
+	padding: 0px;
+	}
+	
+th span{
+	display: block; 
+	padding: 3px;
+	}
+	
+td span{
+	margin-left: 30px;
+	display: block; 
+	padding: 3px;
+	text-align : center;
+	width: 100px;
+	height: 50px;
+	overflow: auto;
+	}
+
+#lista{
+	text-align: left;
+	margin: auto;
+	margin-top: 10%;
+	}
+	
+#lista table {
+	width: 780px;
+	height: 30px
+	}
+	
+#lista th{
+	color: black;
+	text-align: center;
+	height : 30px;
+	}	
+	
+#lista.tabContainer {
+	width: 800px;
+	border: 1px solid #000000;
+	}
+	
+#lista .scrollContainer {
+	width: 800px;
+	height: 230px;
+	overflow: auto;
+	}
+	
+#lista .tabela-coluna{
+	width: 600px;
+	}
+
+#pesquisa {
+	font-size: 20px;
+	text-align: center;
+	width: 100%;
+}
+
+#pesquisa input, select{
+	margin-top: 5%; 
+	margin-right: 5%;
+}
+
+a{
+	color : black;
+	text-decoration: none;
+}
+
+header a{
+	color : white;
+	margin-left: 85%;
+	font-size: 20px;
+}
+
+#novo{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #f7eff7;
+	padding: 10px 20px;
+	background: -moz-linear-gradient(top,#edcfb0 0%,#9e5200);
+	background: -webkit-gradient(linear, left top, left bottom, from(#edcfb0), to(#9e5200));
+	-moz-border-radius: 14px;
+	-webkit-border-radius: 14px;
+	border-radius: 14px;
+	border: 1px solid #f7f7f7;
+	-moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 2px rgba(255,255,255,1);
+	-webkit-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 2px rgba(255,255,255,1);
+	box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 2px rgba(255,255,255,1);
+	text-shadow: 0px -1px 0px rgba(242,233,242,0.2), 0px 1px 0px rgba(255,255,255,0.4);
+}
+
+#criar{
+	text-align: center;
+	margin: auto;
+	margin-top: 50px;
+	border-color : 0px;
+	width: 400px;
+}
+
+legend{
+	font-size: 25px;
+}
+
+
+#txtnome{
+	margin: 30px 30px 0px 50px;
+}
+
+	
+#txtdescricao{
+	margin: 30px 45px 0px 30px;
+}
+	
+#txtcapacidade {
+	margin: 30px 50px 0px 20px;
+}
+
+#Opreserva{
+	margin: 30px 110px 0px 80px;
+}
+
+.btn{
+	font-size: 16px;
+	width: 100px;
+	height: 30px;
+	margin: 30px 0px 0px 0px;
+}
