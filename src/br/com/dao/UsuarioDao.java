@@ -20,6 +20,7 @@ public class UsuarioDao extends AbstractDao<Usuario> {
 	}
 	
 	
+@SuppressWarnings("unchecked")
 public Usuario logar(String login, String senha){
 		
 		Query query = eM.createQuery("select u from Usuario u where u.login = :login and u.senha = :senha");

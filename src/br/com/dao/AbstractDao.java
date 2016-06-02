@@ -9,8 +9,6 @@ import javax.persistence.Query;
 
 import br.com.model.AbstractEntity;
 
-
-
 public abstract class AbstractDao <T extends AbstractEntity> {
 	
 	@PersistenceContext

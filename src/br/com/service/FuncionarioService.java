@@ -7,11 +7,11 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.servlet.mvc.AbstractController;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.dao.CardapioDao;
 import br.com.dao.DeliveryDao;
@@ -30,6 +30,9 @@ import br.com.model.Reserva;
 import br.com.model.Tradicional;
 import br.com.util.Status;
 
+
+@Service
+@Transactional
 public class FuncionarioService extends UsuarioService {
 	
 	@Autowired
@@ -138,7 +141,7 @@ public class FuncionarioService extends UsuarioService {
 			
 			m.setStatus(Status.OCUPADA);
 			
-			Pedido t = new Tradicional(m, f);
+			Tradicional t = new Tradicional(m, f);
 			t.setData(data);
 			
 			
@@ -177,7 +180,7 @@ public class FuncionarioService extends UsuarioService {
 	//OK
 	public void cancelarPedidoTradicional(Long id) {
 		
-		Pedido tradicional = (Tradicional) tradicionalDao.getById(id);
+		Tradicional tradicional = (Tradicional) tradicionalDao.getById(id);
 		
 		if(tradicional.getStatus() == Status.ATIVO || tradicional.getStatus() == null)
 			tradicional.setStatus(Status.CANCELADO);
