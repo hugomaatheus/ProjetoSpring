@@ -155,7 +155,7 @@ public class FuncionarioService extends UsuarioService {
 				}
 			}
 			
-			p.setItens(itens);
+			p.setItens((List<ItemPedido>) itens);
 			
 			iDao.save(i);
 			pDao.update(p);

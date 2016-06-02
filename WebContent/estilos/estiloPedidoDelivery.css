@@ -27,6 +27,7 @@ th span{
 	}
 	
 td span{
+	margin-left: 30px;
 	display: block; 
 	padding: 3px;
 	text-align : center;
@@ -76,11 +77,13 @@ td span{
 
 #btnPesquisar{
 	border-collapse:collapse;
+	border-spacing: 0%;
 	width: 100px;
 	height: 30px;
 }
 
 #pesquisa input, select{
+	margin-top: 5%; 
 	margin-right: 5%;
 }
 
@@ -89,12 +92,13 @@ a{
 	text-decoration: none;
 }
 
-header #sair{
+header a{
 	color : white;
-	margin-left: 80%;
+	margin-left: 85%;
+	font-size: 20px;
 }
 
-.novo{
+#novo{
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	color: #f7eff7;
@@ -114,7 +118,8 @@ header #sair{
 #criar{
 	text-align: center;
 	margin: auto;
-	margin-top: 150px;
+	margin-top: 50px;
+	border-color : 0px;
 	width: 400px;
 }
 
@@ -122,20 +127,16 @@ legend{
 	font-size: 25px;
 }
 
-#Opcateg {
-	margin: 30px 90px 0px 50px;
+#TotalDoPedido{
+	margin-top: 30px;
+	height: 20px;
+	width: 300px;
 }
-	
-#txtNome{
-	margin: 30px 0px 0px 75px;
-}
-	
-#txtpreco{
-	margin: 30px 0px 0px 75px;
-}
-	
-#Opsituacao{
-	margin: 30px 100px 0px 50px;
+
+#TotalDoPedido td{
+	border: 1px solid #000000;
+	font: normal 20px tahoma,arial,serif; 
+	color: black;
 }
 
 .btn{

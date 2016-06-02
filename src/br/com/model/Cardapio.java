@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import br.com.util.Status;
 
 @Entity

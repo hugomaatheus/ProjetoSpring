@@ -1,9 +1,12 @@
-﻿
+
 body{
 	font: normal 20px tahoma,arial,serif; 
 	color: black;
 	background-image: url("../Imagens/cafe.jpg");
-	background-size: 1600px 900px;
+	-webkit-background-size: cover;  
+	-o-background-size: cover;  
+	-moz-background-size: cover;  
+	background-size: cover;
 }
 
 table{
@@ -16,7 +19,6 @@ table,th,td{
 	
 th,td{
 	border-bottom: 1px solid #000000;
-	padding: 0px;
 	}
 	
 th span{
@@ -74,7 +76,6 @@ td span{
 
 #btnPesquisar{
 	border-collapse:collapse;
-	border-spacing: 0%;
 	width: 100px;
 	height: 30px;
 }
@@ -115,7 +116,6 @@ header a{
 	text-align: center;
 	margin: auto;
 	margin-top: 150px;
-	border-color : 0px;
 	width: 400px;
 }
 

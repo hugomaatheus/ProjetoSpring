@@ -2,14 +2,14 @@ package br.com.dao;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.model.Pedido;
+import br.com.model.Delivery;
 
 @Repository
-public class DeliveryDao extends PedidoDao {
+public class DeliveryDao extends AbstractDao<Delivery> {
 
 	
-	public Class<Pedido> getTypeClass() {
-		return Pedido.class;
+	public Class<Delivery> getTypeClass() {
+		return Delivery.class;
 	}
 
 }

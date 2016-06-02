@@ -1,7 +1,7 @@
 package br.com.model;
 
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -38,10 +38,12 @@ public class Pedido implements AbstractEntity {
 	@Enumerated(EnumType.STRING)
 	private Status status;
 	
+	private Double total;
+	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="pedido_itemCardapio", joinColumns=@JoinColumn(name="pedido_id"),
 	inverseJoinColumns=@JoinColumn(name="itemCardapio_id"))
-	private Collection<ItemPedido> itens;
+	private List<ItemPedido> itens;
 	
 
 	public Pedido(Long id) {
@@ -53,6 +55,14 @@ public class Pedido implements AbstractEntity {
 		
 	}
 
+	public Double getTotal() {
+		return total;
+	}
+
+	public void setTotal(Double total) {
+		this.total = total;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -77,11 +87,11 @@ public class Pedido implements AbstractEntity {
 		this.status = status;
 	}
 
-	public Collection<ItemPedido> getItens() {
+	public List<ItemPedido> getItens() {
 		return itens;
 	}
 
-	public void setItens(Collection<ItemPedido> itens) {
+	public void setItens(List<ItemPedido> itens) {
 		this.itens = itens;
 	}
 	

@@ -1,18 +1,15 @@
 package br.com.service;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.servlet.mvc.AbstractController;
 
 import br.com.dao.ClienteDao;
 import br.com.dao.DeliveryDao;
@@ -102,13 +99,10 @@ public class ClienteService {
 		return d;	
 	}
 	
-	public Collection<Delivery> listarTodos() {
-	
-		Collection<Delivery> deliverys = new ArrayList<Delivery>();
-		
-		deliveryDao.listar();
-			
-		return deliverys;
+	public List<Delivery> listarTodos() {
+		List<Delivery> result = new LinkedList<Delivery>();
+		result = deliveryDao.listar();	
+		return result;
 	}
 	
 	//
