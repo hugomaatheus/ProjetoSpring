@@ -62,8 +62,8 @@ public class LoginController {
 		
 		System.out.println(usuarioBD.getTipo() + " - -- - " + usuario.getTipo() + " - " + usuario.toString());
 		
-		return "login/login";
 		
+		return null;
 		
 	}
 	

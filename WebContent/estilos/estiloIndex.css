@@ -1,0 +1,167 @@
+body{
+	font: normal 20px tahoma,arial,serif; 
+	color: black;
+	background-image: url("../Imagens/cafe.jpg");
+	-webkit-background-size: cover;  
+	-o-background-size: cover;  
+	-moz-background-size: cover;  
+	background-size: cover;
+}
+
+#Pedidos{
+	position: absolute;
+	left: 10%;
+	top: 37%;
+	margin: auto;
+}
+
+#Editar{
+	position: absolute;
+	left: 60%;
+	top: 37%;
+	margin: auto;
+}
+
+#Pedidos-gerente {
+	position: absolute;
+	left: 10%;
+	top: 7%;
+	margin: auto;
+}
+
+#Cardapio {
+	position: absolute;
+	left: 60%;
+	top: 7%;
+	margin: auto;
+}
+
+#Categoria {
+	position: absolute;
+	left: 10%;
+	top: 37%;
+	margin: auto;
+}
+
+#Reserva {
+	position: absolute;
+	left: 60%;
+	top: 37%;
+	margin: auto;
+}
+
+#Mesa {
+	position: absolute;
+	left: 10%;
+	top: 67%;
+	margin: auto;
+}
+
+#Funcionario {
+	position: absolute;
+	left: 60%;
+	top: 67%;
+	margin: auto;
+}
+
+.botao{
+	  /*definimos a largura do box*/
+    width: 250px;
+    /* definimos a altura do box */
+    height: 80px;
+    /* definimos a cor de fundo do box */
+    background-color:white;
+    /* definimos o quão arredondado irá ficar nosso box */
+    border-radius: 100px;
+    /* Declaração para aparecer no Firefox */
+    -moz-border-radius: 100px;
+    /* Para exibir nos outros navegadores como Chrome, safari, opera*/
+    -webkit-border-radius: 100px;
+    text-align: right;
+	font-size: 18;
+	font-family: arial;
+	}
+
+#Pedidos .botao {
+background-repeat: no-repeat;
+background-size: 100px 50px;
+background-position: 15px 10px; 
+background-image:url("../Imagens/pedidos.png");
+}
+
+#Editar .botao {
+background-repeat: no-repeat;
+background-size: 100px 50px;
+background-position: 15px 10px; 
+background-image:url("../Imagens/Editar-Usuario.png");
+}
+
+
+
+#Pedidos-gerente .botao {
+background-repeat: no-repeat;
+background-size: 100px 50px;
+background-position: 15px 10px; 
+background-image:url("../Imagens/pedidos.png");
+}
+
+#Reserva .botao {
+background-repeat: no-repeat;
+background-size: 80px 50px;
+background-position: 15px 10px; 
+background-image:url("../Imagens/reserva.png");
+}
+
+#Categoria .botao {
+background-repeat: no-repeat;
+background-size: 80px 50px;
+background-position: 15px 10px; 
+background-image:url("../Imagens/categoria.png");
+}
+
+#Cardapio .botao {
+background-repeat: no-repeat;
+background-size: 100px 50px;
+background-position: 15px 10px; 
+background-image:url("../Imagens/cardapio.png");
+}#Mesa .botao {
+background-repeat: no-repeat;
+background-size: 100px 50px;
+background-position: 15px 10px; 
+background-image:url("../Imagens/mesa.png");
+}
+
+#Funcionario .botao {
+background-repeat: no-repeat;
+background-size: 80px 50px;
+background-position: 15px 10px; 
+background-image:url("../Imagens/Editar-Usuario.png");
+}
+
+fieldset{
+ 	text-align: center;
+ 	font-size: 18;
+	font-family: arial;
+	position:absolute;
+	left:18%;
+	top:12%;
+	margin: auto;
+	width: 1000px; 
+	height: 500px;
+	}
+
+#btnSair{
+	position:absolute;
+	border-collapse:collapse;
+	border-spacing: 0%;
+	width: 106px;
+	height: 30px;
+	left:93%;
+	top:2%;
+}
+
+#btnSair:hover{
+	background: #FFEBCC;
+	color: #E68A00;
+}
+		
