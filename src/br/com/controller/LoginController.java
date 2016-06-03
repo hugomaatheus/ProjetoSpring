@@ -33,37 +33,33 @@ public class LoginController {
 			return  "login/login";
 		}
 		
-		Usuario usuarioBD = usuarioService.logar(usuario.getLogin(), usuario.getSenha()); 
+		Usuario usuarioBD = usuarioService.logar(usuario.getLogin(), usuario.getSenha());
+		System.out.println(usuarioBD);
 		
 		if(usuarioBD == null){
 			usuario.setSenha("");
 			map.addAttribute("usuario", usuario);
-			System.out.println(" - -USUARIO NULL- - " + usuario.getTipo());
 			return  "login/login";
 		}
 		
 		if(usuarioBD.getTipo().equals("CLIENTE")) {
 			sessao.setAttribute("usuario", usuario);
-			System.out.println(usuarioBD.getTipo() + " - -CLIENTE- - " + usuario.getTipo());
 			return "redirect:/cliente/indexCliente";
 		}
 		
-		else if (usuarioBD.getTipo().equals("FUNCIONARIO")) {
+		else if (usuarioBD.getTipo().equals("FUNCIONARIO") || usuarioBD.getTipo().toString() == "FUNCIONARIO") {
 			sessao.setAttribute("usuario", usuario);
-			System.out.println(usuarioBD.getTipo() + " - -FUNCIONARIO- - " + usuario.getTipo());
 			return "redirect:/funcionario/indexFuncionario";
 		}
 		
 		else if(usuarioBD.getTipo().equals("GERENTE")) {
 				sessao.setAttribute("usuario", usuario);
-				System.out.println(usuarioBD.getTipo() + " - -GERENTE- - " + usuario.getTipo());
 				return "redirect:/gerente/indexGerente";
 		}
 		
-		System.out.println(usuarioBD.getTipo() + " - -- - " + usuario.getTipo() + " - " + usuario.toString());
+		System.out.println(usuarioBD.getTipo());
 		
-		
-		return null;
+		return "ok";
 		
 	}
 	

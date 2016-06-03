@@ -4,6 +4,6 @@ public enum Tipo {
 	
 	CLIENTE,
 	GERENTE,
-	FUNCIONARIO
+	FUNCIONARIO;
 
 }
