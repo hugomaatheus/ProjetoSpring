@@ -29,6 +29,7 @@ public class LoginController {
 	public String logar(@ModelAttribute("usuario") Usuario usuario, HttpSession sessao, ModelMap map){
 		if(usuario.getLogin().equals("") || usuario.getSenha().equals("") ){
 			map.addAttribute("usuario", usuario);
+			System.out.println(" - -if 1- - " + usuario.getTipo());
 			return  "login/login";
 		}
 		
@@ -37,23 +38,29 @@ public class LoginController {
 		if(usuarioBD == null){
 			usuario.setSenha("");
 			map.addAttribute("usuario", usuario);
+			System.out.println(" - -USUARIO NULL- - " + usuario.getTipo());
 			return  "login/login";
 		}
 		
 		if(usuarioBD.getTipo().equals("CLIENTE")) {
 			sessao.setAttribute("usuario", usuario);
+			System.out.println(usuarioBD.getTipo() + " - -CLIENTE- - " + usuario.getTipo());
 			return "redirect:/cliente/indexCliente";
 		}
 		
 		else if (usuarioBD.getTipo().equals("FUNCIONARIO")) {
 			sessao.setAttribute("usuario", usuario);
+			System.out.println(usuarioBD.getTipo() + " - -FUNCIONARIO- - " + usuario.getTipo());
 			return "redirect:/funcionario/indexFuncionario";
 		}
 		
 		else if(usuarioBD.getTipo().equals("GERENTE")) {
 				sessao.setAttribute("usuario", usuario);
+				System.out.println(usuarioBD.getTipo() + " - -GERENTE- - " + usuario.getTipo());
 				return "redirect:/gerente/indexGerente";
 		}
+		
+		System.out.println(usuarioBD.getTipo() + " - -- - " + usuario.getTipo() + " - " + usuario.toString());
 		
 		return "login/login";
 		
