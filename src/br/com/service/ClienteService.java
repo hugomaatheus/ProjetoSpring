@@ -97,10 +97,9 @@ public class ClienteService {
 	
 	public List<Delivery> listarTodos() {
 		List<Delivery> result = new LinkedList<Delivery>();
-		result = deliveryDao.listar();	
+		result = deliveryDao.listarTodos();	
 		return result;
 	}
-	
 	//
 public void cadastrarPedidoDelivery(Usuario cliente, List<ItemPedido> itens, Double trocoPara) {
 		

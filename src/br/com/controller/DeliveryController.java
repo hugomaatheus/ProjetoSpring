@@ -35,8 +35,8 @@ public class DeliveryController {
 	
 	@RequestMapping(value="listar", method=RequestMethod.GET)
 	public String list(ModelMap map){
-		
 		List<Delivery> deliverys = clienteService.listarTodos();
+		System.out.println(deliverys);
 		map.addAttribute("deliverys", deliverys);
 		return "deliverys/listarPedidoDelivery";
 	}
