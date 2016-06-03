@@ -62,20 +62,17 @@ public class FuncionarioService extends UsuarioService {
 	
 	//Manter Reserva - OK
 	public void cadastrarReserva(Reserva reserva, Funcionario f) {
+		Calendar data = Calendar.getInstance();
 		
 		reserva.setStatus(Status.ATIVO);
+		reserva.setDataInicial(data);
 		reserva.setFuncionario(f);
 		reservaDao.update(reserva);
 	}
 	
 	//OK
 	public Reserva buscarReserva(Long id) {
-		
-		Reserva r = null;
-		
-		r = reservaDao.getById(id);
-		
-		return r;
+		return reservaDao.getById(id);
 	}
 	
 	public List<Reserva> listarTodasReservas() {
@@ -89,18 +86,18 @@ public class FuncionarioService extends UsuarioService {
 	}
 	
 	//OK
-	public void atualizarReserva(Reserva reserva) {
-		
-		reservaDao.update(reserva);
-		
+	public void atualizarReserva(Reserva reserva) {		
+		reservaDao.update(reserva);		
 	}
 	
 	//OK
 	public void cancelarReserva(Long id) {
 		
 		Reserva reserva = reservaDao.getById(id);
+		Calendar data = Calendar.getInstance();
 
 		if(reserva.getStatus() == Status.ATIVO) {
+			reserva.setDataFinal(data);
 			reserva.setStatus(Status.CANCELADO);
 			reservaDao.update(reserva);
 		}
@@ -168,13 +165,8 @@ public class FuncionarioService extends UsuarioService {
 }
 	
 	//Buscar pedido tradicional - OK
-	public Pedido buscarPedidoTradicional(Long id) {
-		
-		Pedido t = null;
-		
-		t =  tradicionalDao.getById(id);
-		
-		return t;
+	public Tradicional buscarPedidoTradicional(Long id) {
+		return tradicionalDao.getById(id);
 	}
 	
 	//OK
@@ -194,12 +186,7 @@ public class FuncionarioService extends UsuarioService {
 	
 	
 	public Delivery buscarPedidoDelivery(Long id) {
-		
-		Delivery d = null;
-
-		d = (Delivery) deliveryDao.getById(id);
-
-		return d;
+		return (Delivery) deliveryDao.getById(id);
 	}
 	
 }

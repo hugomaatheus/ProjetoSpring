@@ -31,14 +31,33 @@ public class LoginController {
 			map.addAttribute("usuario", usuario);
 			return  "login/login";
 		}
+		
 		Usuario usuarioBD = usuarioService.logar(usuario.getLogin(), usuario.getSenha()); 
+		
 		if(usuarioBD == null){
 			usuario.setSenha("");
 			map.addAttribute("usuario", usuario);
 			return  "login/login";
 		}
-		sessao.setAttribute("usuario", usuario);
-		return "redirect:/cardapio/listar";
+		
+		if(usuarioBD.getTipo().equals("CLIENTE")) {
+			sessao.setAttribute("usuario", usuario);
+			return "redirect:/cliente/indexCliente";
+		}
+		
+		else if (usuarioBD.getTipo().equals("FUNCIONARIO")) {
+			sessao.setAttribute("usuario", usuario);
+			return "redirect:/funcionario/indexFuncionario";
+		}
+		
+		else if(usuarioBD.getTipo().equals("GERENTE")) {
+				sessao.setAttribute("usuario", usuario);
+				return "redirect:/gerente/indexGerente";
+		}
+		
+		return "login/login";
+		
+		
 	}
 	
 	
