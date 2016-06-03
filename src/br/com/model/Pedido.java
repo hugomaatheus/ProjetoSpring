@@ -97,8 +97,7 @@ public class Pedido implements AbstractEntity {
 	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return String.format("%s", getId());
+		return String.format("%d", getId());
 	}
 	public boolean hasValidId(){
 		return getId() != null && getId() != 0;

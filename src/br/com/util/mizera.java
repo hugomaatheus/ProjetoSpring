@@ -10,7 +10,7 @@ public class mizera {
 	public static void main(String[] args) {
 
 		ClienteService clienteservice = new ClienteService();
-		Delivery delivery = clienteservice.buscarPedidoDelivery(1L);
+		List<Delivery> delivery = clienteservice.listarTodos();
 		System.out.println(delivery);
 
 	}

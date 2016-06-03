@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import br.com.model.Cardapio;
 import br.com.model.Delivery;
 import br.com.model.ItemPedido;
-import br.com.model.Pedido;
 import br.com.service.CardapioService;
 import br.com.service.ClienteService;
 
@@ -36,8 +35,8 @@ public class DeliveryController {
 	
 	@RequestMapping(value="listar", method=RequestMethod.GET)
 	public String list(ModelMap map){
-		
 		List<Delivery> deliverys = clienteService.listarTodos();
+		System.out.println(deliverys);
 		map.addAttribute("deliverys", deliverys);
 		return "cliente/listarPedidoDelivery";
 	}
