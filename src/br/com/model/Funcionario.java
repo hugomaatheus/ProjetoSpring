@@ -46,6 +46,7 @@ public class Funcionario extends Usuario {
 		this.cpf = cpf;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Funcionario [salario=" + salario + ", cpf=" + cpf + ", cargo=" + cargo + ", getId()=" + getId()

@@ -15,19 +15,20 @@
 	</head>
 	<body>
 		<header>
-			<input id="novo" type="button" onclick="location.href='novoCardapio.html'"; value="Cadatrar Cardapio" />
+			<c:url var="urlCard" value="/cardapio/novoCardapio" />
+			<input id="novo" type="button" onclick="location.href='${url}'"; value="Cadatrar Cardapio" />
 			<a href="#Sair">Sair</a>
 		</header>
-		<c:url var="url" value="/reserva/save" />
+		<c:url var="urlR" value="/funcionario/saveReserva" />
 		<fieldset id="criar"><legend>Cadastrar Reserva</legend>
 			<article class="tab_container">
-				<form:form method="post" action="${url}" modelAttribute="reserva" >					
+				<form:form method="post" action="${urlR}" modelAttribute="reserva" >					
 					<label id="labelinicio"><em>Data Inicio:</em></label>
 					<form:input id="txtinicio" type="date" maxlength="10" path="dataInicial" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$"/>
-				<br/>
+				<%-- <br/>
 					<label id="labelfim"><em>Data Fim:</em></label>
 					<form:input id="txtfim" type="date" maxlength="10" path="dataFinal" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$"/>
-				<br/>
+				<br/> --%>
 					<label id="labelrespon"><em>Responsavel:</em></label>
 					<form:input id="txtrespon" type="text" path="nome_Responsavel"/>
 				<br />

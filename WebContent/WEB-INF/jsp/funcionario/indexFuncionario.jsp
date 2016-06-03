@@ -1,8 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <!-- para estruturas de controle e repetição e setar variáveis -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt" %> <!-- para formatações -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  <!-- para funções -->
+
 <html>
 	<head>
 		<title>titulo da pagina</title>
 		<meta charset="utf-8" />
-		<link rel="stylesheet" type="text/css" href="../../estiloIndex.css">
+		<link rel="stylesheet" type="text/css" href="estilos/estiloIndex.css">
 		<script type="text/javascript" src="../Plugin js/jquery-1.12.2.min.js"></script>
 		<script type="text/javascript" src="../Plugin js/Projeto.js"></script>
 	</head>
@@ -14,15 +22,17 @@
 						<fieldset><legend>Menu</legend>
 							<article class="tab_container" id="Pedidos">
 								<tr>
+									<c:url var="urlT" value="/pedido/tradicional/form" />
 									<td>
-										<input class="botao" type="button" onclick="window.open('../Tela-Pedido-Funcionario/Tela-Pedido-Funcionario.html')" value="Pagina Pedido"></input>
+										<input class="botao" type="button" onclick="window.location.href='${urlT}'" value="Pagina Pedido"></input>
 									</td>
 								</tr>
 							</article>
 							<article class="tabContainer" id="Reserva">
 								<tr>
+								<c:url var="urlR" value="/reserva/form" />									
 									<td>
-										<input class="botao" type="button" onclick="window.open('../Tela-Reserva/Tela-Reserva.html')" value="Pagina Reserva"></input>
+										<input class="botao" type="button" onclick="window.location.href='${urlR}'" value="Pagina Reserva"></input>
 									</td>
 								</tr>
 							</article>

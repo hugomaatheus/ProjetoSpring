@@ -29,12 +29,10 @@ public class LoginController {
 	public String logar(@ModelAttribute("usuario") Usuario usuario, HttpSession sessao, ModelMap map){
 		if(usuario.getLogin().equals("") || usuario.getSenha().equals("") ){
 			map.addAttribute("usuario", usuario);
-			System.out.println(" - -if 1- - " + usuario.getTipo());
 			return  "login/login";
 		}
 		
 		Usuario usuarioBD = usuarioService.logar(usuario.getLogin(), usuario.getSenha());
-		System.out.println(usuarioBD);
 		
 		if(usuarioBD == null){
 			usuario.setSenha("");
@@ -57,9 +55,8 @@ public class LoginController {
 				return "redirect:/gerente/indexGerente";
 		}
 		
-		System.out.println(usuarioBD.getTipo());
-		
-		return "ok";
+
+		return null;
 		
 	}
 	

@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.dao.CardapioDao;
 import br.com.dao.DeliveryDao;
-import br.com.dao.FuncionarioDao;
 import br.com.dao.ItemPedidoDao;
 import br.com.dao.PedidoDao;
 import br.com.dao.ReservaDao;
@@ -53,21 +52,18 @@ public class FuncionarioService extends UsuarioService {
 	@Autowired
 	private DeliveryDao deliveryDao;
 	
-	@Autowired
-	private FuncionarioDao funcionarioDao;
-	
-	@Autowired
-	private CardapioDao cardapioDao;
-	
 	
 	//Manter Reserva - OK
 	public void cadastrarReserva(Reserva reserva, Funcionario f) {
 		Calendar data = Calendar.getInstance();
 		
-		reserva.setStatus(Status.ATIVO);
-		reserva.setDataInicial(data);
-		reserva.setFuncionario(f);
-		reservaDao.update(reserva);
+		if(reserva.getMesa().equals("LIVRE")) {
+			reserva.setStatus(Status.ATIVO);
+			reserva.setDataInicial(data);
+			reserva.getMesa().setStatus(Status.OCUPADA);
+			reserva.setFuncionario(f);
+			reservaDao.update(reserva);
+		}
 	}
 	
 	//OK
@@ -99,6 +95,7 @@ public class FuncionarioService extends UsuarioService {
 		if(reserva.getStatus() == Status.ATIVO) {
 			reserva.setDataFinal(data);
 			reserva.setStatus(Status.CANCELADO);
+			reserva.getMesa().setStatus(Status.LIVRE);
 			reservaDao.update(reserva);
 		}
 

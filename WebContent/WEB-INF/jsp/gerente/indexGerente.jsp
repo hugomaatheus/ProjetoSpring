@@ -2,7 +2,7 @@
 	<head>
 		<title>titulo da pagina</title>
 		<meta charset="utf-8" />
-		<link rel="stylesheet" type="text/css" href="../../estiloIndex.css">
+		<link rel="stylesheet" type="text/css" href="../../estilos/estiloIndex.css">
 		<script type="text/javascript" src="../Plugin js/jquery-1.12.2.min.js"></script>
 		<script type="text/javascript" src="../Plugin js/Projeto.js"></script>
 	</head>
