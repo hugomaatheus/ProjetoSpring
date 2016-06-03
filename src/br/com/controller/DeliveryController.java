@@ -18,11 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import br.com.model.Cardapio;
 import br.com.model.Delivery;
 import br.com.model.ItemPedido;
-import br.com.model.Pedido;
 import br.com.service.CardapioService;
 import br.com.service.ClienteService;
 
-@RequestMapping(value="cliente")
+@RequestMapping(value="delivery")
 @Controller
 public class DeliveryController {
 	
@@ -39,7 +38,7 @@ public class DeliveryController {
 		
 		List<Delivery> deliverys = clienteService.listarTodos();
 		map.addAttribute("deliverys", deliverys);
-		return "cliente/listarPedidoDelivery";
+		return "deliverys/listarPedidoDelivery";
 	}
 	
 	@RequestMapping(value="filtrar", method=RequestMethod.GET)
@@ -56,13 +55,13 @@ public class DeliveryController {
 		Delivery delivery = new Delivery();
 		map.addAttribute("delivery", delivery);
 		map.addAttribute("cardapioSelect",  selectCardapio());
-		return "cliente/novoDelivery";
+		return "delivery/novoDelivery";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="save")
 	public String save(@ModelAttribute("cliente") @Valid Delivery delivery, BindingResult result, ModelMap map) {
 		
-	return "redirect:/cliente/listar";
+	return "redirect:/delivery/listarPedidosDelivery";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="addCarrinho")

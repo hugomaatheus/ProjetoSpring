@@ -49,12 +49,8 @@ public class ClienteService {
 	}	
 
 	//OK
-	public void desativarUsuario(Long id) {
+	public void desativarUsuario(Cliente cliente) {
 
-		Cliente cliente = new Cliente();
-		
-		cliente = clienteDao.getById(id);
-		
 		if(cliente.getStatus() == Status.ATIVO) {
 			cliente.setStatus(Status.INATIVO);
 			clienteDao.update(cliente);

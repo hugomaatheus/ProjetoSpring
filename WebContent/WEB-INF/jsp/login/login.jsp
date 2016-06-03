@@ -16,9 +16,9 @@
     </head>
 
     <body>
-    <c:url var="url" value="/logar" />
+   
             <header>
-                
+                 <c:url var="url" value="/logar" />
             </header>
             
             <section>
@@ -30,9 +30,10 @@
                         <br />
                             <label for="txtsenha" id="labelsenha"><em>Senha:</em></label>
                             <form:input id="txtsenha" type="password" path="senha"></form:input>
-                        <br />  
+                        <br />
+                           <c:url var="url2" value="/cliente/form" />
                             <input id="logar" class="btn" type="submit" value="Logar"></input>
-                            <input id="novo" class="btn" type="button" onclick="window.location.href='../Tela-Cadastro de Usuario/cadastro.html'" value="Novo Usuario"></input>
+                            <input id="novo" class="btn" type="button" onclick="window.location.href='${url2}'" value="Novo Usuario"></input>
                     	</form:form>
                     </fieldset>
                 </article>      
