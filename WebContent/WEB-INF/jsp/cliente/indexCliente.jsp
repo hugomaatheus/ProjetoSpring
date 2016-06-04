@@ -18,10 +18,9 @@
 		<form id="form">
 			<header><!-- Cabeça da pagina -->
 					<input id="btnSair" type="submit" value="Sair"/>
+					<p>Bem vindo, ${usuarioBD.nome}</p>
 			</header>
 			
-			<${usuario.nome}>
-
 						<fieldset><legend>Menu</legend>
 							<article class="tab_container" id="Pedidos">
 								<tr>
@@ -33,7 +32,7 @@
 							<article class="tabContainer" id="Editar">
 								<tr>
 									<td>
-										<input class="botao" type="button" onclick="window.location.href='../Tela-Cadastro de Usuario/Cadastro.html'" value="Editar Usuario"></input>
+										<input class="botao" type="button" onclick="window.open('../Tela-Pedidos-Cliente/Tela-Pedido-Cliente.html')" value="Editar Usuario"></input>
 									</td>
 								</tr>
 							</article>

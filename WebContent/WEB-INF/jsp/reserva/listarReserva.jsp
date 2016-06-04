@@ -17,6 +17,7 @@
 			<c:url var="url" value="form"/>
 			<header><!-- Cabeça da pagina -->
 				<input id="novo" type="button" onclick="location.href='${url}'"; value="Cadatrar Reserva" />
+				<p>Bem vindo, ${usuario.login}</p>
 				<a href="#Sair">Sair</a>
 			</header>
 							<article class="tab_container" id="pesquisa"><!-- Centro da pagina -->
@@ -49,10 +50,10 @@
 									<table>
 										<c:forEach var="reserva" items="${reservas}" >
 											<tr>
-												<td class="tabela-coluna"><span>${reserva.datainicial}</span></td>
-												<td class="tabela-coluna"><span>${reserva.datafinal}</span></td>
+												<td class="tabela-coluna"><span>${reserva.dataInicial.toInstant()}</span></td>
+												<td class="tabela-coluna"><span>${reserva.dataFinal.toInstant()}</span></td>
 												<td class="tabela-coluna"><span>Mesa - ${reserva.mesa.numero}</span></td>
-												<td class="tabela-coluna"><span>${reserva.nome_responsavel}</span></td>
+												<td class="tabela-coluna"><span>${reserva.nome_Responsavel}</span></td>
 												<td class="tabela-coluna">
 													<span>
 													<a href="Comando para excluir"> [excluir]</a>

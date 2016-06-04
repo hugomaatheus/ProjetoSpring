@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +33,7 @@ public class ReservaController {
 	private MesaService mesaService;
 	
 	@RequestMapping(value="listar", method=RequestMethod.GET)
-	public String list(ModelMap map, HttpSession sessao, HttpServletRequest request){
-		
-		sessao = request.getSession(false);
-		Usuario usuario = (Usuario) sessao.getAttribute("usuario");
+	public String list(ModelMap map, @ModelAttribute("usuario") Usuario usuario){
 		
 		List<Reserva> reservas = funcionarioService.listarTodasReservas();
 		

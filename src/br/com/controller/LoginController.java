@@ -34,24 +34,25 @@ public class LoginController {
 		
 		Usuario usuarioBD = usuarioService.logar(usuario.getLogin(), usuario.getSenha());
 		
+		System.out.println(usuarioBD);
+		
 		if(usuarioBD == null){
 			usuario.setSenha("");
-			map.addAttribute("usuario", usuario);
+			map.addAttribute("usuario", usuarioBD);
 			return  "login/login";
 		}
 		
 		if(usuarioBD.getTipo().name() == "CLIENTE") {
-			sessao.setAttribute("usuario", usuario);
+			sessao.setAttribute("usuario", usuarioBD);
+			map.addAttribute("usuarioBD", usuarioBD);
 			return "cliente/indexCliente";
-		}
-		
-		else if (usuarioBD.getTipo().name() == ("FUNCIONARIO") || usuarioBD.getTipo().name() == "FUNCIONARIO") {
-			sessao.setAttribute("usuario", usuario);
+		} else if (usuarioBD.getTipo().name() == ("FUNCIONARIO") || usuarioBD.getTipo().name() == "FUNCIONARIO") {
+			sessao.setAttribute("usuario", usuarioBD);
+			map.addAttribute("usuarioBD", usuarioBD);
 			return "funcionario/indexFuncionario";
-		}
-		
-		else if(usuarioBD.getTipo().name() == "GERENTE") {
-				sessao.setAttribute("usuario", usuario);
+		} else if(usuarioBD.getTipo().name() == "GERENTE") {
+				sessao.setAttribute("usuario", usuarioBD);
+				map.addAttribute("usuarioBD", usuarioBD);
 				return "gerente/indexGerente";
 		}
 		
@@ -59,6 +60,5 @@ public class LoginController {
 		return null;
 		
 	}
-	
 	
 }
