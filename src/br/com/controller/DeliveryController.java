@@ -54,6 +54,7 @@ public class DeliveryController {
 	public String createForm(ModelMap map){
 		Delivery delivery = new Delivery();
 		map.addAttribute("delivery", delivery);
+		map.addAttribute("cardapio", new Cardapio());
 		map.addAttribute("cardapioSelect",  selectCardapio());
 		return "delivery/novoDelivery";
 	}

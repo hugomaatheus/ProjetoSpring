@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Editar Usuario</title>
+		<title>Edite sua conta</title>
 		<meta charset="utf-8" />
 		<link rel="stylesheet" type="text/css" href="../../estilos/estiloCadastroCliente.css">
 	</head>
@@ -111,7 +111,7 @@
 								</tr>
 								<tr>
 									<td align="right">
-										<input id="btnvoltar" type="button" onclick="window.location.href='../Tela-Login/Tela-Login.html'" value="Voltar" />
+										<input id="btnvoltar" type="button" onclick="history.go(-1)" value="Voltar" />
 									</td>
 								</tr>
 								<tr>

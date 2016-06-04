@@ -1,5 +1,9 @@
 package br.com.controller;
 
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +15,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import br.com.model.Cardapio;
 import br.com.model.Cliente;
+import br.com.model.Delivery;
+import br.com.model.ItemPedido;
+import br.com.service.CardapioService;
 import br.com.service.ClienteService;
 
 @RequestMapping(value="cliente")
@@ -20,6 +28,9 @@ public class ClienteController {
 	
 	@Autowired
 	private ClienteService clienteService;
+	
+	@Autowired
+	private CardapioService cardapioService;
 	
 	@RequestMapping(value="form", method=RequestMethod.GET)
 	public String createForm(ModelMap map){
@@ -56,7 +67,5 @@ public class ClienteController {
 		}
 		return "redirect:/cliente/login";
 	}
-	
-	
 
 }

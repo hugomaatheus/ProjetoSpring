@@ -24,15 +24,17 @@
 						<fieldset><legend>Menu</legend>
 							<article class="tab_container" id="Pedidos">
 								<tr>
+									<c:url var="urlD" value="/delivery/form" />
 									<td>
-										<input class="botao" type="button" onclick="window.open('../Tela-Pedidos-Cliente/Tela-Pedido-Cliente.html')" value="Pagina Pedido"></input>
+										<input class="botao" type="button" onclick="window.location.href='${urlD}'" value="Pagina Pedido"></input>
 									</td>
 								</tr>
 							</article>
 							<article class="tabContainer" id="Editar">
 								<tr>
+									<c:url var="urlEdit" value="/cliente/${usuarioBD.id}/formUpdate" />
 									<td>
-										<input class="botao" type="button" onclick="window.open('../Tela-Pedidos-Cliente/Tela-Pedido-Cliente.html')" value="Editar Usuario"></input>
+										<input class="botao" type="button" onclick="window.location.href='${urlEdit}'" value="Editar Usuario"></input>
 									</td>
 								</tr>
 							</article>
