@@ -12,9 +12,7 @@
 	<head>
 		<title>titulo da pagina</title>
 		<meta charset="utf-8" />
-		<link rel="stylesheet" type="text/css" href="../../estilos/estiloCliente.css">
-		<script type="text/javascript" src="../Plugin js/jquery-1.12.2.min.js"></script>
-		<script type="text/javascript" src="../Plugin js/Projeto.js"></script>
+		<link rel="stylesheet" type="text/css" href="../estilos/estiloCadastroCliente.css">
 	</head>
 	<body>
 	
@@ -29,7 +27,7 @@
 					<article class="cont_tab" id="Read">
 						<fieldset><legend>Cadastrar Usuario</legend>
 							<article class="tab_Cadastro" id="caixa_1">
-								<tbody>
+								<table>
 									<tr>
 										<td align="right">
 											<label id="labellogin"><em>Login:</em></label>
@@ -62,10 +60,10 @@
 											<form:input id="txtemail" type="email" path="email" required="required" name="email" pattern="[a-z0-9._%+-]+@[a-0-9.-]+\.[a-z]{2,4}$" />											
 										</td>
 									</tr>
-								</tbody>
+								</table>
 							</article>
 							<article class="tab_Cadastro" id="caixa_2">
-								<tbody>
+								<table>
 									<tr>
 										<td align="right">
 											<label id="labelrua"><em>Rua:</em></label>
@@ -98,19 +96,11 @@
 											<form:input id="txtcep" path="endereco.cep" required="required" maxlength="9" pattern="\d{5}-\d{3}$" />
 										</td>
 									</tr>
-								</tbody>
+								</table>
 							</article>
 							<article id= caixa_3>
-								<tr>
-									<td align="right">
 										<input id="btnsalvar" type="submit" value="Salvar" />
-									</td>
-								</tr>
-								<tr>
-									<td align="right">
 										<input id="btnvoltar" type="button" onclick="window.location.href='../Tela-Login/Tela-Login.html'" value="Voltar" />
-									</td>
-								</tr>
 							</article>
 						</fieldset>
 					</article>

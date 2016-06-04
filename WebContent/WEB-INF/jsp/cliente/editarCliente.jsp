@@ -12,12 +12,9 @@
 	<head>
 		<title>Editar Usuario</title>
 		<meta charset="utf-8" />
-		<link rel="stylesheet" type="text/css" href="../../estilos/estiloCliente.css">
-		<script type="text/javascript" src="../Plugin js/jquery-1.12.2.min.js"></script>
-		<script type="text/javascript" src="../Plugin js/Projeto.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../estilos/estiloCadastroCliente.css">
 	</head>
 	<body>
-		<formid = "form">
 			<header><!-- Cabeça da pagina -->
 				<a href="#sair">Sair</a>
 			</header>
@@ -131,7 +128,6 @@
 
 			<footer><!-- cabeçalho da pagina -->
 				
-			</footer>
-		</form> 
+			</footer> 
 	</body>
 </html>

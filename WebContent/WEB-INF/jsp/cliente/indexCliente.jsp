@@ -1,8 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <!-- para estruturas de controle e repetição e setar variáveis -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt" %> <!-- para formatações -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  <!-- para funções -->
+    
+    
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>titulo da pagina</title>
 		<meta charset="utf-8" />
-		<link rel="stylesheet" type="text/css" href="../../estilos/estiloIndex.css">
+		<link rel="stylesheet" type="text/css" href="estilos/estiloIndex.css">
 	</head>
 	<body>
 		<form id="form">
@@ -10,7 +20,7 @@
 					<input id="btnSair" type="submit" value="Sair"/>
 			</header>
 			
-			<section>
+			<${usuario.nome}>
 
 						<fieldset><legend>Menu</legend>
 							<article class="tab_container" id="Pedidos">

@@ -114,4 +114,10 @@ public Usuario() {
 		return getId() != null && getId() != 0;
 	}
 
+	@Override
+	public String toString() {
+		return nome;
+	}
+	
+
 }

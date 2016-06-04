@@ -40,19 +40,19 @@ public class LoginController {
 			return  "login/login";
 		}
 		
-		if(usuarioBD.getTipo().equals("CLIENTE")) {
+		if(usuarioBD.getTipo().name() == "CLIENTE") {
 			sessao.setAttribute("usuario", usuario);
-			return "redirect:/cliente/indexCliente";
+			return "cliente/indexCliente";
 		}
 		
-		else if (usuarioBD.getTipo().equals("FUNCIONARIO") || usuarioBD.getTipo().toString() == "FUNCIONARIO") {
+		else if (usuarioBD.getTipo().name() == ("FUNCIONARIO") || usuarioBD.getTipo().name() == "FUNCIONARIO") {
 			sessao.setAttribute("usuario", usuario);
-			return "redirect:/funcionario/indexFuncionario";
+			return "funcionario/indexFuncionario";
 		}
 		
-		else if(usuarioBD.getTipo().equals("GERENTE")) {
+		else if(usuarioBD.getTipo().name() == "GERENTE") {
 				sessao.setAttribute("usuario", usuario);
-				return "redirect:/gerente/indexGerente";
+				return "gerente/indexGerente";
 		}
 		
 

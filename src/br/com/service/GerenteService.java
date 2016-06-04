@@ -3,19 +3,13 @@ package br.com.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.swing.JOptionPane;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.servlet.mvc.AbstractController;
 
 import br.com.dao.CardapioDao;
 import br.com.dao.CategoriaDao;
 import br.com.dao.FuncionarioDao;
-import br.com.dao.GerenteDao;
 import br.com.dao.ItemPedidoDao;
 import br.com.dao.MesaDao;
-import br.com.dao.UsuarioDao;
 import br.com.model.Cardapio;
 import br.com.model.Categoria;
 import br.com.model.Cliente;
@@ -33,8 +27,8 @@ public class GerenteService extends UsuarioService {
 	@Autowired
 	private CardapioDao cardapioDao;
 	
-	@Autowired
-	private UsuarioDao gerenteDao;
+//	@Autowired
+//	private UsuarioDao gerenteDao;
 	
 	@Autowired
 	private CategoriaDao categoriaDao;
@@ -246,6 +240,7 @@ public List<Mesa> consultarTodosMesas() {
 		return f;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Cliente> listarTodosClientes() {
 		
 

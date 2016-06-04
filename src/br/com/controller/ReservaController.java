@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import br.com.model.Funcionario;
 import br.com.model.Mesa;
 import br.com.model.Reserva;
+import br.com.model.Usuario;
 import br.com.service.FuncionarioService;
 import br.com.service.MesaService;
 
@@ -33,10 +34,14 @@ public class ReservaController {
 	private MesaService mesaService;
 	
 	@RequestMapping(value="listar", method=RequestMethod.GET)
-	public String list(ModelMap map){
+	public String list(ModelMap map, HttpSession sessao, HttpServletRequest request){
+		
+		sessao = request.getSession(false);
+		Usuario usuario = (Usuario) sessao.getAttribute("usuario");
 		
 		List<Reserva> reservas = funcionarioService.listarTodasReservas();
 		
+		map.addAttribute("usuario", usuario);
 		map.addAttribute("mesas", mesaService.listar());
 		map.addAttribute("reservas", reservas);
 		map.addAttribute("filtro", new Reserva());

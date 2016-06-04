@@ -14,6 +14,7 @@
 		<link rel="stylesheet" type="text/css" href="../estilos/estiloCardapio.css">
 	</head>
 	<body>
+	
 		<c:url var="url" value="form"/>
 			<header>
 				<input id="cadatrar" class="novo" type="button" onclick="location.href='${url}'"; value="Cadatrar Cardapio" />

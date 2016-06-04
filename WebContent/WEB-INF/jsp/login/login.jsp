@@ -26,15 +26,14 @@
                     <fieldset id="criar"><legend>Login</legend>
                     	<form:form action="${url}" method="post" modelAttribute="usuario"> 
                             <label for="txtlogin" id="labellogin"><em>Login:</em></label>
-                            <form:input id="txtlogin" type="text" path="login"></form:input>
+                            <form:input id="txtlogin" type="text" path="login"/>
                         <br />
                             <label for="txtsenha" id="labelsenha"><em>Senha:</em></label>
-                            <form:input id="txtsenha" type="password" path="senha"></form:input>
-                        <br />
-                           <c:url var="url2" value="/cliente/form" />
+                       		<form:input id="txtsenha" type="password" path="senha"/>                        <br />
                             <input id="logar" class="btn" type="submit" value="Logar"></input>
+                         <c:url var="url2" value="/cliente/form" />
                             <input id="novo" class="btn" type="button" onclick="window.location.href='${url2}'" value="Novo Usuario"></input>
-                    	</form:form>
+                         </form:form>
                     </fieldset>
                 </article>      
             </section>
