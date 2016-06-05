@@ -2,7 +2,6 @@ package br.com.model;
 
 import java.util.Calendar;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -29,10 +28,10 @@ public class Reserva implements AbstractEntity {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long id;
 	
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dataInicial;
 	
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dataFinal;
 	
 	private int num_pessoa;
@@ -42,12 +41,11 @@ public class Reserva implements AbstractEntity {
 	@Enumerated(EnumType.STRING)
 	private Status status;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="fk_funcionario")
 	private Funcionario funcionario;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="fk_mesa",  nullable=true)
+	@ManyToOne
 	private Mesa mesa;
 
 	public Reserva(Long id) {
@@ -109,7 +107,7 @@ public class Reserva implements AbstractEntity {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return String.format("Nome responsável: %s\nData inicial: %s\nStatus: $s\n", getNome_Responsavel(), getDataInicial(), getNum_pessoa(), getStatus());
+		return String.format("Nome responsável: %s\nData inicial: %s\nStatus: %s\nMesa: %s\n", getNome_Responsavel(), getDataInicial(), getNum_pessoa(), getStatus(), getMesa().getNumero());
 	}
 	
 	public boolean hasValidId(){

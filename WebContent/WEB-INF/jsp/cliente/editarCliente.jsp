@@ -28,7 +28,7 @@
 							<form:hidden path="id"/>
 
 							<article class="tab_Cadastro" id="caixa_1">
-								<tbody>
+								<table>
 								<form:hidden path="status"/>
 								<form:hidden path="tipo"/>
 						
@@ -38,70 +38,70 @@
 											<label id="labellogin"><em>Login:</em></label>
 										</td>
 										<td align="left">
-											<form:input id="txtlogin" path="login" type="text" required=""/>
+											<form:input id="txtlogin" path="login" type="text"/>
 										</td>
 										<td align="right">
 											<label id="labelsenha"><em>Senha:</em></label>
 										</td>
 										<td align="left">
-											<form:input id="txtsenha" path="senha" type="password" required="" />
+											<form:input id="txtsenha" path="senha" type="password"/>
 										</td>
 										<td align="right">
 											<label id="labelNome"><em>Nome:</em></label>
 										</td>
 										<td align="left">
-											<form:input id="txtNome" path="nome" type="text" required="" />
+											<form:input id="txtNome" path="nome" type="text"/>
 										</td>
 										<td align="right">
 											<label id="labeltelefone"><em>Telefone:</em></label>
 										</td>
 										<td align="left">
-											<form:input id="txttelefone" type="tel" path="endereco.telefone" required="required" maxlength="15" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}$" title="Digite no seguinte formato (xx) xxxxx-xxxx" />
+											<form:input id="txttelefone" type="tel" path="endereco.telefone" maxlength="15" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}$" title="Digite no seguinte formato (xx) xxxxx-xxxx" />
 										<td>
 										<td align="right">
 											<label id="labelemail"><em>Email:</em></label>
 										</td>
 										<td align="left">
-											<form:input id="txtemail" path="email" type="email" required="required" pattern="[a-z0-9._%+-]+@[a-0-9.-]+\.[a-z]{2,4}$" />											
+											<form:input id="txtemail" path="email" type="email" pattern="[a-z0-9._%+-]+@[a-0-9.-]+\.[a-z]{2,4}$" />											
 										</td>
 									</tr>
-								</tbody>
+								</table>
 							</article>
 							<article class="tab_Cadastro" id="caixa_2">
-								<tbody>
+								<table>
 									<tr>
 										<td align="right">
 											<label id="labelrua"><em>Rua:</em></label>
 										</td>											
 										<td align="left">
-											<form:input id="txtrua" path="endereco.rua" type="text" required=""/>
+											<form:input id="txtrua" path="endereco.rua" type="text"/>
 										</td>											
 										<td align="right">
 											<label id="labelnumero"><em>Numero:</em></label>
 										</td>											
 										<td align="left">
-											<form:input id="txtnumero" path="endereco.numero" type="text" required="" pattern="[0-9]+$" />
+											<form:input id="txtnumero" path="endereco.numero" type="text" pattern="[0-9]+$" />
 										</td>											
 										<td align="right">
 											<label id="labelcomplemento"><em>Complemento:</em></label>
 										</td>											
 										<td align="left">
-											<form:input id="txtcomplemento" path="endereco.complemento" required="required" name="complemento"/>
+											<form:input id="txtcomplemento" path="endereco.complemento" name="complemento"/>
 										</td>
 										<td align="right">
 											<label id="labelbairro"><em>Bairro:</em></label>
 										</td>											
 										<td align="left">
-											<form:input id="txtbairro" path="endereco.bairro" required="required"/>
+											<form:input id="txtbairro" path="endereco.bairro" />
 										</td>
 										<td align="right">
 											<label id="labelcep"><em>CEP:</em></label>
 										</td>											
 										<td align="left">
-											<form:input id="txtcep" path="endereco.cep" required="required" maxlength="9" pattern="\d{5}-\d{3}$" />
+											<form:input id="txtcep" path="endereco.cep" maxlength="9" pattern="\d{5}-\d{3}$" />
 										</td>
 									</tr>
-								</tbody>
+								</table>
 							</article>
 							<article id= caixa_3>
 								<tr>

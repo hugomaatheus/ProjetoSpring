@@ -1,9 +1,8 @@
 package br.com.model;
 
 
-import java.util.Collection;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -27,22 +26,22 @@ public class Mesa implements AbstractEntity {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="mesa_id")
 	private Long id;
 	
-	private int numero;
+	private Integer numero;
 	
 	private int capacidade;
 	
 	@Enumerated(EnumType.STRING)
 	private Status status;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany
 	@JoinTable(name="mesa_PedTradicional", joinColumns=@JoinColumn(name="mesa_id"),
 	inverseJoinColumns=@JoinColumn(name="pedido_id", referencedColumnName="pedido_id"))
-	private Collection<Tradicional> tradicionais;
+	private List<Tradicional> tradicionais;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany
 	@JoinTable(name="mesa_Reserva",joinColumns=@JoinColumn(name="mesa_id"),
 	inverseJoinColumns=@JoinColumn(name="reserva_id"))
-	private Collection<Reserva> reservas;
+	private List<Reserva> reservas;
 	
 	public Mesa(Long id) {
 		this.id = id;
@@ -62,19 +61,19 @@ public class Mesa implements AbstractEntity {
 		this.status = status;
 	}
 
-	public Collection<Reserva> getReservas() {
+	public List<Reserva> getReservas() {
 		return reservas;
 	}
 
-	public void setReservas(Collection<Reserva> reservas) {
+	public void setReservas(List<Reserva> reservas) {
 		this.reservas = reservas;
 	}
 
-	public Collection<Tradicional> getTradicionais() {
+	public List<Tradicional> getTradicionais() {
 		return tradicionais;
 	}
 
-	public void setTradicionais(Collection<Tradicional> tradicionais) {
+	public void setTradicionais(List<Tradicional> tradicionais) {
 		this.tradicionais = tradicionais;
 	}
 
@@ -86,7 +85,7 @@ public class Mesa implements AbstractEntity {
 		this.id = id;
 	}
 
-	public int getNumero() {
+	public Integer getNumero() {
 		return numero;
 	}
 

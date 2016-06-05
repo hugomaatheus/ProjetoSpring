@@ -16,6 +16,7 @@
 	<body>
 		<header>
 			<input id="novo" type="button" onclick="location.href='novoCardapio.html'"; value="Cadatrar Cardapio" />
+			<p>Bem vindo, ${usuarioBD.nome}</p>
 			<a href="#Sair">Sair</a>
 		</header>
 			<c:url var="url" value="/reserva/update" />

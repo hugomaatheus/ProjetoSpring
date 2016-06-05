@@ -17,7 +17,7 @@
 			<c:url var="url" value="form"/>
 			<header><!-- Cabeça da pagina -->
 				<input id="novo" type="button" onclick="location.href='${url}'"; value="Cadatrar Reserva" />
-				<p>Bem vindo, ${usuario.login}</p>
+				<p>Bem vindo, ${usuarioBD.nome}</p>
 				<a href="#Sair">Sair</a>
 			</header>
 							<article class="tab_container" id="pesquisa"><!-- Centro da pagina -->

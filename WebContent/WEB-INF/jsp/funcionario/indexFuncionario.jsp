@@ -11,18 +11,17 @@
 		<title>titulo da pagina</title>
 		<meta charset="utf-8" />
 		<link rel="stylesheet" type="text/css" href="estilos/estiloIndex.css">
-		<script type="text/javascript" src="../Plugin js/jquery-1.12.2.min.js"></script>
-		<script type="text/javascript" src="../Plugin js/Projeto.js"></script>
 	</head>
 	<body>
 			<header><!-- Cabeça da pagina -->
-					<input id="btnSair" type="submit" value="Sair"/>
+				<p>Bem vindo, ${usuarioBD.nome}</p>
+				<input id="btnSair" type="submit" value="Sair"/>
 			</header>
 
 						<fieldset><legend>Menu</legend>
 							<article class="tab_container" id="Pedidos">
 								<tr>
-									<c:url var="urlT" value="/pedido/tradicional/form" />
+									<c:url var="urlT" value="/pedido/tradicional/listar" />
 									<td>
 										<input class="botao" type="button" onclick="window.location.href='${urlT}'" value="Pagina Pedido"></input>
 									</td>
@@ -30,7 +29,7 @@
 							</article>
 							<article class="tabContainer" id="Reserva">
 								<tr>
-								<c:url var="urlR" value="/reserva/form" />									
+								<c:url var="urlR" value="/reserva/listar" />									
 									<td>
 										<input class="botao" type="button" onclick="window.location.href='${urlR}'" value="Pagina Reserva"></input>
 									</td>

@@ -1,4 +1,4 @@
-﻿body{
+body{
 	font: normal 20px tahoma,arial,serif; 
 	color: black;
 	background-image: url("../Imagens/cafe.jpg");
@@ -76,7 +76,6 @@ td span{
 
 #btnPesquisar{
 	border-collapse:collapse;
-	border-spacing: 0%;
 	width: 100px;
 	height: 30px;
 }
@@ -116,8 +115,7 @@ header a{
 #criar{
 	text-align: center;
 	margin: auto;
-	margin-top: 150px;
-	border-color : 0px;
+	margin-top: 50px;
 	width: 400px;
 }
 
