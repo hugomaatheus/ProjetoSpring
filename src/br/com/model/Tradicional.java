@@ -6,13 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
 
 
 
 @Entity
-//@SequenceGenerator(name="tradicional_id", sequenceName="tradicional_seq")
-@Table(name="tradicional")
 @PrimaryKeyJoinColumn(name="pedido_id")
 public class Tradicional extends Pedido {
 	

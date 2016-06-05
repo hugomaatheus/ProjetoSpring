@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import javax.validation.Valid;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.model.Cardapio;
+import br.com.model.Carrinho;
+import br.com.model.Cliente;
 import br.com.model.Delivery;
 import br.com.model.ItemPedido;
 import br.com.service.CardapioService;
@@ -34,11 +36,14 @@ public class DeliveryController {
 	
 	
 	@RequestMapping(value="listar", method=RequestMethod.GET)
-	public String list(ModelMap map){
+	public String list(ModelMap map, HttpSession session){
+		
+		Cliente cliente = (Cliente) session.getAttribute("usuario");
+		
 		List<Delivery> deliverys = clienteService.listarTodos();
-		System.out.println(deliverys);
+		map.addAttribute("usuarioBD", cliente);
 		map.addAttribute("deliverys", deliverys);
-		return "deliverys/listarPedidoDelivery";
+		return "delivery/listarPedidoDelivery";
 	}
 	
 	@RequestMapping(value="filtrar", method=RequestMethod.GET)
@@ -47,26 +52,53 @@ public class DeliveryController {
 		List<Cardapio> cardapios = cardapioService.buscar(filtro);
 		map.addAttribute("cardapios", cardapios);
 		map.addAttribute("filtro", filtro);
-		return "cardapio/listarCardapio";
+		return "delivery/listarPedidoDelivery";
 	}
 	
 	@RequestMapping(value="form", method=RequestMethod.GET)
-	public String createForm(ModelMap map){
-		Delivery delivery = new Delivery();
-		map.addAttribute("delivery", delivery);
-		map.addAttribute("cardapio", new Cardapio());
+	public String createForm(ModelMap map, HttpSession session){
+		
+		Cliente cliente = (Cliente) session.getAttribute("usuario");
+		
+		ItemPedido itemPedido = new ItemPedido();
+		Carrinho carrinho = new Carrinho();
+		
+		itemPedido.setCardapio(new Cardapio());
+		
+		session.setAttribute("carrinho", carrinho);
+		
+		map.addAttribute("carrinho", carrinho);
+		map.addAttribute("usuarioBD", cliente);
 		map.addAttribute("cardapioSelect",  selectCardapio());
-		return "delivery/novoDelivery";
+		return "delivery/addCarrinho";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="save")
-	public String save(@ModelAttribute("cliente") @Valid Delivery delivery, BindingResult result, ModelMap map) {
+	public String save(@ModelAttribute("cliente") Delivery delivery, BindingResult result, ModelMap map) {
 		
 	return "redirect:/delivery/listarPedidosDelivery";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="addCarrinho")
-	public void addCarrinho(@ModelAttribute("itemPedido") ItemPedido itemPedido, BindingResult result, ModelMap map)  {
+	public String addCarrinho(@ModelAttribute("carrinho") Carrinho carrinho, HttpSession sessao,BindingResult result, ModelMap map)  {
+		
+		ItemPedido itemPedido = new ItemPedido();
+		
+//		if(itemPedido == null) {
+//			carrinho.setQtd(new Integer(qtd));
+//			carrinho.addItem(new Long(itemId));
+//		}
+//		
+		return "delivery/listarCarrinho";
+		
+	}
+	
+	@RequestMapping(method=RequestMethod.POST, value="listarCarrinho")
+	public String addCarrinho(HttpSession sessao, ModelMap map)  {
+		
+		sessao.getAttribute("carrinho");
+		
+		return "delivery/listarCarrinho";
 		
 	}
 	

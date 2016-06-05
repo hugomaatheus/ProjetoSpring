@@ -97,7 +97,7 @@ public class ClienteService {
 	
 	public List<Delivery> listarTodos() {
 		List<Delivery> result = new LinkedList<Delivery>();
-		result = deliveryDao.listarTodos();	
+		result = deliveryDao.listar();	
 		return result;
 	}
 	//

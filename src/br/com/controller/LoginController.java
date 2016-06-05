@@ -34,8 +34,6 @@ public class LoginController {
 		
 		Usuario usuarioBD = usuarioService.logar(usuario.getLogin(), usuario.getSenha());
 		
-		System.out.println(usuarioBD);
-		
 		if(usuarioBD == null){
 			usuario.setSenha("");
 			map.addAttribute("usuario", usuarioBD);

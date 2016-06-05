@@ -17,6 +17,7 @@
 		<c:url var="url" value="form"/>
 		<header>
 			<input id="novo" type="button" onclick="location.href='${url}'"; value="Realizar Pedidos" />
+			<p>Bem vindo, ${usuarioBD.nome}</p>
 				<a href="#Sair">Sair</a>
 		</header>	
 			

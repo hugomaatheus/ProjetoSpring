@@ -1,6 +1,5 @@
 package br.com.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,13 +18,13 @@ public class ItemPedido implements AbstractEntity {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long id;
 	
-	private int qtd;
+	private int quantidade;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="fk_pedido")
 	private Pedido pedido;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="fk_cardapio")
 	private Cardapio cardapio;
 	
@@ -51,12 +50,12 @@ public class ItemPedido implements AbstractEntity {
 		this.id = id;
 	}
 
-	public int getQtd() {
-		return qtd;
+	public int getQuantidade() {
+		return quantidade;
 	}
 
-	public void setQtd(int qtd) {
-		this.qtd = qtd;
+	public void setQuantidade(int qtd) {
+		this.quantidade = qtd;
 	}
 
 	public Pedido getPedido() {
@@ -69,10 +68,9 @@ public class ItemPedido implements AbstractEntity {
 	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return String.format("%s\n %s\n", getId(), getCardapio());
+		return "ItemPedido [id=" + id + ", quantidade=" + quantidade + ", cardapio=" + cardapio.getNome() + "]";
 	}
-	
+
 	public boolean hasValidId(){
 		return getId() != null && getId() != 0;
 	}

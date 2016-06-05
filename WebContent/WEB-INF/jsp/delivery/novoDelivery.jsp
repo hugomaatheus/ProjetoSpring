@@ -16,24 +16,28 @@
 
     <body>
         <header>
+        <p>Bem vindo, ${usuarioBD.nome}</p>
             <a href="#Sair">Sair</a>
-            <c:url var="url" value="/delivery/save" />
+            
         </header>
 			
-			<form:form method="post" action="${url}" modelAttribute="delivery">
+			<c:url var="url" value="/delivery/save" />
+			
             <article class="cont_tab" id="Read">
                 <fieldset id="criar"><legend>Cadastrar Pedido</legend>
 			<article id="Pesquisa">
+				
+				<form:input type="hidden" path="funcionario.id" items="${usuarioBD}" />
 			
+				<form:form method="post" action="${url}" modelAttribute="itemPedido">
 					<label for="txtStatus"><em>Item:</em></label>
-					<form:select id="OpCardapio" class="set" path="cardapio.id"
-						items="${cardapioSelect}" />
+					<form:select id="OpCardapio" class="set" path="cardapio.id" items="${cardapioSelect}" />
 					
 					<label for="labelQtd"><em>Quantidade:</em></label>
-					<form:input id="txtQtd" title="Digite apenas numeros" type="text"
-						path="" pattern="[0-9]+$" required="" />
+					<form:input id="txtQtd" title="Digite apenas numeros" type="text" path="quantidade" pattern="[0-9]+$" />
 
 					<input id="btnInserir" type="submit" value="Adicionar Item" />
+				</form:form>
 			</article>
 
 			<article class="tabContainer" id="lista">
