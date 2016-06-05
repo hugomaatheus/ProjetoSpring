@@ -23,9 +23,11 @@
 							<article class="tab_container" id="pesquisa"><!-- Centro da pagina -->
 									<label for="labelfiltrar"><em>Filtrar por:</em></label>
 									<label for="labelinicio"><em>Data Inicio:</em></label>
-									<input for="txtinicio" type="date" autofocus="" required="" maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$"/>
+									<input id="txtinicio" type="date" maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$"/>
+									
 									<label for="labelfim"><em>Data Fim:</em></label>
-									<input for="txtfim" type="date" autofocus="" required="" maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$"/>
+									<input id="txtfim" type="date" maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$"/>
+									
 									<label for="labelmesa"><em>Mesa:</em></label>
 									<select id="OpCategoria" class = "categoria" name = "categoria" size=1>
 										<c:forEach var="mesa" items="${mesas}" >
@@ -33,7 +35,7 @@
 										</c:forEach>
 									</select>
 									<label id="labelresponsavel"><em>Responsavel:</em></label>
-									<input id="txtresponsavel" type="text" autofocus="" required="" />
+									<input id="txtresponsavel" type="text"/>
 									<input id="btnPesquisar" type="submit" value="Pesquisar" />
 							</article>
 							<article class="tabContainer" id="lista">
@@ -50,13 +52,13 @@
 									<table>
 										<c:forEach var="reserva" items="${reservas}" >
 											<tr>
-												<td class="tabela-coluna"><span>${reserva.dataInicial.toInstant()}</span></td>
-												<td class="tabela-coluna"><span>${reserva.dataFinal.toInstant()}</span></td>
+												<td class="tabela-coluna"><span><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${reserva.dataInicial.getTime()}" /></span></td>
+												<td class="tabela-coluna"><span><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${reserva.dataFinal.getTime()}" /></span></td>
 												<td class="tabela-coluna"><span>Mesa - ${reserva.mesa.numero}</span></td>
 												<td class="tabela-coluna"><span>${reserva.nome_Responsavel}</span></td>
 												<td class="tabela-coluna">
 													<span>
-													<a href="Comando para excluir"> [excluir]</a>
+													<a href="Comando para excluir"> [Editar]</a>
 													<a href="Comando para inativar">[Inativar]</a>
 													</span>
 												</td>

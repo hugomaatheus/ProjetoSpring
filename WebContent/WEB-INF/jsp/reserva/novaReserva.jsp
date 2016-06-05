@@ -24,15 +24,20 @@
 		<c:url var="urlR" value="/reserva/save" />
 		<fieldset id="criar"><legend>Cadastrar Reserva</legend>
 			<article class="tab_container">
-				<form:form method="post" action="${urlR}" modelAttribute="reserva" >		
+				<form:form method="post" action="${urlR}" modelAttribute="reserva" >
+					
+					<form:input type="hidden" path="funcionario.id" items="${usuarioBD}" />
+						
 					<label id="labelmesa"><em>Mesa:</em></label>
 					<form:select id="Opmesa" path="mesa.id" items="${mesaSelect}" />
 				<br />			
  					<label id="labelinicio"><em>Data Inicio:</em></label>
-					<form:input id="txtinicio" type="text" maxlength="10" path="dataInicial" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$"/>
+					<form:input id="txtinicio" path="dataInicial"/>
+					<form:errors path="dataInicial"/>
 				<br/>
 					<label id="labelfim"><em>Data Fim:</em></label>
-					<form:input id="txtfim" type="text" maxlength="10" path="dataFinal" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$"/>
+					<form:input id="txtfim" path="dataFinal"/>
+					<form:errors path="dataFinal"/>
 				<br/>
 					<label id="labelrespon"><em>Responsavel:</em></label>
 					<form:input id="txtrespon" type="text" path="nome_Responsavel"/>
@@ -40,10 +45,10 @@
 					<label class="label" id="N de Pessoas"><em>N Pessoas:</em></label>
 					<form:input class="set" id="txtpessoas" path="num_pessoa" />
 				<br />
-  					<label class="label" id="labelSituacao"><em>Situacao:</em></label>
+   					<label class="label" id="labelSituacao"><em>Situacao:</em></label>
 					<form:select id="Opstatus" class="set" path="status">
-						<form:option value="ATIVO">ATIVO</form:option>
-						<form:option value="INATIVO">INATIVO</form:option>
+						<form:option value="LIVRE">LIVRE</form:option>
+						<form:option value="OCUPADO">OCUPADO</form:option>
 					</form:select>
 					<br />
 					<input id="btnreservar" class="btn" type="submit" value="Reservar" />

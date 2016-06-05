@@ -54,16 +54,11 @@ public class FuncionarioService extends UsuarioService {
 	
 	
 	//Manter Reserva - OK
-	public void cadastrarReserva(Reserva reserva, Funcionario f) {
-		Calendar data = Calendar.getInstance();
-		
-		if(reserva.getMesa().equals("LIVRE")) {
-			reserva.setStatus(Status.ATIVO);
-			reserva.setDataInicial(data);
+	public void cadastrarReserva(Reserva reserva) {
+
 			reserva.getMesa().setStatus(Status.OCUPADA);
-			reserva.setFuncionario(f);
-			reservaDao.update(reserva);
-		}
+			reservaDao.save(reserva);
+
 	}
 	
 	//OK

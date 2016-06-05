@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import br.com.util.Status;
 
 
@@ -29,9 +31,11 @@ public class Reserva implements AbstractEntity {
 	private Long id;
 	
 	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Calendar dataInicial;
 	
 	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Calendar dataFinal;
 	
 	private int num_pessoa;
@@ -104,12 +108,15 @@ public class Reserva implements AbstractEntity {
 		this.mesa = mesa;
 	}
 	
+	
+	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return String.format("Nome responsável: %s\nData inicial: %s\nStatus: %s\nMesa: %s\n", getNome_Responsavel(), getDataInicial(), getNum_pessoa(), getStatus(), getMesa().getNumero());
+		return "Reserva [id=" + id + ", dataInicial=" + dataInicial + ", dataFinal=" + dataFinal + ", num_pessoa="
+				+ num_pessoa + ", nome_Responsavel=" + nome_Responsavel + ", status=" + status + ", funcionario="
+				+ funcionario.getNome() + ", mesa=" + mesa.getNumero() + "]";
 	}
-	
+
 	public boolean hasValidId(){
 		return getId() != null && getId() != 0;
 	}

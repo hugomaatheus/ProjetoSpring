@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -59,19 +60,26 @@ public class ReservaController {
 		
 		Funcionario  func = (Funcionario) session.getAttribute("usuario");
 		
-		map.addAttribute("usuarioBD", func);
 		Reserva reserva = new Reserva();
+		reserva.setFuncionario(func);
 		reserva.setMesa(new Mesa());
+		
 		map.addAttribute("reserva", reserva);
+		map.addAttribute("usuarioBD", func);
 		map.addAttribute("mesaSelect", selectMesa());
 		return "reserva/novaReserva";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="save")
-	public String save(@ModelAttribute("reserva") Reserva reserva, BindingResult result, HttpSession session, ModelMap map) {
-		Funcionario f = (Funcionario) session.getAttribute("usuario");
-		System.out.println(reserva);
-		funcionarioService.cadastrarReserva(reserva, f);
+	public String save(@ModelAttribute("reserva") @Valid Reserva reserva, BindingResult result, ModelMap map) {
+		
+		if(result.hasErrors()){
+			map.addAttribute("reserva", reserva);
+			map.addAttribute("mesaSelect",  selectMesa());
+			return "cardapio/form";
+		}
+		
+		funcionarioService.cadastrarReserva(reserva);
 	return "redirect:/reserva/listar";
 	}
 	
