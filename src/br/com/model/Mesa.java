@@ -100,12 +100,12 @@ public class Mesa implements AbstractEntity {
 	public void setCapacidade(int capacidade) {
 		this.capacidade = capacidade;
 	}
-
+	
 	@Override
 	public String toString() {
-		return String.format("%d", getId());
+		return "Mesa [id=" + id + ", numero=" + numero + ", capacidade=" + capacidade + ", status=" + status + "]";
 	}
-	
+
 	public boolean hasValidId(){
 		return getId() != null && getId() != 0;
 	}

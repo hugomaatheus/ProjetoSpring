@@ -17,7 +17,6 @@
 	</head>
 
 	<body>
-
 		<header>
 			<p>Bem vindo, ${usuarioBD.nome}</p>
 			<a href="#Sair">Sair</a>
@@ -64,11 +63,11 @@
 				</table>
 				<article class="scrollContainer">
 					<table >
-						<c:forEach var="itemPedido" items="${ItemPedidos}" >
+						<c:forEach var="carrinho" items="${carrinho}" >
 							<tr>
-								<td class="tabela-coluna"><span>${itemPedido.cardapio.nome}</span></td>
-								<td class="tabela-coluna"><span>${itemPedido.quantidade}</span></td>
-								<td class="tabela-coluna"><span>${itemPedido.cardapio.preco}</span></td>
+								<td class="tabela-coluna"><span>${carrinho.cardapio.nome}</span></td>
+								<td class="tabela-coluna"><span>${carrinho.quantidade}</span></td>
+								<td class="tabela-coluna"><span>${carrinho.cardapio.preco}</span></td>
 								<td class="tabela-coluna">
 									<span>	
 										<a href="../Tela-Detalhar Pedido/Detalhe pedido.html">[Excluir]</a>
@@ -82,7 +81,10 @@
 			<table id="TotalDoPedido">
 				<td align="left">Total Parcial</td>
 			</table>
+			<c:url var="urlS" value="/tradicional/save" />
+			<form:form method="post" action="${urlS}" >
 				<input id="btnConfirmar" class="btn" type="submit" value="Salvar" />
+			</form:form>
 		</fieldset>
 </body>
 </html>

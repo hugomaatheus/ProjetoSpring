@@ -1,5 +1,6 @@
 package br.com.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -23,6 +24,7 @@ import br.com.model.Tradicional;
 import br.com.service.CardapioService;
 import br.com.service.FuncionarioService;
 import br.com.service.MesaService;
+import javassist.expr.NewArray;
 
 @RequestMapping(value="tradicional")
 @Controller
@@ -37,7 +39,7 @@ public class TradicionalController {
 	@Autowired
 	private MesaService mesaService;
 	
-	List<ItemPedido> itensPedidos = null;
+	List<ItemPedido> carrinho = null;
 	
 	@RequestMapping(value="listar", method=RequestMethod.GET)
 	public String list(ModelMap map, HttpSession session){
@@ -70,7 +72,7 @@ public class TradicionalController {
 		itemPedido.setPedido(new Tradicional());
 		
 		map.addAttribute("itemPedido", itemPedido);
-		map.addAttribute("listarItens", itensPedidos);
+		map.addAttribute("listarItens", carrinho);
 		map.addAttribute("usuarioBD", funcionario);
 		map.addAttribute("cardapioSelect",  selectCardapio());
 		map.addAttribute("mesaSelect", selectMesa());
@@ -82,14 +84,24 @@ public class TradicionalController {
 		
 		Funcionario funcionario = (Funcionario) session.getAttribute("usuario");
 		
+		itemPedido.setCardapio(cardapioService.buscarPorId(itemPedido.getCardapio().getId()));
+		
+		itemPedido.getTradicional().setMesa(mesaService.buscarPorId(itemPedido.getTradicional().getMesa().getId()));
+		
 		Tradicional tradicional = new Tradicional(funcionario);
 		
-		itemPedido.setPedido(tradicional);
-		System.out.println("-------------->" + itemPedido);
-		itensPedidos.add(itemPedido);
+		itemPedido.setTradicional(tradicional);
 		
-		map.addAttribute("listarItens", itensPedidos);
-		return "tradicional/novoTradicional";
+		if(carrinho == null) {
+			carrinho = new ArrayList<ItemPedido>();
+			session.setAttribute("carrinho", carrinho);
+		}
+		
+		carrinho.add(itemPedido);
+		
+		map.addAttribute("carrinho", carrinho);
+		
+		return "redirect:/tradicional/form";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="save")
@@ -97,9 +109,10 @@ public class TradicionalController {
 		
 		Funcionario funcionario = (Funcionario) session.getAttribute("usuario");
 		
-		funcionarioService.cadastrarPedidoTradicional(funcionario, itensPedidos);
+		funcionarioService.cadastrarPedidoTradicional(funcionario, carrinho);
 		
-	return "redirect:/tradicioal/listarTradicional";
+		carrinho.clear();
+	return "redirect:/tradicional/listar";
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/remove")

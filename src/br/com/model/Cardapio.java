@@ -77,10 +77,11 @@ public class Cardapio implements AbstractEntity {
 	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
-	
+
 	@Override
 	public String toString() {
-		return " id= " + id;
+		return "Cardapio [id=" + id + ", nome=" + nome + ", preco=" + preco + ", categoria=" + categoria + ", status="
+				+ status + "]";
 	}
 
 	public boolean hasValidId(){
