@@ -2,9 +2,6 @@ package br.com.service;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -19,14 +16,13 @@ import br.com.dao.ItemPedidoDao;
 import br.com.dao.PedidoDao;
 import br.com.dao.ReservaDao;
 import br.com.dao.TradicionalDao;
-import br.com.model.Cardapio;
 import br.com.model.Delivery;
 import br.com.model.Funcionario;
 import br.com.model.ItemPedido;
 import br.com.model.Mesa;
-import br.com.model.Pedido;
 import br.com.model.Reserva;
 import br.com.model.Tradicional;
+import br.com.model.Usuario;
 import br.com.util.Status;
 
 
@@ -114,47 +110,22 @@ public class FuncionarioService extends UsuarioService {
 	}
 	
 	//Problema com tabelas que estão mapeando as listas
-	public void cadastrarPedidoTradicional(Mesa m, Funcionario f) throws Exception {
+public void cadastrarPedidoDelivery(Usuario funcionario, List<ItemPedido> itens) {
 		
-		Calendar c = Calendar.getInstance();
-		Date data = c.getTime();
+		ItemPedido i = new ItemPedido();
 		
-		Collection<ItemPedido> itens = new ArrayList<ItemPedido>();
-		Cardapio cardapio = new Cardapio();
-
-		if(m.getCapacidade() < m.getNumero())
-			throw new Exception("Número de pessoas na mesa excede a capacidade da mesa!");
-
-		else {
-			cardapio = cDao.getById(2L);
-			
-			m.setStatus(Status.OCUPADA);
-			
-			Tradicional t = new Tradicional(m, f);
-			t.setData(data);
-			
-			
-			Pedido p = new Pedido();
-			ItemPedido i = new ItemPedido(cardapio);
-			p.setData(data);
-			p.setStatus(Status.ANDAMENTO);
-			i.setPedido(p);
-			i.setCardapio(cardapio);
-			
-			for (Iterator<ItemPedido> iterator = itens.iterator(); iterator.hasNext();) {
-				if(!(i.getId() == null)) {
-					itens.add(i);
-				}
-			}
-			
-			p.setItens((List<ItemPedido>) itens);
-			
+		Tradicional tradicional = new Tradicional((Funcionario) funcionario);
+		tradicional.setStatus(Status.ANDAMENTO);
+		tradicionalDao.save(tradicional);
+		
+		for (ItemPedido item : itens) {
+			i.setCardapio(item.getCardapio());
+			i.setPedido(tradicional);
+			i.setQuantidade(item.getQuantidade());
 			iDao.save(i);
-			pDao.update(p);
-			tradicionalDao.update(t);
-	}
+		}
 		
-}
+	}
 	
 	//Buscar pedido tradicional - OK
 	public Tradicional buscarPedidoTradicional(Long id) {
@@ -179,6 +150,14 @@ public class FuncionarioService extends UsuarioService {
 	
 	public Delivery buscarPedidoDelivery(Long id) {
 		return (Delivery) deliveryDao.getById(id);
+	}
+
+	public List<Tradicional> listarTradicional() {
+		
+		List<Tradicional> tradicionais = new ArrayList<Tradicional>();
+		tradicionais = tradicionalDao.listar();
+
+		return tradicionais; 
 	}
 	
 }

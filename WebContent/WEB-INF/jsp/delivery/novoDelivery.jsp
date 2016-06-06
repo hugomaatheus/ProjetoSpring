@@ -27,9 +27,10 @@
                 <fieldset id="criar"><legend>Cadastrar Pedido</legend>
 			<article id="Pesquisa">
 				
-				<form:input type="hidden" path="funcionario.id" items="${usuarioBD}" />
-			
 				<form:form method="post" action="${url}" modelAttribute="itemPedido">
+				
+					<form:input type="hidden" path="funcionario.id" items="${usuarioBD}" />
+				
 					<label for="txtStatus"><em>Item:</em></label>
 					<form:select id="OpCardapio" class="set" path="cardapio.id" items="${cardapioSelect}" />
 					
@@ -68,15 +69,10 @@
 					<td><span>Troco para</span></td>
 				</tr>				
 			</table>
-				</form:form>
-			</td>
                             <input id="btnConfirmar" class="btn" type="submit" value="Confirmar" />
                             <input id="btnVoltar" class="btn" type="button" onclick="history.go(-1)" value="Voltar" />
                     </fieldset>
-                </div>
-            </div>
-        </form>
-
+			</article>>
 
     </body>
 </html>

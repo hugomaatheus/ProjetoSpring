@@ -115,7 +115,7 @@ public void cadastrarPedidoDelivery(Usuario cliente, List<ItemPedido> itens, Dou
 		for (ItemPedido item : itens) {
 			i.setCardapio(item.getCardapio());
 			i.setPedido(delivery);
-			i.setQtd(item.getQtd());
+			i.setQuantidade(item.getQuantidade());
 			itemPedidoDao.update(i);
 		}
 		

@@ -1,7 +1,6 @@
 package br.com.model;
 
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,11 +12,11 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @PrimaryKeyJoinColumn(name="pedido_id")
 public class Tradicional extends Pedido {
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="fk_funcionario")
 	private Funcionario vendedor;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="mesa_id")
 	private Mesa mesa;
 	
@@ -27,6 +26,10 @@ public class Tradicional extends Pedido {
 	}
 	
 	public Tradicional() {}
+	
+	public Tradicional(Funcionario funcionario) {
+		this.vendedor = funcionario;
+	}
 
 	public Funcionario getVendedor() {
 		return vendedor;

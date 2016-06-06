@@ -1,0 +1,76 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <!-- para estruturas de controle e repetição e setar variáveis -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt" %> <!-- para formatações -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  <!-- para funções -->
+<%@ page import=" br.com.util.*"%>
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Seus Pedidos</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="../../estilos/estiloTradicional.css">
+	</head>
+	<body>
+			<header><!-- Cabeça da pagina -->
+				<c:url var="url" value="form"/>
+				<input id="novo" type="button" onclick="location.href='${url}'"; value="Realizar Pedidos" />
+				<a href="#Sair">Sair</a>
+			</header>
+		
+							<article class="tab_container" id="pesquisa">
+								<label id="labelnumero"><em>Numero do Pedido:</em></label>
+								<input id="caixa_Numero" title="Digite apenas numeros" type="text" pattern="[0-9]+$"/>
+								<label id="labeltipo"><em>Tipo:</em></label>
+								<SELECT name = "menuTipo">
+									<OPTION>
+									<OPTION>Todos os Tipos
+									</SELECT>
+								</select>
+								<label id="labelstatus"><em>Status:</em></label>	
+								<form:select name = "menuStatus">
+									<form:option value="ATENDIDO">ATENDIDO</form:option>
+									<form:option value="PENDENTE">PENDENTE</form:option>
+									<form:option value="CANCELADO">CANCELADO</form:option>
+								</form:select>
+											<input id="btnPesquisar" type="submit" value="Pesquisar" />
+							</article>	
+							<article class="tabContainer" id="lista">
+								<table>
+									<tr>
+										<th class="tabela-coluna"><span>Numero</span></th>
+										<th class="tabela-coluna"><span>Data</span></th>
+										<th class="tabela-coluna"><span>Total(R$)</span></th>
+										<th class="tabela-coluna"><span>Status</span></th>
+										<th class="tabela-coluna"><span>Acoes</span></th>
+									</tr>
+								</table>
+								<article class="scrollContainer">
+									<table>
+									<c:forEach var="tradicional" items="${tradicionais}" >
+										<tr>
+											<td class="tabela-coluna"><span>${tradicional.id}</span></td>
+											<td class="tabela-coluna"><span>${tradicional.data}</span></td>
+											<td class="tabela-coluna"><span>${tradicional.total}</span></td>
+											<td class="tabela-coluna"><span>${tradicional.status}</span></td>
+											<td class="tabela-coluna">
+												<span>
+													<a href="../Tela-Detalhar Pedido/Detalhe pedido.html">[Detalhar]</a>
+													<a href="Comando para excluir"> [excluir]</a>
+												</span>
+											</td>
+										</tr>
+									</c:forEach>
+									</table>
+								</article>
+							</article>
+			
+			<footer><!-- cabeçalho da pagina -->
+				
+			</footer>
+	</body>
+</html>
