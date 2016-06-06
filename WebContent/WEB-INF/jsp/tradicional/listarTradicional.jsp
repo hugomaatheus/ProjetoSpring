@@ -65,9 +65,10 @@
 											</td>
 										</tr>
 									</c:forEach>
-									</table>
-								</article>
+									</table>									
+								</article>								
 							</article>
+							<input id="btnVoltar" class="btn" type="button" onclick="history.go(-1)" value="Voltar" />
 			
 			<footer><!-- cabeçalho da pagina -->
 				

@@ -101,7 +101,7 @@ public class ClienteService {
 		return result;
 	}
 	//
-public void cadastrarPedidoDelivery(Usuario cliente, List<ItemPedido> itens, Double trocoPara) {
+public void cadastrarPedidoDelivery(Usuario cliente, List<ItemPedido> itens) {
 		
 		ItemPedido i = new ItemPedido(); 
 		Calendar c = Calendar.getInstance();

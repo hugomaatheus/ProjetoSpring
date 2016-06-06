@@ -52,6 +52,7 @@
 					</form:select>
 					<br />
 					<input id="btnreservar" class="btn" type="submit" value="Reservar" />
+					<input id="btnVoltar" class="btn" type="button" onclick="history.go(-1)" value="Voltar" />
 				</form:form>
 
 			</article>

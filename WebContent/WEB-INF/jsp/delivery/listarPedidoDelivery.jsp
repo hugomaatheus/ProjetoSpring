@@ -10,7 +10,7 @@
 	<head>
 		<title>Seus Pedidos</title>
 		<meta charset="utf-8" />
-		<link rel="stylesheet" type="text/css" href="../estilos/estiloPedidoDelivery.css">
+		<link rel="stylesheet" type="text/css" href="../estilos/estiloDelivery.css">
 	</head>
 
 	<body>	
@@ -62,6 +62,7 @@
 						</c:forEach>
 					</table>
 				</article>
-		</article>	
+		</article>
+		<input id="btnVoltar" class="btn" type="button" onclick="history.go(-1)" value="Voltar" />	
 	</body>
 </html>

@@ -37,6 +37,7 @@
 					<form:select id="Opmesa" class="categoria" path="mesa.id" items="${mesaSelect}" />
 				<br />
 					<input id="btnreservar" class="btn" type="submit" value="Reservar" />
+					<input id="btnVoltar" class="btn" type="button" onclick="history.go(-1)" value="Voltar" />
 				</form:form>
 			</article>
 		</fieldset>

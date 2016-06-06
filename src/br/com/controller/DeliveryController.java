@@ -1,5 +1,6 @@
 package br.com.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -33,7 +34,7 @@ public class DeliveryController {
 	@Autowired
 	private ClienteService clienteService;
 	
-	
+	List<ItemPedido> carrinho = null;
 	
 	@RequestMapping(value="listar", method=RequestMethod.GET)
 	public String list(ModelMap map, HttpSession session){
@@ -61,35 +62,47 @@ public class DeliveryController {
 		Cliente cliente = (Cliente) session.getAttribute("usuario");
 		
 		ItemPedido itemPedido = new ItemPedido();
-		Carrinho carrinho = new Carrinho();
 		
 		itemPedido.setCardapio(new Cardapio());
+		itemPedido.setPedido(new Delivery());
 		
-		session.setAttribute("carrinho", carrinho);
-		
+		map.addAttribute("itemPedido", itemPedido);
 		map.addAttribute("carrinho", carrinho);
 		map.addAttribute("usuarioBD", cliente);
-		map.addAttribute("cardapioSelect",  selectCardapio());
-		return "delivery/addCarrinho";
+		map.addAttribute("cardapioSelect", selectCardapio());
+		return "delivery/novoDelivery";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="save")
-	public String save(@ModelAttribute("cliente") Delivery delivery, BindingResult result, ModelMap map) {
+	public String save(ModelMap map, HttpSession sessao) {
 		
-	return "redirect:/delivery/listarPedidosDelivery";
+		Cliente cliente = (Cliente) sessao.getAttribute("usuario");
+		clienteService.cadastrarPedidoDelivery(cliente, carrinho);
+		
+		carrinho.clear();
+		return "redirect:/delivery/listarPedidosDelivery";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="addCarrinho")
-	public String addCarrinho(@ModelAttribute("carrinho") Carrinho carrinho, HttpSession sessao,BindingResult result, ModelMap map)  {
+	public String addCarrinho(@ModelAttribute("itemPedido") ItemPedido itemPedido, HttpSession sessao,BindingResult result, ModelMap map)  {
 		
-		ItemPedido itemPedido = new ItemPedido();
+		Cliente cliente = (Cliente) sessao.getAttribute("usuario");
 		
-//		if(itemPedido == null) {
-//			carrinho.setQtd(new Integer(qtd));
-//			carrinho.addItem(new Long(itemId));
-//		}
-//		
-		return "delivery/listarCarrinho";
+		itemPedido.setCardapio(cardapioService.buscarPorId(itemPedido.getCardapio().getId()));
+		
+		Delivery delivery = new Delivery(cliente);
+		itemPedido.setPedido(delivery);
+		
+		if(carrinho == null) {
+			carrinho = new ArrayList<ItemPedido>();
+			sessao.setAttribute("carrinho", carrinho);
+		}
+		
+		carrinho.add(itemPedido);
+		
+		map.addAttribute("carrinho", carrinho);
+		
+		return "redirect:/delivery/form";
 		
 	}
 	

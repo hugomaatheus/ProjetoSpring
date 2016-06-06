@@ -84,6 +84,7 @@
 			<c:url var="urlS" value="/tradicional/save" />
 			<form:form method="post" action="${urlS}" >
 				<input id="btnConfirmar" class="btn" type="submit" value="Salvar" />
+				<input id="btnVoltar" class="btn" type="button" onclick="history.go(-1)" value="Voltar" />
 			</form:form>
 		</fieldset>
 </body>

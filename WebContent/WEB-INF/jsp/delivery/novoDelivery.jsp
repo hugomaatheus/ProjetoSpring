@@ -11,7 +11,7 @@
     <head>
         <title>Peça seu delivery</title>
         <meta charset="utf-8" />
-        <link rel="stylesheet" type="text/css" href="../../estilos/estiloPedidoDelivery.css">
+        <link rel="stylesheet" type="text/css" href="../estilos/estiloDelivery.css">
     </head>
 
     <body>
@@ -21,7 +21,7 @@
             
         </header>
 			
-			<c:url var="url" value="/delivery/save" />
+			<c:url var="url" value="/delivery/addCarrinho" />
 			
             <article class="cont_tab" id="Read">
                 <fieldset id="criar"><legend>Cadastrar Pedido</legend>
@@ -29,10 +29,12 @@
 				
 				<form:form method="post" action="${url}" modelAttribute="itemPedido">
 				
-					<form:input type="hidden" path="funcionario.id" items="${usuarioBD}" />
+					<form:input type="hidden" path="id" items="${usuarioBD}" />
 				
 					<label for="txtStatus"><em>Item:</em></label>
-					<form:select id="OpCardapio" class="set" path="cardapio.id" items="${cardapioSelect}" />
+					<form:select id="OpCategoria" class="set" path="cardapio.id">
+						<form:options items="${cardapioSelect}"/>
+					</form:select>
 					
 					<label for="labelQtd"><em>Quantidade:</em></label>
 					<form:input id="txtQtd" title="Digite apenas numeros" type="text" path="quantidade" pattern="[0-9]+$" />
@@ -52,14 +54,16 @@
 				</table>
 				<article class="scrollContainer">
 					<table>
-						<tr>
-							<td class="tabela-coluna"><span>coca</span></td>
-							<td class="tabela-coluna"><span>2</span></td>
-							<td class="tabela-coluna"><span>5,00</span></td>
+						<c:forEach var="carrinho" items="${carrinho}">
+							<tr>
+							<td class="tabela-coluna"><span>${carrinho.cardapio.nome}</span></td>
+							<td class="tabela-coluna"><span>${carrinho.quantidade}</span></td>
+							<td class="tabela-coluna"><span>${carrinho.cardapio.preco}</span></td>
 							<td class="tabela-coluna"><span> <a
 									href="Comando para excluir">[Excluir]</a>
 							</span></td>
 						</tr>
+						</c:forEach>
 					</table>
 				</article>
 			</article>
