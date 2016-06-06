@@ -1,9 +1,9 @@
 package br.com.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,7 +24,6 @@ import br.com.model.Tradicional;
 import br.com.service.CardapioService;
 import br.com.service.FuncionarioService;
 import br.com.service.MesaService;
-import javassist.expr.NewArray;
 
 @RequestMapping(value="tradicional")
 @Controller
@@ -39,7 +38,7 @@ public class TradicionalController {
 	@Autowired
 	private MesaService mesaService;
 	
-	List<ItemPedido> carrinho = null;
+	private List<ItemPedido> carrinho = null;
 	
 	@RequestMapping(value="listar", method=RequestMethod.GET)
 	public String list(ModelMap map, HttpSession session){
@@ -82,15 +81,12 @@ public class TradicionalController {
 	@RequestMapping(value="carrinho", method=RequestMethod.POST)
 	public String addCarrinho(@ModelAttribute("itemPedido") ItemPedido itemPedido, BindingResult result, ModelMap map, HttpSession session){
 		
-		Funcionario funcionario = (Funcionario) session.getAttribute("usuario");
-		
 		itemPedido.setCardapio(cardapioService.buscarPorId(itemPedido.getCardapio().getId()));
 		
-		itemPedido.getTradicional().setMesa(mesaService.buscarPorId(itemPedido.getTradicional().getMesa().getId()));
+		Tradicional tradicional = new Tradicional(); 
+		tradicional.setMesa(mesaService.buscarPorId(((Tradicional) itemPedido.getPedido()).getMesa().getId()));
 		
-		Tradicional tradicional = new Tradicional(funcionario);
-		
-		itemPedido.setTradicional(tradicional);
+		itemPedido.setPedido(tradicional);
 		
 		if(carrinho == null) {
 			carrinho = new ArrayList<ItemPedido>();
@@ -98,6 +94,9 @@ public class TradicionalController {
 		}
 		
 		carrinho.add(itemPedido);
+		
+		System.out.println(itemPedido);
+		System.out.println(carrinho);
 		
 		map.addAttribute("carrinho", carrinho);
 		
@@ -123,7 +122,7 @@ public class TradicionalController {
 	
 	public Map<Long, String> selectCardapio(){
 		List<Cardapio> cardapios  = cardapioService.listar();
-		Map<Long, String> mapa = new TreeMap<Long, String>();
+		Map<Long, String> mapa = new HashMap<Long, String>();
 		for (Cardapio cardapio : cardapios) {
 			mapa.put(cardapio.getId(), cardapio.getNome() + " - " + cardapio.getPreco());
 		}
@@ -132,7 +131,7 @@ public class TradicionalController {
 	
 	public Map<Long, String> selectMesa(){
 		List<Mesa> mesas  = mesaService.listar();
-		Map<Long, String> mapa = new TreeMap<Long, String>();
+		Map<Long, String> mapa = new HashMap<Long, String>();
 		for (Mesa mesa : mesas) {
 			mapa.put(mesa.getId(), "Mesa - " + mesa.getNumero());
 		}

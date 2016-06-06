@@ -104,5 +104,5 @@ public class Pedido implements AbstractEntity {
 	public boolean hasValidId(){
 		return getId() != null && getId() != 0;
 	}
-	
+
 }
