@@ -13,10 +13,11 @@
 	<head>
 		<title>Seus Pedidos</title>
 		<meta charset="utf-8" />
-		<link rel="stylesheet" type="text/css" href="../../estilos/estiloTradicional.css">
+		<link rel="stylesheet" type="text/css" href="../estilos/estiloTradicional.css">
 	</head>
 	<body>
 			<header><!-- Cabeça da pagina -->
+			<p>Bem vindo, ${usuarioBD.nome}</p>
 				<c:url var="url" value="form"/>
 				<input id="novo" type="button" onclick="location.href='${url}'"; value="Realizar Pedidos" />
 				<a href="#Sair">Sair</a>
@@ -26,17 +27,16 @@
 								<label id="labelnumero"><em>Numero do Pedido:</em></label>
 								<input id="caixa_Numero" title="Digite apenas numeros" type="text" pattern="[0-9]+$"/>
 								<label id="labeltipo"><em>Tipo:</em></label>
-								<SELECT name = "menuTipo">
+								<select name = "menuTipo">
 									<OPTION>
 									<OPTION>Todos os Tipos
-									</SELECT>
 								</select>
 								<label id="labelstatus"><em>Status:</em></label>	
-								<form:select name = "menuStatus">
-									<form:option value="ATENDIDO">ATENDIDO</form:option>
-									<form:option value="PENDENTE">PENDENTE</form:option>
-									<form:option value="CANCELADO">CANCELADO</form:option>
-								</form:select>
+								<select name = "menuStatus">
+									<option value="ATENDIDO">ATENDIDO</option>
+									<option value="PENDENTE">PENDENTE</option>
+									<option value="CANCELADO">CANCELADO</option>
+								</select>
 											<input id="btnPesquisar" type="submit" value="Pesquisar" />
 							</article>	
 							<article class="tabContainer" id="lista">

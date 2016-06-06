@@ -103,8 +103,7 @@ public class Mesa implements AbstractEntity {
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return String.format("%d %d %s", getId(), getNumero(), getStatus());
+		return String.format("%d", getId());
 	}
 	
 	public boolean hasValidId(){

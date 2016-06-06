@@ -21,7 +21,7 @@
 						<fieldset><legend>Menu</legend>
 							<article class="tab_container" id="Pedidos">
 								<tr>
-									<c:url var="urlT" value="/pedido/tradicional/listar" />
+									<c:url var="urlT" value="/tradicional/listar" />
 									<td>
 										<input class="botao" type="button" onclick="window.location.href='${urlT}'" value="Pagina Pedido"></input>
 									</td>

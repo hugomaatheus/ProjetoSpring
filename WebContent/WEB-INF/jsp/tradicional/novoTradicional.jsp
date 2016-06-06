@@ -13,36 +13,45 @@
 	<head>
 		<title>Seus Pedidos</title>
 		<meta charset="utf-8" />
-		<link rel="stylesheet" type="text/css" href="../../estilos/estiloTradicional.css">
+		<link rel="stylesheet" type="text/css" href="../estilos/estiloTradicional.css">
 	</head>
 
 	<body>
 
 		<header>
+			<p>Bem vindo, ${usuarioBD.nome}</p>
 			<a href="#Sair">Sair</a>
 		</header>	
 
 		<fieldset id="criar"><legend>Pedido Tradicional</legend>
 			<article class="tab_container" id="Pesquisa">
 			<c:url var="url" value="/tradicional/carrinho" />
+			
 			<form:form method="post" action="${url}" modelAttribute="itemPedido" >
-				<label id="labelmesa"><em>Mesa:</em></label>
-				<form:select id="OpCategoria" class="set" path="tradicional.mesa.id" items="${mesaSelect}" />
+				<form:input type="hidden" path="id" items="${usuarioBD}" />
 				
-				<form:select class = "menuCardapio" name="tradicional.status">
+				<label id="labelmesa"><em>Mesa:</em></label>
+				<form:select id="Opmesa" class="set" path="tradicional.mesa.id" >
+ 					<form:options items="${mesaSelect}"/>
+ 				</form:select>
+<%--				<label id="labelmesa"><em>Mesa:</em></label>
+				<form:select class = "menuCardapio" path="pedido.status">
 					<form:option value="ATENDIDO">ATENDIDO</form:option>
 					<form:option value="PENDENTE">PENDENTE</form:option>
 					<form:option value="CANCELADO">CANCELADO</form:option>
-				</form:select>
+				</form:select> --%>
 				
 				<label id="labelStatus"><em>Item:</em></label>
-				<form:select id="OpCategoria" class="set" path="cardapio.id" items="${cardapioSelect}" />
-				
+				<form:select id="OpCategoria" class="set" path="cardapio.id" >
+					<form:options items="${cardapioSelect}"/>
+ 				</form:select>
+ 				
 				<label id="labelQtd"><em>Quantidade:</em></label>
-				<input id="txtQtd" title="Digite apenas numeros" path="quantidade" pattern="[0-9]+$"/>
+				<form:input id="txtQtd" title="Digite apenas numeros" path="quantidade" pattern="[0-9]+$"/>
 				
 				<input id="btnInserir" class="btn" type="submit" value="Adicionar Item" />
 			</form:form>
+			
 			</article>
 			<article class="tabContainer" id="lista">
 				<table>

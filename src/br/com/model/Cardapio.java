@@ -80,9 +80,7 @@ public class Cardapio implements AbstractEntity {
 	
 	@Override
 	public String toString() {
-		return String.format("Nome: %s\n"
-				+ "Preço: R$%f\n"
-				+ "Categoria: %s\n", getNome(), getPreco(), getCategoria());
+		return " id= " + id;
 	}
 
 	public boolean hasValidId(){

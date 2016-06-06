@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="itempedido")
@@ -18,7 +19,10 @@ public class ItemPedido implements AbstractEntity {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long id;
 	
-	private int quantidade;
+	private Integer quantidade;
+	
+	@Transient
+	private Tradicional tradicional;
 	
 	@ManyToOne
 	@JoinColumn(name="fk_pedido")
@@ -50,25 +54,34 @@ public class ItemPedido implements AbstractEntity {
 		this.id = id;
 	}
 
-	public int getQuantidade() {
+	public Integer getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(int qtd) {
-		this.quantidade = qtd;
-	}
-
-	public Pedido getPedido() {
-		return pedido;
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
 	}
 
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
 	
+	public Pedido getPedido() {
+		return pedido;
+	}
+	
+	public Tradicional getTradicional() {
+		return tradicional;
+	}
+
+	public void setTradicional(Tradicional tradicional) {
+		this.tradicional = tradicional;
+	}
+
 	@Override
 	public String toString() {
-		return "ItemPedido [id=" + id + ", quantidade=" + quantidade + ", cardapio=" + cardapio.getNome() + "]";
+		return "ItemPedido [id=" + id + ", quantidade=" + quantidade + ", pedido= Mesa =" + tradicional.getMesa() + ", cardapio=" + cardapio
+				+ "]";
 	}
 
 	public boolean hasValidId(){

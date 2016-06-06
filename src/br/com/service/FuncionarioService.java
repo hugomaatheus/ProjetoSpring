@@ -10,10 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.dao.CardapioDao;
 import br.com.dao.DeliveryDao;
 import br.com.dao.ItemPedidoDao;
-import br.com.dao.PedidoDao;
 import br.com.dao.ReservaDao;
 import br.com.dao.TradicionalDao;
 import br.com.model.Delivery;
@@ -36,11 +34,11 @@ public class FuncionarioService extends UsuarioService {
 	@Autowired
 	private TradicionalDao tradicionalDao;
 	
-	@Autowired
-	private PedidoDao pDao;
-	
-	@Autowired
-	private CardapioDao cDao;
+//	@Autowired
+//	private PedidoDao pDao;
+//	
+//	@Autowired
+//	private CardapioDao cDao;
 	
 	@Autowired
 	private ItemPedidoDao iDao;
@@ -110,11 +108,11 @@ public class FuncionarioService extends UsuarioService {
 	}
 	
 	//Problema com tabelas que estão mapeando as listas
-public void cadastrarPedidoDelivery(Usuario funcionario, List<ItemPedido> itens) {
+public void cadastrarPedidoTradicional(Usuario usuario, List<ItemPedido> itens) {
 		
 		ItemPedido i = new ItemPedido();
 		
-		Tradicional tradicional = new Tradicional((Funcionario) funcionario);
+		Tradicional tradicional = new Tradicional((Funcionario) usuario);
 		tradicional.setStatus(Status.ANDAMENTO);
 		tradicionalDao.save(tradicional);
 		
@@ -159,5 +157,5 @@ public void cadastrarPedidoDelivery(Usuario funcionario, List<ItemPedido> itens)
 
 		return tradicionais; 
 	}
-	
+
 }

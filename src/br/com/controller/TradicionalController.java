@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.model.Cardapio;
-import br.com.model.Cliente;
-import br.com.model.Delivery;
 import br.com.model.Funcionario;
 import br.com.model.ItemPedido;
 import br.com.model.Mesa;
@@ -64,7 +62,7 @@ public class TradicionalController {
 	@RequestMapping(value="form", method=RequestMethod.GET)
 	public String createForm(ModelMap map, HttpSession session){
 		
-		Cliente cliente = (Cliente) session.getAttribute("usuario");
+		Funcionario funcionario = (Funcionario) session.getAttribute("usuario");
 		
 		ItemPedido itemPedido = new ItemPedido();
 		
@@ -72,14 +70,14 @@ public class TradicionalController {
 		itemPedido.setPedido(new Tradicional());
 		
 		map.addAttribute("itemPedido", itemPedido);
-		map.addAttribute("listarItens", listarCarrinho(new ItemPedido()));
-		map.addAttribute("usuarioBD", cliente);
+		map.addAttribute("listarItens", itensPedidos);
+		map.addAttribute("usuarioBD", funcionario);
 		map.addAttribute("cardapioSelect",  selectCardapio());
 		map.addAttribute("mesaSelect", selectMesa());
-		return "delivery/carrinho";
+		return "tradicional/novoTradicional";
 	}
 	
-	@RequestMapping(value="carrinho", method=RequestMethod.GET)
+	@RequestMapping(value="carrinho", method=RequestMethod.POST)
 	public String addCarrinho(@ModelAttribute("itemPedido") ItemPedido itemPedido, BindingResult result, ModelMap map, HttpSession session){
 		
 		Funcionario funcionario = (Funcionario) session.getAttribute("usuario");
@@ -87,62 +85,45 @@ public class TradicionalController {
 		Tradicional tradicional = new Tradicional(funcionario);
 		
 		itemPedido.setPedido(tradicional);
+		System.out.println("-------------->" + itemPedido);
+		itensPedidos.add(itemPedido);
 		
-		map.addAttribute("listarItens", listarCarrinho(itemPedido));
-		return "delivery/carrinho";
+		map.addAttribute("listarItens", itensPedidos);
+		return "tradicional/novoTradicional";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="save")
-	public String save(@ModelAttribute("cliente") Delivery delivery, BindingResult result, ModelMap map) {
+	public String save(ModelMap map, HttpSession session){
 		
-	return "redirect:/delivery/listarPedidosDelivery";
+		Funcionario funcionario = (Funcionario) session.getAttribute("usuario");
+		
+		funcionarioService.cadastrarPedidoTradicional(funcionario, itensPedidos);
+		
+	return "redirect:/tradicioal/listarTradicional";
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/remove")
 	public String remove(@PathVariable Long id){
 		cardapioService.remover(new Cardapio(id));
-		return "redirect:/cardapio/listar";
-	}
-	
-	@RequestMapping(method=RequestMethod.GET, value="{id}/formUpdate")
-	public String updateForm(@PathVariable Long id, ModelMap map){
-		Cardapio cardapio = cardapioService.buscarPorId(id);
-		map.addAttribute("cardapio", cardapio);
-		map.addAttribute("categoriasSelect",  selectCardapio());
-		return "cardapio/editaCardapio";
-	}
-	
-	@RequestMapping(method=RequestMethod.POST, value="update")
-	public String update(@ModelAttribute("cardapio") Cardapio cardapio, BindingResult result, ModelMap map) {
-		if(cardapio.hasValidId()){
-			cardapioService.atualizar(cardapio);
-		}
-	return "redirect:/cardapio/listar";
+		return "redirect:/tradicional/listarTradicional";
 	}
 	
 	public Map<Long, String> selectCardapio(){
 		List<Cardapio> cardapios  = cardapioService.listar();
 		Map<Long, String> mapa = new TreeMap<Long, String>();
 		for (Cardapio cardapio : cardapios) {
-			mapa.put(cardapio.getId(), cardapio.getNome());
+			mapa.put(cardapio.getId(), cardapio.getNome() + " - " + cardapio.getPreco());
 		}
 		return mapa;
 	}
 	
-	public Map<Long, Integer> selectMesa(){
+	public Map<Long, String> selectMesa(){
 		List<Mesa> mesas  = mesaService.listar();
-		Map<Long, Integer> mapa = new TreeMap<Long, Integer>();
+		Map<Long, String> mapa = new TreeMap<Long, String>();
 		for (Mesa mesa : mesas) {
-			mapa.put(mesa.getId(), mesa.getNumero());
+			mapa.put(mesa.getId(), "Mesa - " + mesa.getNumero());
 		}
 		return mapa;
-	}
-
-	public List<ItemPedido> listarCarrinho(ItemPedido itemPedido){
-		
-		itensPedidos.add(itemPedido);
-
-		return itensPedidos;
 	}
 	
 }

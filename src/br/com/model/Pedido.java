@@ -97,8 +97,10 @@ public class Pedido implements AbstractEntity {
 	
 	@Override
 	public String toString() {
-		return String.format("%d", getId());
+		return "Pedido [id=" + id + ", data=" + data + ", status=" + status + ", total=" + total + ", itens=" + itens
+				+ "]";
 	}
+
 	public boolean hasValidId(){
 		return getId() != null && getId() != 0;
 	}
