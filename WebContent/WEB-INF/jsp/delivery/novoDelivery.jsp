@@ -58,7 +58,7 @@
 							<tr>
 							<td class="tabela-coluna"><span>${carrinho.cardapio.nome}</span></td>
 							<td class="tabela-coluna"><span>${carrinho.quantidade}</span></td>
-							<td class="tabela-coluna"><span>${carrinho.cardapio.preco}</span></td>
+							<td class="tabela-coluna"><span>${carrinho.cardapio.preco * carrinho.quantidade}</span></td>
 							<td class="tabela-coluna"><span> <a
 									href="Comando para excluir">[Excluir]</a>
 							</span></td>
@@ -69,13 +69,14 @@
 			</article>
 
 			<table id="TotalDoPedido">
-				<tr>
-					<td><span>Troco para</span></td>
-				</tr>				
+				<td align="left">Total - ${param.total}</td>
 			</table>
+			<c:url var="urlS" value="/delivery/save" />
 			<c:url var="urlBack" value="/delivery/listar"/>
-                            <input id="btnConfirmar" class="btn" type="submit" value="Confirmar" />
-                            <a class="btn" href="${urlBack}">Voltar</a>
+                            <form:form method="post" action="${urlS}" >
+								<input id="btnConfirmar" class="btn" type="submit" value="Salvar" />
+								<a class="btn" href="${urlBack}">Voltar</a>
+							</form:form>
                     </fieldset>
 			</article>>
 
