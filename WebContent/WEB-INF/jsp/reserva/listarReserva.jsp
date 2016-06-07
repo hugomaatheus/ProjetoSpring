@@ -67,7 +67,8 @@
 									</table>					
 								</article>
 							</article>
-							<input id="btnVoltar" class="btn" type="button" onclick="history.go(-1)" value="Voltar" />
+							<c:url var="urlBack" value="/funcionario/indexFuncionario"/>
+							<a class="btn" href="${urlBack}">Voltar</a>
 			
 			<footer><!-- cabeçalho da pagina -->
 				

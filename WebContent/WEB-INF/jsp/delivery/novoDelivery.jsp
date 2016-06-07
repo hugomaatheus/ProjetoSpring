@@ -73,8 +73,9 @@
 					<td><span>Troco para</span></td>
 				</tr>				
 			</table>
+			<c:url var="urlBack" value="/delivery/listar"/>
                             <input id="btnConfirmar" class="btn" type="submit" value="Confirmar" />
-                            <input id="btnVoltar" class="btn" type="button" onclick="history.go(-1)" value="Voltar" />
+                            <a class="btn" href="${urlBack}">Voltar</a>
                     </fieldset>
 			</article>>
 

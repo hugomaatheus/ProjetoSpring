@@ -72,9 +72,10 @@
 				<td align="left">Total Parcial</td>
 			</table>
 			<c:url var="urlS" value="/tradicional/save" />
+			<c:url var="urlBack" value="/tradicional/listar"/>
 			<form:form method="post" action="${urlS}" >
 				<input id="btnConfirmar" class="btn" type="submit" value="Salvar" />
-				<input id="btnVoltar" class="btn" type="button" onclick="history.go(-1)" value="Voltar" />
+				<a class="btn" href="${urlBack}">Voltar</a>
 			</form:form>
 		</fieldset>
 </body>

@@ -44,8 +44,9 @@
 							<form:option value="INATIVO">INATIVO</form:option>
 						</form:select>
 					<br />
+					<c:url var="urlBack" value="/gerente/indexGerente"/>
 						<input class="btn" type="submit" value="Adicionar" />
-						<input class="btn" type="button" value="Voltar" />
+						<a class="btn" href="${urlBack}">Voltar</a>
 			</fieldset>	
 		</form:form>
 	</article>	

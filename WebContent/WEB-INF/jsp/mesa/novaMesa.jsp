@@ -37,7 +37,9 @@
 						<form:option value="NAO">NAO</form:option>
 					</form:select>
 				<br />
+				<c:url var="urlBack" value="/mesa/listar"/>
 					<input id="btnAdicionar" class="btn" type="submit" value="Adicionar" />
+					<a class="btn" href="${urlBack}" >Voltar</a>
 				</form:form>
 			</fieldset>
 		</article>

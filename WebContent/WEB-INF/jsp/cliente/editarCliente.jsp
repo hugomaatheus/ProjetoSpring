@@ -110,6 +110,7 @@
 									</td>
 								</tr>
 								<tr>
+									<c:url var="urlBack" value="/cliente/indexCliente"/>
 									<td align="right">
 										<input id="btnvoltar" type="button" onclick="history.go(-1)" value="Voltar" />
 									</td>
