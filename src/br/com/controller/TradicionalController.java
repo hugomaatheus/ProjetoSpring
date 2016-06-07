@@ -47,9 +47,9 @@ public class TradicionalController {
 		
 		Funcionario funcionario = (Funcionario) session.getAttribute("usuario");
 		
-		List<Tradicional> tradicionais = funcionarioService.listarTradicional();
+		List<ItemPedido> itemPedidos = funcionarioService.listarItemPedido();
 		map.addAttribute("usuarioBD", funcionario);
-		map.addAttribute("tradicionais", tradicionais);
+		map.addAttribute("itemPedidos", itemPedidos);
 		return "tradicional/listarTradicional";
 	}
 	
@@ -92,7 +92,7 @@ public class TradicionalController {
 		
 		boolean existe = false;
 		for (ItemPedido item : carrinho) {
-			if(item.getCardapio().getId() == itemPedido.getCardapio().getId() && item.getTradicional().getMesa().getId() == itemPedido.getTradicional().getMesa().getId()){
+			if(item.getCardapio().getId() == itemPedido.getCardapio().getId()){
 				item.setQuantidade(item.getQuantidade() + itemPedido.getQuantidade());
 				existe = true;
 			}
@@ -118,6 +118,15 @@ public class TradicionalController {
 		carrinho.clear();
 	return "redirect:/tradicional/listar";
 	}
+	
+	@RequestMapping(method=RequestMethod.GET, value="{id}/detalhar")
+	public String detalharPedido(@PathVariable Long id, ModelMap map){
+		ItemPedido itemPedido = funcionarioService.buscarItemPedido(id);
+		System.out.println("----------------------->" + itemPedido);
+		map.addAttribute("itemPedido", itemPedido);
+		return "detalharPedido/detalhePedido";
+	}
+	
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/remove")
 	public String remove(@PathVariable Long id){

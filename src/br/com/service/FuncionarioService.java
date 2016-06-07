@@ -115,29 +115,28 @@ public class FuncionarioService extends UsuarioService {
 	//Problema com tabelas que estão mapeando as listas
 public void cadastrarPedidoTradicional(Usuario usuario, List<ItemPedido> itens) {
 		
-		ItemPedido i = new ItemPedido();
+	System.out.println(itens);
+	
 		Calendar calendar = new GregorianCalendar();
 		Date date = new Date();
 		calendar.setTime(date);
-		Tradicional tradicional = null;
+		
+		Tradicional tradicional = new Tradicional((Funcionario) usuario);
+		tradicional.setData(calendar);
+		tradicional.setStatus(Status.ANDAMENTO);
+		tradicionalDao.save(tradicional);
 		
 		Double total = 0.0;
-		for (ItemPedido itemMesa : itens) {
-			tradicional = new Tradicional((Funcionario) usuario);
-			tradicional.setTotal(total += itemMesa.getQuantidade() * itemMesa.getCardapio().getPreco());
-			tradicional.setStatus(Status.ANDAMENTO);
-			tradicional.setData(calendar);
-			tradicional.setMesa(mesaService.buscarPorId(itemMesa.getTradicional().getMesa().getId()));
-			tradicional.setTotal(itemMesa.getTradicional().getTotal());
-			tradicionalDao.save(tradicional);
+		for (ItemPedido item : itens) {
+			total += item.getQuantidade() * item.getCardapio().getPreco();
+			tradicional.setMesa(mesaService.buscarPorId(item.getTradicional().getMesa().getId()));
+			item.setCardapio(item.getCardapio());
+			item.setPedido(tradicional);
+			item.setQuantidade(item.getQuantidade());
+			tradicional.setTotal(total);
+			iDao.save(item);
 		}
 		
-		for (ItemPedido item : itens) {
-			i.setCardapio(item.getCardapio());
-			i.setPedido(tradicional);
-			i.setQuantidade(item.getQuantidade());
-			iDao.save(i);
-		}
 		
 	}
 	
@@ -163,7 +162,7 @@ public void cadastrarPedidoTradicional(Usuario usuario, List<ItemPedido> itens) 
 	
 	
 	public Delivery buscarPedidoDelivery(Long id) {
-		return (Delivery) deliveryDao.getById(id);
+		return deliveryDao.getById(id);
 	}
 
 	public List<Tradicional> listarTradicional() {
@@ -174,4 +173,14 @@ public void cadastrarPedidoTradicional(Usuario usuario, List<ItemPedido> itens) 
 		return tradicionais; 
 	}
 
+	public ItemPedido buscarItemPedido(Long id){
+		return iDao.getById(id);
+	}
+
+	public List<ItemPedido> listarItemPedido() {
+		List<ItemPedido> itemPedido = new ArrayList<>();
+		itemPedido = iDao.listar();
+		return itemPedido;
+	}
+	
 }

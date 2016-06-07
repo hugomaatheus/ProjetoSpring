@@ -9,7 +9,6 @@ public class ItemPedidoDao extends AbstractDao<ItemPedido> {
 
 	@Override
 	public Class<ItemPedido> getTypeClass() {
-		// TODO Auto-generated method stub
 		return ItemPedido.class;
 	}
 
