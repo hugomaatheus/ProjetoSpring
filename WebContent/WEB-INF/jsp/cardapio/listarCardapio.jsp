@@ -68,6 +68,8 @@
 					</table>
 				</article>
 			</article>
+			<c:url var="urlBack" value="/gerente/indexGerente"/>
+			<a class="btn" href="${urlBack}">Voltar</a>
 			
 			<footer><!-- cabeçalho da pagina -->
 				

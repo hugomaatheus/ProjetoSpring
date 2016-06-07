@@ -37,6 +37,8 @@
 					</form:select>
 					<br />
 					<input id="btnAdicionar" class="btn" type="submit" value="Adicionar" />
+					<c:url var="urlBack" value="/categoria/listar"/>
+					<a class="btn" href="${urlBack}">Voltar</a>
 				</fieldset>
 			</form:form>
 		</article>

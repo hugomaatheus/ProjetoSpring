@@ -36,8 +36,9 @@
 					<label id="labelmesa"><em>Mesa:</em></label>
 					<form:select id="Opmesa" class="categoria" path="mesa.id" items="${mesaSelect}" />
 				<br />
+				<c:url var="urlBack" value="/reserva/listar"/>
 					<input id="btnreservar" class="btn" type="submit" value="Reservar" />
-					<input id="btnVoltar" class="btn" type="button" onclick="history.go(-1)" value="Voltar" />
+					<a class="btn" href="${urlBack}">Voltar</a>
 				</form:form>
 			</article>
 		</fieldset>
