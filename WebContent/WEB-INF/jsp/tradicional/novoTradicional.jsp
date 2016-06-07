@@ -57,7 +57,7 @@
 							<tr>
 								<td class="tabela-coluna"><span>${carrinho.cardapio.nome}</span></td>
 								<td class="tabela-coluna"><span>${carrinho.quantidade}</span></td>
-								<td class="tabela-coluna"><span>${carrinho.cardapio.preco}</span></td>
+								<td class="tabela-coluna"><span>${carrinho.cardapio.preco * carrinho.quantidade}</span></td>
 								<td class="tabela-coluna">
 									<span>	
 										<a href="../Tela-Detalhar Pedido/Detalhe pedido.html">[Excluir]</a>

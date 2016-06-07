@@ -34,7 +34,8 @@ public class DeliveryController {
 	@Autowired
 	private ClienteService clienteService;
 	
-	List<ItemPedido> carrinho = null;
+	private List<ItemPedido> carrinho = null;
+	private Double total = 0.0;
 	
 	@RequestMapping(value="listar", method=RequestMethod.GET)
 	public String list(ModelMap map, HttpSession session){
@@ -62,9 +63,10 @@ public class DeliveryController {
 		Cliente cliente = (Cliente) session.getAttribute("usuario");
 		
 		ItemPedido itemPedido = new ItemPedido();
+		Delivery delivery = new Delivery();
 		
 		itemPedido.setCardapio(new Cardapio());
-		itemPedido.setPedido(new Delivery());
+		itemPedido.setPedido(delivery);
 		
 		map.addAttribute("itemPedido", itemPedido);
 		map.addAttribute("carrinho", carrinho);
@@ -84,36 +86,44 @@ public class DeliveryController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="addCarrinho")
-	public String addCarrinho(@ModelAttribute("itemPedido") ItemPedido itemPedido, HttpSession sessao,BindingResult result, ModelMap map)  {
-		
-		Cliente cliente = (Cliente) sessao.getAttribute("usuario");
+	public String addCarrinho(@ModelAttribute("itemPedido") ItemPedido itemPedido, BindingResult result, ModelMap map, HttpSession sessao)  {
 		
 		itemPedido.setCardapio(cardapioService.buscarPorId(itemPedido.getCardapio().getId()));
-		
-		Delivery delivery = new Delivery(cliente);
-		itemPedido.setPedido(delivery);
+		itemPedido.setPedido(new Delivery()); //gambiarra para Delivery vindo nulo
+		itemPedido.getPedido().setTotal(total);
 		
 		if(carrinho == null) {
 			carrinho = new ArrayList<ItemPedido>();
 			sessao.setAttribute("carrinho", carrinho);
 		}
 		
-		carrinho.add(itemPedido);
+		boolean existe = false;
+		for (ItemPedido item : carrinho) {
+			if(item.getCardapio().getId() == itemPedido.getCardapio().getId()){
+				item.setQuantidade(item.getQuantidade() + itemPedido.getQuantidade());
+				existe = true;
+			}
+		}
+		total += itemPedido.getQuantidade() * itemPedido.getCardapio().getPreco();
+		if(!existe){
+			carrinho.add(itemPedido);
+		}
 		
+		map.addAttribute("total", total);
 		map.addAttribute("carrinho", carrinho);
 		
 		return "redirect:/delivery/form";
 		
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="listarCarrinho")
-	public String addCarrinho(HttpSession sessao, ModelMap map)  {
-		
-		sessao.getAttribute("carrinho");
-		
-		return "delivery/listarCarrinho";
-		
-	}
+//	@RequestMapping(method=RequestMethod.POST, value="listarCarrinho")
+//	public String addCarrinho(HttpSession sessao, ModelMap map)  {
+//		
+//		sessao.getAttribute("carrinho");
+//		
+//		return "delivery/listarCarrinho";
+//		
+//	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/remove")
 	public String remove(@PathVariable Long id){

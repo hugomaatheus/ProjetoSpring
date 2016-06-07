@@ -63,6 +63,7 @@
 					</table>
 				</article>
 		</article>
-		<input id="btnVoltar" class="btn" type="button" onclick="history.go(-1)" value="Voltar" />	
+		<c:url var="urlBack" value="/delivery/listar"/>
+		<a class="btn" href="${urlBack}">Voltar</a>	
 	</body>
 </html>
