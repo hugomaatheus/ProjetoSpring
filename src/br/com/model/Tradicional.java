@@ -2,7 +2,6 @@ package br.com.model;
 
 
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -13,11 +12,9 @@ import javax.persistence.PrimaryKeyJoinColumn;
 public class Tradicional extends Pedido {
 	
 	@ManyToOne
-	@JoinColumn(name="fk_funcionario")
 	private Funcionario vendedor;
 	
 	@ManyToOne
-	@JoinColumn(name="mesa_id")
 	private Mesa mesa;
 	
 	public Tradicional(Mesa mesa, Funcionario vendedor) {

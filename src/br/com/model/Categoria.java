@@ -15,6 +15,7 @@ import br.com.util.Status;
 @Entity 
 @SequenceGenerator(name="categoria_id", sequenceName="categoria_seq", allocationSize=1)
 public class Categoria implements AbstractEntity {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="categoria_id")
 	private Long id;

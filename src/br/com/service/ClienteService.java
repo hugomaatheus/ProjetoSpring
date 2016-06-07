@@ -2,6 +2,7 @@ package br.com.service;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -104,12 +105,13 @@ public class ClienteService {
 public void cadastrarPedidoDelivery(Usuario cliente, List<ItemPedido> itens) {
 		
 		ItemPedido i = new ItemPedido(); 
-		Calendar c = Calendar.getInstance();
-		Date data = c.getTime();
+		Calendar c = new GregorianCalendar();
+		Date data = new Date();
+		c.setTime(data);
 		
 		Delivery delivery = new Delivery((Cliente) cliente);
 		delivery.setStatus(Status.ANDAMENTO);
-		delivery.setData(data);
+		delivery.setData(c);
 		deliveryDao.save(delivery);
 		
 		for (ItemPedido item : itens) {

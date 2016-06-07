@@ -2,6 +2,8 @@ package br.com.service;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -27,6 +29,9 @@ import br.com.util.Status;
 @Service
 @Transactional
 public class FuncionarioService extends UsuarioService {
+	
+	@Autowired
+	private MesaService mesaService;
 	
 	@Autowired
 	private ReservaDao reservaDao;
@@ -111,10 +116,21 @@ public class FuncionarioService extends UsuarioService {
 public void cadastrarPedidoTradicional(Usuario usuario, List<ItemPedido> itens) {
 		
 		ItemPedido i = new ItemPedido();
+		Calendar calendar = new GregorianCalendar();
+		Date date = new Date();
+		calendar.setTime(date);
+		Tradicional tradicional = null;
 		
-		Tradicional tradicional = new Tradicional((Funcionario) usuario);
-		tradicional.setStatus(Status.ANDAMENTO);
-		tradicionalDao.save(tradicional);
+		Double total = 0.0;
+		for (ItemPedido itemMesa : itens) {
+			tradicional = new Tradicional((Funcionario) usuario);
+			tradicional.setTotal(total += itemMesa.getQuantidade() * itemMesa.getCardapio().getPreco());
+			tradicional.setStatus(Status.ANDAMENTO);
+			tradicional.setData(calendar);
+			tradicional.setMesa(mesaService.buscarPorId(itemMesa.getTradicional().getMesa().getId()));
+			tradicional.setTotal(itemMesa.getTradicional().getTotal());
+			tradicionalDao.save(tradicional);
+		}
 		
 		for (ItemPedido item : itens) {
 			i.setCardapio(item.getCardapio());

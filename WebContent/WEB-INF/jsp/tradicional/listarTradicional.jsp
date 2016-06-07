@@ -54,7 +54,7 @@
 									<c:forEach var="tradicional" items="${tradicionais}" >
 										<tr>
 											<td class="tabela-coluna"><span>${tradicional.id}</span></td>
-											<td class="tabela-coluna"><span>${tradicional.data}</span></td>
+											<td class="tabela-coluna"><span><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${tradicional.data.getTime()}" /></span></td>
 											<td class="tabela-coluna"><span>${tradicional.total}</span></td>
 											<td class="tabela-coluna"><span>${tradicional.status}</span></td>
 											<td class="tabela-coluna">

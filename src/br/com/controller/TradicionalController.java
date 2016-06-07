@@ -40,6 +40,8 @@ public class TradicionalController {
 	
 	private List<ItemPedido> carrinho = null;
 	
+	private Double total = 0.0;
+	
 	@RequestMapping(value="listar", method=RequestMethod.GET)
 	public String list(ModelMap map, HttpSession session){
 		
@@ -81,23 +83,26 @@ public class TradicionalController {
 	@RequestMapping(value="carrinho", method=RequestMethod.POST)
 	public String addCarrinho(@ModelAttribute("itemPedido") ItemPedido itemPedido, BindingResult result, ModelMap map, HttpSession session){
 		
-		itemPedido.setCardapio(cardapioService.buscarPorId(itemPedido.getCardapio().getId()));
-		
-		Tradicional tradicional = new Tradicional(); 
-		tradicional.setMesa(mesaService.buscarPorId(((Tradicional) itemPedido.getPedido()).getMesa().getId()));
-		
-		itemPedido.setPedido(tradicional);
-		
+		itemPedido.setCardapio(cardapioService.buscarPorId(itemPedido.getCardapio().getId())); 
+		itemPedido.getTradicional().setTotal(total);
 		if(carrinho == null) {
 			carrinho = new ArrayList<ItemPedido>();
 			session.setAttribute("carrinho", carrinho);
 		}
 		
-		carrinho.add(itemPedido);
+		boolean existe = false;
+		for (ItemPedido item : carrinho) {
+			if(item.getCardapio().getId() == itemPedido.getCardapio().getId() && item.getTradicional().getMesa().getId() == itemPedido.getTradicional().getMesa().getId()){
+				item.setQuantidade(item.getQuantidade() + itemPedido.getQuantidade());
+				existe = true;
+			}
+		}
+		total += itemPedido.getQuantidade() * itemPedido.getCardapio().getPreco();
+		if(!existe){
+			carrinho.add(itemPedido);
+		}
 		
-		System.out.println(itemPedido);
-		System.out.println(carrinho);
-		
+		map.addAttribute("total", total);
 		map.addAttribute("carrinho", carrinho);
 		
 		return "redirect:/tradicional/form";

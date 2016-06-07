@@ -30,7 +30,7 @@
 				<%-- <form:input type="hidden" path="id" items="${usuarioBD}" /> --%>
 				
 				<label id="labelmesa"><em>Mesa:</em></label>
-				<form:select id="Opmesa" class="set" path="pedido.mesa.id" items="${mesaSelect}"/>
+				<form:select id="Opmesa" class="set" path="tradicional.mesa.id" items="${mesaSelect}"/>
 				
 				<label id="labelStatus"><em>Item:</em></label>
 				<form:select id="OpCategoria" class="set" path="cardapio.id" items="${cardapioSelect}"/>
@@ -52,7 +52,7 @@
 					</tr>
 				</table>
 				<article class="scrollContainer">
-					<table >
+					<table>
 						<c:forEach var="carrinho" items="${carrinho}" >
 							<tr>
 								<td class="tabela-coluna"><span>${carrinho.cardapio.nome}</span></td>
@@ -69,7 +69,7 @@
 				</article>
 			</article>
 			<table id="TotalDoPedido">
-				<td align="left">Total Parcial</td>
+				<td align="left">Total - ${param.total}</td>
 			</table>
 			<c:url var="urlS" value="/tradicional/save" />
 			<form:form method="post" action="${urlS}" >

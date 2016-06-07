@@ -8,16 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 
 import br.com.util.Status;
 
-@Entity
-@SequenceGenerator(name="cardapio_id", sequenceName="cardapio_seq", allocationSize=1 )
+@Entity(name="Cardapio")
 public class Cardapio implements AbstractEntity {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="cardapio_id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
 	private String nome;
