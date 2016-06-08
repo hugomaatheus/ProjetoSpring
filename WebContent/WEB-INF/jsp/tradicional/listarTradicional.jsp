@@ -60,7 +60,7 @@
 											<td class="tabela-coluna">
 												<span>
 													<a href='<c:url value="/tradicional/${tradicional.id}/detalhar"/>' >[Detalhar]</a>
-													<a href="Comando para excluir"> [excluir]</a>
+<%-- 													<a href="/cadastroClientesWebString/tradicional/${tradicional.id}/remove"> [Inativar]</a> --%>
 												</span>
 											</td>
 										</tr>

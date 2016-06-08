@@ -67,7 +67,7 @@ public class CardapioController {
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/remove")
 	public String remove(@PathVariable Long id){
-		cardapioService.remover(new Cardapio(id));
+		cardapioService.cancelar(id);
 		return "redirect:/cardapio/listar";
 	}
 	

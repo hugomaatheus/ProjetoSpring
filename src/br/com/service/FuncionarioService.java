@@ -53,10 +53,12 @@ public class FuncionarioService extends UsuarioService {
 	
 	
 	//Manter Reserva - OK
-	public void cadastrarReserva(Reserva reserva) {
-
-			reserva.getMesa().setStatus(Status.OCUPADA);
-			reservaDao.save(reserva);
+	public void cadastrarReserva(Reserva reserva, Funcionario funcionario) {
+		
+		reserva.setFuncionario(funcionario);
+		reserva.getMesa().setStatus(Status.OCUPADA);
+		
+		reservaDao.save(reserva);
 
 	}
 	
@@ -76,27 +78,26 @@ public class FuncionarioService extends UsuarioService {
 	}
 	
 	//OK
-	public void atualizarReserva(Reserva reserva) {		
+	public void atualizarReserva(Reserva reserva) {
+
 		reservaDao.update(reserva);		
 	}
 	
 	//OK
 	public void cancelarReserva(Long id) {
+		Calendar calendar = new GregorianCalendar();
+		Date date = new Date();
+		calendar.setTime(date);
 		
 		Reserva reserva = reservaDao.getById(id);
-		Calendar data = Calendar.getInstance();
 
-		if(reserva.getStatus() == Status.ATIVO) {
-			reserva.setDataFinal(data);
+		if(reserva.getStatus() == Status.LIVRE) {
+			reserva.setDataFinal(calendar);
 			reserva.setStatus(Status.CANCELADO);
-			reserva.getMesa().setStatus(Status.LIVRE);
 			reservaDao.update(reserva);
 		}
-
-		else
-			JOptionPane.showMessageDialog(null, "Você está tentando cancelar "
-					+ "uma reserva já cancelada!");
 	}
+	
 	///////////////////////////////////////////
 	
 	
@@ -167,10 +168,13 @@ public void cadastrarPedidoTradicional(Usuario usuario, List<ItemPedido> itens) 
 
 	public List<Tradicional> listarTradicional() {
 		
-		List<Tradicional> tradicionais = new ArrayList<Tradicional>();
-		tradicionais = tradicionalDao.listar();
+		List<Tradicional> listar = new ArrayList<Tradicional>();
+		for (Tradicional tradicional : tradicionalDao.listar()) {
+			if(tradicional.getStatus() != Status.INATIVO)
+				listar.add(tradicional);
+		}
 
-		return tradicionais; 
+		return listar; 
 	}
 
 
@@ -183,6 +187,26 @@ public void cadastrarPedidoTradicional(Usuario usuario, List<ItemPedido> itens) 
 		itemPedido = iDao.listarItensPedidos(id);
 
 		return itemPedido;
+	}
+
+	public Tradicional cancelar(Long id) {
+		Tradicional tradicional = tradicionalDao.getById(id);
+		
+		if(tradicional.getStatus() == Status.ANDAMENTO){
+			tradicional.setStatus(Status.CANCELADO);
+		}
+		
+		return tradicional;
+	}
+	
+	public Tradicional atender(Long id) {
+		Tradicional tradicional = tradicionalDao.getById(id);
+		
+		if(tradicional.getStatus() == Status.ANDAMENTO){
+			tradicional.setStatus(Status.ATENDIDO);
+		}
+		
+		return tradicional;
 	}
 	
 }

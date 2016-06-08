@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.dao.MesaDao;
 import br.com.model.Mesa;
+import br.com.util.Status;
 
 @Service
 @Transactional
@@ -38,6 +39,16 @@ public class MesaService {
 
 	public List<Mesa> buscar(Mesa filtro) {
 		return mesaDao.filtrar(filtro);
+	}
+
+	public void cancelar(Long id) {
+		Mesa mesa = mesaDao.getById(id);
+		
+		if(mesa.getStatus() == Status.SIM) {
+			mesa.setStatus(Status.NAO);
+			mesaDao.update(mesa);
+		}
+		
 	}
 
 }

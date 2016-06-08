@@ -52,7 +52,7 @@ public class CategoriaController {
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/remove")
 	public String remove(@PathVariable Long id){
-		categoriaService.remover(new Categoria(id));
+		categoriaService.cancelar(id);
 		return "redirect:/categoria/listar";
 	}
 	

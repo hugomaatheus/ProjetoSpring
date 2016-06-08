@@ -32,8 +32,7 @@
 						<td align="right">
 							<label id="labeltroco"><em>Troco para:</em></label>
 						</td> --%>
-					</tr>
-				</table>		
+	
 				</article>
 
 				<article class="tabContainer" id="lista">
@@ -61,15 +60,13 @@
 				</article>
 				</article>
 				<article>
-					<td align="right">
-						<input id="btnAtender" class="btn" type="button" value="Atender" />
-					</td>
-					<td align="right">
-						<input id="btnCancelar" class="btn" type="button" value="Cancelar" />
-					</td>
-					<td align="right">
+
+						<input id="btnAtender" class="btn" type="button" onclick="location.href='/cadastroClientesWebString/tradicional/${pedido.id}/atender'" value="atender" />
+
+						<input id="btnCancelar" class="btn" type="button" onclick="location.href='/cadastroClientesWebString/tradicional/${pedido.id}/cancelar'" value="cancelar" />
+
 						<input id="btnVoltar" class="btn" type="button" onclick="javascript:history.back(); self.location.reload();" value="Voltar" />
-					</td>
+
 				</article>
 			</fieldset>
 

@@ -61,7 +61,6 @@ public class ReservaController {
 		Funcionario  func = (Funcionario) session.getAttribute("usuario");
 		
 		Reserva reserva = new Reserva();
-		reserva.setFuncionario(func);
 		reserva.setMesa(new Mesa());
 		
 		map.addAttribute("reserva", reserva);
@@ -71,7 +70,8 @@ public class ReservaController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="save")
-	public String save(@ModelAttribute("reserva") @Valid Reserva reserva, BindingResult result, ModelMap map) {
+	public String save(@ModelAttribute("reserva") @Valid Reserva reserva, BindingResult result, ModelMap map, HttpSession session) {
+		Funcionario  funcionario = (Funcionario) session.getAttribute("usuario");
 		
 		if(result.hasErrors()){
 			map.addAttribute("reserva", reserva);
@@ -79,7 +79,7 @@ public class ReservaController {
 			return "cardapio/form";
 		}
 		
-		funcionarioService.cadastrarReserva(reserva);
+		funcionarioService.cadastrarReserva(reserva, funcionario);
 	return "redirect:/reserva/listar";
 	}
 	
@@ -94,7 +94,7 @@ public class ReservaController {
 		Reserva reserva = funcionarioService.buscarReserva(id);
 		map.addAttribute("reserva", reserva);
 		map.addAttribute("mesaSelect",  selectMesa());
-		return "reserva/editarReserva";
+		return "/reserva/editarReserva";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="update")

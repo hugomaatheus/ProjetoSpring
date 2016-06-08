@@ -58,8 +58,8 @@
 												<td class="tabela-coluna"><span>${reserva.nome_Responsavel}</span></td>
 												<td class="tabela-coluna">
 													<span>
-													<a href="Comando para excluir"> [Editar]</a>
-													<a href="Comando para inativar">[Inativar]</a>
+													<a href="/cadastroClientesWebString/reserva/${reserva.id}/formUpdate"> [Editar]</a>
+													<a href="/cadastroClientesWebString/reserva/${reserva.id}/remove">[Inativar]</a>
 													</span>
 												</td>
 											</tr>

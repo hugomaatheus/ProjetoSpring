@@ -53,7 +53,7 @@ public class MesaController {
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/remove")
 	public String remove(@PathVariable Long id){
-		mesaService.remover(new Mesa(id));
+		mesaService.cancelar(id);
 		return "redirect:/mesa/listar";
 	}
 	

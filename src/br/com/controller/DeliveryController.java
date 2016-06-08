@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.model.Cardapio;
-import br.com.model.Carrinho;
 import br.com.model.Cliente;
 import br.com.model.Delivery;
 import br.com.model.ItemPedido;

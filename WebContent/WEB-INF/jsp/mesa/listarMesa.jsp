@@ -23,10 +23,10 @@
 					<label for="txtNumero"><em>Filtrar por:</em></label>
 					
 					<label for="filtroNome"><em>numero:</em></label>
-					<input id="filtroNome" type="text" path="numero"/>
+					<input id="filtroNome" type="text" name="numero"/>
 					
 					<label for="txtreserva"><em>De reserva:</em></label>
-					<select id="OpCategoria" class="categoria" path="categoria">
+					<select id="OpCategoria" class="categoria" name="categoria">
 						<option value="sim">Sim</option>
 						<option value="nao">Nao</option>
 					</select>
@@ -54,7 +54,7 @@
 							<td class="tabela-coluna"><span>${mesa.status }</span></td>
 							<td class="tabela-coluna">
 								<span>
-									<a href='<c:url value="/mesa/${mesa.id}/remove" />'>[remover]</a>
+									<a href='<c:url value="/mesa/${mesa.id}/remove" />'>[reserva]</a>
 									<a href='<c:url value="/mesa/${mesa.id}/formUpdate" />'>[editar]</a>
 								</span>
 							</td>

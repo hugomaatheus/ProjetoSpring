@@ -11,7 +11,7 @@
 	<head>
 		<title>Editar Cardapio</title>
 		<meta charset="utf-8" />
-		<link rel="stylesheet" type="text/css" href="../estilos/estiloReserva.css">
+		<link rel="stylesheet" type="text/css" href="../../estilos/estiloReserva.css">
 	</head>
 	<body>
 		<header>
@@ -25,13 +25,13 @@
 				<form:form method="post" action="${url}" modelAttribute="reserva">
 				<form:hidden path="id"/>	
 					<label id="labelinicio"><em>Data Inicio:</em></label>
-					<form:input id="txtinicio" type="date" maxlength="10" path="dataInicio" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$"/>
+					<form:input id="txtinicio" type="text" maxlength="10" path="dataInicial" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$"/>
 				<br/>
 					<label id="labelfim"><em>Data Fim:</em></label>
-					<<form:hidden path="id"/>input id="txtfim" type="date" maxlength="10" path="dataFim" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$"/>
+					<form:input id="txtfim" type="text" maxlength="10" path="dataFinal" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$"/>
 				<br/>
 					<label id="labelrespon"><em>Responsavel:</em></label>
-					<<form:hidden path="id"/>input id="txtrespon" type="text"/>
+					<form:input id="txtrespon" type="text" path="nome_Responsavel"/>
 				<br />
 					<label id="labelmesa"><em>Mesa:</em></label>
 					<form:select id="Opmesa" class="categoria" path="mesa.id" items="${mesaSelect}" />

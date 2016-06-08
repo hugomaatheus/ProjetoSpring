@@ -21,15 +21,11 @@
 			
 		<article id="pesquisa"><!-- Centro da pagina -->
 			<form method="get" action="filtrar">
-				<td align="right">
 					<label for="txtNumero"><em>Filtrar por nome:</em></label>
-				</td>
-				<td align="left">
-					<input id="filtro" path="nome" type="text" />
-				</td>
-				<td align="left">
+
+					<input id="filtro" name="nome" type="text" />
+
 					<input id="btnPesquisar" type="submit" value="Pesquisar" />
-				</td>
 			</form>
 		</article>
 		
@@ -52,13 +48,14 @@
 					<td class="tabela-coluna"><span>${categoria.status}</span></td>
 					<td class="tabela-coluna">
 						<span>
-							<a href='<c:url value="/categoria/${categoria.id}/remove" />'>[remover]</a>
+							<a href='<c:url value="/categoria/${categoria.id}/remove" />'>[inativar]</a>
 							<a href='<c:url value="/categoria/${categoria.id}/formUpdate" />'>[editar]</a>
 						</span>
 					</td>
 				</tr>
 			</c:forEach>	
 			</table>
+		</article>
 		</article>
 		<c:url var="urlBack" value="/gerente/indexGerente"/>
 		<a class="btn" href="${urlBack}">Voltar</a>

@@ -1,5 +1,6 @@
 package br.com.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.dao.CardapioDao;
 import br.com.model.Cardapio;
+import br.com.util.Status;
 
 @Service
 @Transactional
@@ -25,11 +27,17 @@ public class CardapioService {
 	}
 
 	public List<Cardapio> listar() {
-		return cardapioDao.listar();
+		List<Cardapio> lista = new ArrayList<Cardapio>();
+		for (Cardapio cardapio : cardapioDao.listar()) {
+			if(cardapio.getStatus() != Status.INATIVO)
+				lista.add(cardapio);
+		}
+		
+		return lista;
 	}
 
 	public void remover(Cardapio cardapio) {
-		cardapioDao.delete(cardapio);;
+		cardapioDao.delete(cardapio);
 	}
 
 	public Cardapio buscarPorId(Long id) {
@@ -38,6 +46,16 @@ public class CardapioService {
 
 	public List<Cardapio> buscar(Cardapio filtro) {
 		return cardapioDao.filtrar(filtro);
+	}
+	
+	public Cardapio cancelar(Long id) {
+		Cardapio cardapio = cardapioDao.getById(id);
+		
+		if(cardapio.getStatus() == Status.ATIVO){
+			cardapio.setStatus(Status.INATIVO);
+		}
+		
+		return cardapio;
 	}
 
 }

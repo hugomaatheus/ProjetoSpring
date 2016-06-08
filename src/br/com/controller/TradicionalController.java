@@ -124,18 +124,24 @@ public class TradicionalController {
 	public String detalharPedido(@PathVariable Long id, ModelMap map){
 		List<ItemPedido> itemPedidos = funcionarioService.listarItemPedido(id);
 		Pedido pedido = funcionarioService.buscarPedidoTradicional(id);
-		System.out.println("----------------------->" + itemPedidos);
 		map.addAttribute("itemPedidos", itemPedidos);
 		map.addAttribute("pedido", pedido);
 		return "detalharPedido/detalhePedido";
 	}
 	
 	
-	@RequestMapping(method=RequestMethod.GET, value="{id}/remove")
-	public String remove(@PathVariable Long id){
-		cardapioService.remover(new Cardapio(id));
-		return "redirect:/tradicional/listarTradicional";
+	@RequestMapping(method=RequestMethod.GET, value="{id}/cancelar")
+	public String cancelar(@PathVariable Long id){
+		funcionarioService.cancelar(id);
+		return "redirect:/tradicional/listar";
 	}
+	
+	@RequestMapping(method=RequestMethod.GET, value="{id}/atender")
+	public String atender(@PathVariable Long id){
+		funcionarioService.atender(id);
+		return "redirect:/tradicional/listar";
+	}
+	
 	
 	public Map<Long, String> selectCardapio(){
 		List<Cardapio> cardapios  = cardapioService.listar();
