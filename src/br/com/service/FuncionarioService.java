@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.dao.DeliveryDao;
+import br.com.dao.FuncionarioDao;
 import br.com.dao.ItemPedidoDao;
 import br.com.dao.ReservaDao;
 import br.com.dao.TradicionalDao;
@@ -24,6 +25,7 @@ import br.com.model.Reserva;
 import br.com.model.Tradicional;
 import br.com.model.Usuario;
 import br.com.util.Status;
+import br.com.util.Tipo;
 
 
 @Service
@@ -44,6 +46,9 @@ public class FuncionarioService extends UsuarioService {
 	
 	@Autowired
 	private DeliveryDao deliveryDao;
+	
+	@Autowired
+	private FuncionarioDao funcionarioDao;
 	
 	
 	//Manter Reserva - OK
@@ -201,6 +206,20 @@ public void cadastrarPedidoTradicional(Usuario usuario, List<ItemPedido> itens) 
 		}
 		
 		return tradicional;
+	}
+
+	public void atualizarUsuario(Funcionario funcionario) {
+		funcionarioDao.update(funcionario);		
+	}
+	
+	public Funcionario buscarUsuario(Long id) {
+		return funcionarioDao.getById(id);
+	}
+	
+	public void cadastrarUsuario(Funcionario funcionario) {
+		funcionario.setStatus(Status.ATIVO);
+		funcionario.setTipo(Tipo.FUNCIONARIO);
+		funcionarioDao.save(funcionario);
 	}
 	
 }

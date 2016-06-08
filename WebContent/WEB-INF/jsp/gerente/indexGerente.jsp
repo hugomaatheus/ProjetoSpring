@@ -32,7 +32,7 @@
 								<tr>
 									<c:url var="urlCat" value="/categoria/listar" />
 									<td>
-										<input class="botao" type="button" onclick="window.open('${urlCat}')" value="Pagina Categoria"></input>
+										<input class="botao" type="button" onclick="window.location.href=('${urlCat}')" value="Pagina Categoria"></input>
 									</td>
 								</tr>
 							</article>
@@ -40,14 +40,14 @@
 								<tr>
 									<c:url var="urlC" value="/categoria/listar" />
 									<td>
-										<input class="botao" type="button" onclick="window.open('${urlC}')" value="Pagina Cardapio"></input>
+										<input class="botao" type="button" onclick="window.location.href=('${urlC}')" value="Pagina Cardapio"></input>
 									</td>
 								</tr>
 							</article>
 							<article class="tab_container" id="Mesa">
 								<tr><c:url var="urlMesa" value="/mesa/listar" />
 									<td>
-										<input class="botao" type="button" onclick="window.open('${urlMesa}')" value="Pagina Mesa"></input>
+										<input class="botao" type="button" onclick="window.location.href=('${urlMesa}')" value="Pagina Mesa"></input>
 									</td>
 								</tr>
 							</article>
@@ -55,7 +55,7 @@
 								<tr>
 									<c:url var="urlF" value="/funcionario/listar" />
 									<td>
-										<input class="botao" type="button" onclick="window.open('${urlF}')" value="Pagina Funcionario"></input>
+										<input class="botao" type="button" onclick="window.location.href=('${urlF}')" value="Pagina Funcionario"></input>
 									</td>
 								</tr>
 							</article>

@@ -70,7 +70,7 @@ public class ClienteController {
 			clienteService.atualizarUsuario(cliente);
 		}
 		
-		return "redirect:/cliente/login";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="{id}/deactivate")
@@ -83,7 +83,7 @@ public class ClienteController {
 		if(cliente.hasValidId()) {
 			clienteService.desativarUsuario(cliente);
 		}
-		return "redirect:/cliente/login";
+		return "redirect:/";
 	}
 
 }
