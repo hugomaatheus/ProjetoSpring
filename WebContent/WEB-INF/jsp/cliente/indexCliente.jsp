@@ -17,7 +17,8 @@
 	<body>
 		<form id="form">
 			<header><!-- Cabeça da pagina -->
-					<input id="btnSair" type="submit" value="Sair"/>
+				<c:url var="urlOut" value="/logout/"/> 				
+						<input id="btnSair" class="botao" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>				
 					<p>Bem vindo, ${usuarioBD.nome}</p>
 			</header>
 			

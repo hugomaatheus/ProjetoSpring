@@ -19,7 +19,8 @@
 	<body>
 		<header>
 			<p>Bem vindo, ${usuarioBD.nome}</p>
-			<a href="#Sair">Sair</a>
+			<c:url var="urlOut" value="/logout/"/> 				
+						<input id="btnSair" class="botao" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 		</header>	
 
 		<fieldset id="criar"><legend>Pedido Tradicional</legend>

@@ -15,7 +15,8 @@
 	<body>
 			<header><!-- Cabeça da pagina -->
 				<p>Bem vindo, ${usuarioBD.nome}</p>
-				<input id="btnSair" type="submit" value="Sair"/>
+				<c:url var="urlOut" value="/logout/"/> 				
+						<input id="btnSair" class="botao" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 			</header>
 
 						<fieldset><legend>Menu</legend>

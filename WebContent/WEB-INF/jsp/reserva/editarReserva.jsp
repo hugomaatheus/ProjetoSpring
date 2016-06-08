@@ -17,7 +17,8 @@
 		<header>
 			<input id="novo" type="button" onclick="location.href='novoCardapio.html'"; value="Cadatrar Cardapio" />
 			<p>Bem vindo, ${usuarioBD.nome}</p>
-			<a href="#Sair">Sair</a>
+			<c:url var="urlOut" value="/logout/"/> 				
+						<input id="btnSair" class="botao" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 		</header>
 			<c:url var="url" value="/reserva/update" />
 		<fieldset id="criar"><legend>Editar Reserva</legend>

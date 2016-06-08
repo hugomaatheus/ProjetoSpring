@@ -16,7 +16,8 @@
 		<c:url var="url" value="form"/>
 			<header><!-- Cabeça da pagina -->
 				<input id="novo" type="button" onclick="location.href='${url}'"; value="Cadatrar Mesa" />
-				<input id="sair" class="novo" type="button" value="logout" />
+				<c:url var="urlOut" value="/logout/"/> 				
+						<input id="btnSair" class="botao" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 			</header>
 			<article id="pesquisa">
 				<form action="filtrar" method="get">

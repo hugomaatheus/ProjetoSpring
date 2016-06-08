@@ -7,49 +7,55 @@
 	<body>
 
 			<header>
-					<input id="btnSair" type="submit" value="Sair"/>
+					<c:url var="urlOut" value="/logout/"/> 				
+						<input id="btnSair" class="botao" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 			</header>
 			
 			<fieldset><legend>Menu</legend>
 							<article class="tab_container" id="Pedidos-gerente">
 								<tr>
+									<c:url var="urlT" value="/tradicional/listar" />
 									<td>
-										<input class="botao" type="button" onclick="window.open('../Tela-Pedido-Funcionario/Tela-Pedido-Funcionario.html')" value="Pagina Pedido"></input>
+										<input class="botao" type="button" onclick="window.location.href='${urlT}'" value="Pagina Pedido"></input>
 									</td>
 								</tr>
 							</article>
 							<article class="tabContainer" id="Reserva">
 								<tr>
+									<c:url var="urlR" value="/reserva/listar" />									
 									<td>
-										<input class="botao" type="button" onclick="window.open('../Tela-Reserva/Tela-Reserva.html')" value="Pagina Reserva"></input>
+										<input class="botao" type="button" onclick="window.location.href='${urlR}'" value="Pagina Reserva"></input>
 									</td>
 								</tr>
 							</article>
 							<article class="tab_container" id="Categoria">
 								<tr>
+									<c:url var="urlCat" value="/categoria/listar" />
 									<td>
-										<input class="botao" type="button" onclick="window.open('../tela-Categoria/Tela-Categoria.html')" value="Pagina Categoria"></input>
+										<input class="botao" type="button" onclick="window.open('${urlCat}')" value="Pagina Categoria"></input>
 									</td>
 								</tr>
 							</article>
 							<article class="tabContainer" id="Cardapio">
 								<tr>
+									<c:url var="urlC" value="/categoria/listar" />
 									<td>
-										<input class="botao" type="button" onclick="window.open('../Tela-Cardapio/Tela-Cardapio.html')" value="Pagina Cardapio"></input>
+										<input class="botao" type="button" onclick="window.open('${urlC}')" value="Pagina Cardapio"></input>
 									</td>
 								</tr>
 							</article>
 							<article class="tab_container" id="Mesa">
-								<tr>
+								<tr><c:url var="urlMesa" value="/mesa/listar" />
 									<td>
-										<input class="botao" type="button" onclick="window.open('../Tela-Mesa/Tela-Mesa.html')" value="Pagina Mesa"></input>
+										<input class="botao" type="button" onclick="window.open('${urlMesa}')" value="Pagina Mesa"></input>
 									</td>
 								</tr>
 							</article>
 							<article class="tabContainer" id="Funcionario">
 								<tr>
+									<c:url var="urlF" value="/funcionario/listar" />
 									<td>
-										<input class="botao" type="button" onclick="window.open('../Tela-Funcionario/Tela-Funcionario.html')" value="Pagina Funcionario"></input>
+										<input class="botao" type="button" onclick="window.open('${urlF}')" value="Pagina Funcionario"></input>
 									</td>
 								</tr>
 							</article>

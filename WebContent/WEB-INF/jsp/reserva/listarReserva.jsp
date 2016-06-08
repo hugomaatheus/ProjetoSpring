@@ -18,7 +18,8 @@
 			<header><!-- Cabeça da pagina -->
 				<input id="novo" type="button" onclick="location.href='${url}'"; value="Cadatrar Reserva" />
 				<p>Bem vindo, ${usuarioBD.nome}</p>
-				<a href="#Sair">Sair</a>
+				<c:url var="urlOut" value="/logout/"/> 				
+						<input id="btnSair" class="botao" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 			</header>
 							<article class="tab_container" id="pesquisa"><!-- Centro da pagina -->
 									<label for="labelfiltrar"><em>Filtrar por:</em></label>
