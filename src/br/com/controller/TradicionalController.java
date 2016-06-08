@@ -115,6 +115,7 @@ public class TradicionalController {
 			}
 		}
 		total += itemPedido.getQuantidade() * itemPedido.getCardapio().getPreco();
+		itemPedido.getPedido().setTotal(total);
 		if(!existe){
 			carrinho.add(itemPedido);
 		}

@@ -39,12 +39,6 @@ public class FuncionarioService extends UsuarioService {
 	@Autowired
 	private TradicionalDao tradicionalDao;
 	
-//	@Autowired
-//	private PedidoDao pDao;
-//	
-//	@Autowired
-//	private CardapioDao cDao;
-	
 	@Autowired
 	private ItemPedidoDao iDao;
 	

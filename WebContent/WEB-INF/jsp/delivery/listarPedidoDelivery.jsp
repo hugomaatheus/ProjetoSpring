@@ -50,12 +50,12 @@
 					    <c:forEach var="delivery" items="${deliverys}" >
 						<tr>
 							<td class="tabela-coluna"><span>${delivery.id}</span></td>
-							<td class="tabela-coluna"><span>${delivery.data}</span></td>
+							<td class="tabela-coluna"><span><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${delivery.data.getTime()}" /></span></td>
 							<td class="tabela-coluna"><span>${delivery.total}</span></td>
 							<td class="tabela-coluna"><span>${delivery.status}</span></td>
 							<td class="tabela-coluna">
 								<span>
-									<a href="../Tela-Detalhar Pedido/detalhe pedido.html">[Detalhar]</a>
+									<a href='<c:url value="/delivery/${delivery.id}/detalhar"/>' >[Detalhar]</a>
 									<a href="Comando para excluir">[Excluir]</a>
 								</span>
 							</td>

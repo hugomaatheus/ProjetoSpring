@@ -1,5 +1,6 @@
 package br.com.service;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -117,10 +118,22 @@ public void cadastrarPedidoDelivery(Usuario cliente, List<ItemPedido> itens) {
 		for (ItemPedido item : itens) {
 			i.setCardapio(item.getCardapio());
 			i.setPedido(delivery);
+			System.out.println(item.getPedido().getTotal());
+			delivery.setTotal(item.getPedido().getTotal());
 			i.setQuantidade(item.getQuantidade());
+			deliveryDao.update(delivery);
 			itemPedidoDao.update(i);
 		}
 		
 	}
+
+	public List<ItemPedido> listarItemPedido(Long id) {
+	List<ItemPedido> itemPedido = new ArrayList<>();
+	itemPedido = itemPedidoDao.listarItensPedidos(id);
+
+	return itemPedido;
+}
+
+
 	///////////////////////////////////////////
 }

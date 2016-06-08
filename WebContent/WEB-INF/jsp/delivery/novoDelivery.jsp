@@ -59,7 +59,7 @@
 							<tr>
 							<td class="tabela-coluna"><span>${carrinho.cardapio.nome}</span></td>
 							<td class="tabela-coluna"><span>${carrinho.quantidade}</span></td>
-							<td class="tabela-coluna"><span>${carrinho.cardapio.preco * carrinho.quantidade}</span></td>
+							<td class="tabela-coluna"><span>${carrinho.quantidade = carrinho.cardapio.preco * carrinho.quantidade}</span></td>
 							<td class="tabela-coluna"><span> <a
 									href="Comando para excluir">[Excluir]</a>
 							</span></td>

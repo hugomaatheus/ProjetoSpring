@@ -20,6 +20,7 @@ import br.com.model.Cardapio;
 import br.com.model.Cliente;
 import br.com.model.Delivery;
 import br.com.model.ItemPedido;
+import br.com.model.Pedido;
 import br.com.service.CardapioService;
 import br.com.service.ClienteService;
 
@@ -93,11 +94,12 @@ public class DeliveryController {
 			return "redirect:/";
 		}
 		
-		Cliente cliente = (Cliente) session.getAttribute("usuario");
+		Cliente cliente = (Cliente) session.getAttribute("usuario");			
+		
 		clienteService.cadastrarPedidoDelivery(cliente, carrinho);
 		
 		carrinho.clear();
-		return "redirect:/delivery/listarPedidosDelivery";
+		return "redirect:/delivery/listar";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="addCarrinho")
@@ -124,6 +126,7 @@ public class DeliveryController {
 			}
 		}
 		total += itemPedido.getQuantidade() * itemPedido.getCardapio().getPreco();
+		itemPedido.getPedido().setTotal(total);
 		if(!existe){
 			carrinho.add(itemPedido);
 		}
@@ -135,14 +138,20 @@ public class DeliveryController {
 		
 	}
 	
-//	@RequestMapping(method=RequestMethod.POST, value="listarCarrinho")
-//	public String addCarrinho(HttpSession sessao, ModelMap map)  {
-//		
-//		sessao.getAttribute("carrinho");
-//		
-//		return "delivery/listarCarrinho";
-//		
-//	}
+	@RequestMapping(method=RequestMethod.GET, value="{id}/detalhar")
+	public String detalharPedido(@PathVariable Long id, ModelMap map, HttpSession session){
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
+		List<ItemPedido> itemPedidos = (List<ItemPedido>) clienteService.listarItemPedido(id);
+		Pedido pedido = clienteService.buscarPedidoDelivery(id);
+		map.addAttribute("itemPedidos", itemPedidos);
+		map.addAttribute("pedido", pedido);
+		return "detalharPedido/detalhePedidoDelivery";
+	}
+
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/remove")
 	public String remove(@PathVariable Long id, HttpSession session){
