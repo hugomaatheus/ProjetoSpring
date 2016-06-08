@@ -39,6 +39,10 @@ public class DeliveryController {
 	@RequestMapping(value="listar", method=RequestMethod.GET)
 	public String list(ModelMap map, HttpSession session){
 		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 		Cliente cliente = (Cliente) session.getAttribute("usuario");
 		
 		List<Delivery> deliverys = clienteService.listarTodos();
@@ -48,7 +52,11 @@ public class DeliveryController {
 	}
 	
 	@RequestMapping(value="filtrar", method=RequestMethod.GET)
-	public String filtrar(@ModelAttribute("filtro") Cardapio filtro, ModelMap map){
+	public String filtrar(@ModelAttribute("filtro") Cardapio filtro, ModelMap map, HttpSession session){
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
 		
 		List<Cardapio> cardapios = cardapioService.buscar(filtro);
 		map.addAttribute("cardapios", cardapios);
@@ -58,6 +66,10 @@ public class DeliveryController {
 	
 	@RequestMapping(value="form", method=RequestMethod.GET)
 	public String createForm(ModelMap map, HttpSession session){
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
 		
 		Cliente cliente = (Cliente) session.getAttribute("usuario");
 		
@@ -75,9 +87,13 @@ public class DeliveryController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="save")
-	public String save(ModelMap map, HttpSession sessao) {
+	public String save(ModelMap map, HttpSession session) {
 		
-		Cliente cliente = (Cliente) sessao.getAttribute("usuario");
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
+		Cliente cliente = (Cliente) session.getAttribute("usuario");
 		clienteService.cadastrarPedidoDelivery(cliente, carrinho);
 		
 		carrinho.clear();
@@ -85,7 +101,11 @@ public class DeliveryController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="addCarrinho")
-	public String addCarrinho(@ModelAttribute("itemPedido") ItemPedido itemPedido, BindingResult result, ModelMap map, HttpSession sessao)  {
+	public String addCarrinho(@ModelAttribute("itemPedido") ItemPedido itemPedido, BindingResult result, ModelMap map, HttpSession session)  {
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
 		
 		itemPedido.setCardapio(cardapioService.buscarPorId(itemPedido.getCardapio().getId()));
 		itemPedido.setPedido(new Delivery()); //gambiarra para Delivery vindo nulo
@@ -93,7 +113,7 @@ public class DeliveryController {
 		
 		if(carrinho == null) {
 			carrinho = new ArrayList<ItemPedido>();
-			sessao.setAttribute("carrinho", carrinho);
+			session.setAttribute("carrinho", carrinho);
 		}
 		
 		boolean existe = false;
@@ -125,13 +145,23 @@ public class DeliveryController {
 //	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/remove")
-	public String remove(@PathVariable Long id){
+	public String remove(@PathVariable Long id, HttpSession session){
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 		cardapioService.remover(new Cardapio(id));
 		return "redirect:/cardapio/listar";
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/formUpdate")
-	public String updateForm(@PathVariable Long id, ModelMap map){
+	public String updateForm(@PathVariable Long id, ModelMap map, HttpSession session){
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 		Cardapio cardapio = cardapioService.buscarPorId(id);
 		map.addAttribute("cardapio", cardapio);
 		map.addAttribute("categoriasSelect",  selectCardapio());
@@ -139,11 +169,17 @@ public class DeliveryController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="update")
-	public String update(@ModelAttribute("cardapio") Cardapio cardapio, BindingResult result, ModelMap map) {
+	public String update(@ModelAttribute("cardapio") Cardapio cardapio, BindingResult result, ModelMap map, HttpSession session) {
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 		if(cardapio.hasValidId()){
 			cardapioService.atualizar(cardapio);
 		}
-	return "redirect:/cardapio/listar";
+		
+		return "redirect:/cardapio/listar";
 	}
 	
 	public Map<Long, String> selectCardapio(){

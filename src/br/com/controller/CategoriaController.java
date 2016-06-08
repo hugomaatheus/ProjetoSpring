@@ -2,6 +2,8 @@ package br.com.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,14 +26,24 @@ public class CategoriaController {
 	private CategoriaService categoriaService;
 	
 	@RequestMapping(value="listar", method=RequestMethod.GET)
-	public String list(ModelMap map){
+	public String list(ModelMap map, HttpSession session){
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 		map.addAttribute("categorias", categoriaService.listar());
 		map.addAttribute("filtro", new Categoria());
 		return "categoria/listarCategoria";
 	}
 	
 	@RequestMapping(value="filtrar", method=RequestMethod.GET)
-	public String filtrar(@ModelAttribute("filtro") Categoria filtro, ModelMap map){
+	public String filtrar(@ModelAttribute("filtro") Categoria filtro, ModelMap map, HttpSession session){
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 		List<Categoria> categorias = categoriaService.buscar(filtro);
 		map.addAttribute("cardapios", categorias);
 		map.addAttribute("filtro", filtro);
@@ -39,36 +51,62 @@ public class CategoriaController {
 	}
 	
 	@RequestMapping(value="form", method=RequestMethod.GET)
-	public String createForm(ModelMap map){
+	public String createForm(ModelMap map, HttpSession session){
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 		map.addAttribute("categoria", new Categoria());
 		return "categoria/novaCategoria";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="save")
-	public String save(@ModelAttribute("categoria") Categoria categoria, ModelMap modelMap){
+	public String save(@ModelAttribute("categoria") Categoria categoria, ModelMap modelMap, HttpSession session){
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 		categoriaService.inserir(categoria);
 		return "redirect:/categoria/listar";
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/remove")
-	public String remove(@PathVariable Long id){
+	public String remove(@PathVariable Long id, HttpSession session){
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 		categoriaService.cancelar(id);
 		return "redirect:/categoria/listar";
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/formUpdate")
-	public String updateForm(@PathVariable Long id, ModelMap map){
+	public String updateForm(@PathVariable Long id, ModelMap map, HttpSession session){
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 		Categoria categoria = categoriaService.buscarPorId(id);
 		map.addAttribute("categoria", categoria);
 		return "categoria/editarCategoria";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="update")
-	public String update(@ModelAttribute("categoria") Categoria categoria, BindingResult result, ModelMap map) {
+	public String update(@ModelAttribute("categoria") Categoria categoria, BindingResult result, ModelMap map, HttpSession session) {
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 		if(categoria.hasValidId()){
 			categoriaService.atualizar(categoria);
 		}
-	return "redirect:/categoria/listar";
+		
+		return "redirect:/categoria/listar";
 	}
 
 }

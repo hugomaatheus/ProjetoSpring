@@ -35,6 +35,10 @@ public class ReservaController {
 	@RequestMapping(value="listar", method=RequestMethod.GET)
 	public String list(ModelMap map, HttpSession session){
 		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 		List<Reserva> reservas = funcionarioService.listarTodasReservas();
 		
 		Funcionario  func = (Funcionario) session.getAttribute("usuario");
@@ -58,6 +62,10 @@ public class ReservaController {
 	@RequestMapping(value="form", method=RequestMethod.GET)
 	public String createForm(ModelMap map, HttpSession session){
 		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 		Funcionario  func = (Funcionario) session.getAttribute("usuario");
 		
 		Reserva reserva = new Reserva();
@@ -71,6 +79,11 @@ public class ReservaController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="save")
 	public String save(@ModelAttribute("reserva") @Valid Reserva reserva, BindingResult result, ModelMap map, HttpSession session) {
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 		Funcionario  funcionario = (Funcionario) session.getAttribute("usuario");
 		
 		if(result.hasErrors()){
@@ -80,17 +93,28 @@ public class ReservaController {
 		}
 		
 		funcionarioService.cadastrarReserva(reserva, funcionario);
-	return "redirect:/reserva/listar";
+		
+		return "redirect:/reserva/listar";
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/remove")
-	public String remove(@PathVariable Long id){
+	public String remove(@PathVariable Long id, HttpSession session){
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 		funcionarioService.cancelarReserva(id);
 		return "redirect:/reserva/listar";
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/formUpdate")
-	public String updateForm(@PathVariable Long id, ModelMap map){
+	public String updateForm(@PathVariable Long id, ModelMap map, HttpSession session){
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 		Reserva reserva = funcionarioService.buscarReserva(id);
 		map.addAttribute("reserva", reserva);
 		map.addAttribute("mesaSelect",  selectMesa());
@@ -98,11 +122,17 @@ public class ReservaController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="update")
-	public String update(@ModelAttribute("reserva") Reserva reserva, BindingResult result, ModelMap map) {
+	public String update(@ModelAttribute("reserva") Reserva reserva, BindingResult result, ModelMap map, HttpSession session) {
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 		if(reserva.hasValidId()){
 			funcionarioService.atualizarReserva(reserva);
 		}
-	return "redirect:/reserva/listar";
+		
+		return "redirect:/reserva/listar";
 	}
 	
 	public Map<Long, Integer> selectMesa(){

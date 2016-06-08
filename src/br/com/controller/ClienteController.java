@@ -1,5 +1,6 @@
 package br.com.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,39 +22,64 @@ public class ClienteController {
 	@Autowired
 	private ClienteService clienteService;
 	
-//	@Autowired
-//	private CardapioService cardapioService;
 	
 	@RequestMapping(value="form", method=RequestMethod.GET)
-	public String createForm(ModelMap map){
+	public String createForm(ModelMap map, HttpSession session){
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 		Cliente cliente = new Cliente();
 		map.addAttribute("cliente", cliente);
 		return "cliente/cadastroCliente";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="save")
-	public String save(@ModelAttribute("cliente") @Valid Cliente cliente, BindingResult result, ModelMap map) {
+	public String save(@ModelAttribute("cliente") @Valid Cliente cliente, BindingResult result, ModelMap map, HttpSession session) {
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 		clienteService.cadastrarUsuario(cliente);
-	return "redirect:/login";
+		
+		return "redirect:/login";
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/formUpdate")
-	public String updateForm(@PathVariable Long id, ModelMap map){
+	public String updateForm(@PathVariable Long id, ModelMap map, HttpSession session){
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 		Cliente cliente = clienteService.buscarUsuario(id);
 		map.addAttribute("cliente", cliente);
 		return "cliente/editarCliente";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="update")
-	public String update(@ModelAttribute("cliente") Cliente cliente, BindingResult result, ModelMap map) {
+	public String update(@ModelAttribute("cliente") Cliente cliente, BindingResult result, ModelMap map, HttpSession session) {
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 		if(cliente.hasValidId()){
 			clienteService.atualizarUsuario(cliente);
 		}
-	return "redirect:/cliente/login";
+		
+		return "redirect:/cliente/login";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="{id}/deactivate")
-	public String deactivate(@ModelAttribute("cliente") Cliente cliente, BindingResult result, ModelMap map) {
+	public String deactivate(@ModelAttribute("cliente") Cliente cliente, BindingResult result, ModelMap map, HttpSession session) {
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
 		if(cliente.hasValidId()) {
 			clienteService.desativarUsuario(cliente);
 		}
