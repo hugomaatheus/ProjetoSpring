@@ -20,6 +20,7 @@ import br.com.model.Cardapio;
 import br.com.model.Funcionario;
 import br.com.model.ItemPedido;
 import br.com.model.Mesa;
+import br.com.model.Pedido;
 import br.com.model.Tradicional;
 import br.com.service.CardapioService;
 import br.com.service.FuncionarioService;
@@ -47,9 +48,9 @@ public class TradicionalController {
 		
 		Funcionario funcionario = (Funcionario) session.getAttribute("usuario");
 		
-		List<ItemPedido> itemPedidos = funcionarioService.listarItemPedido();
+		List<Tradicional> tradicionais = funcionarioService.listarTradicional();
 		map.addAttribute("usuarioBD", funcionario);
-		map.addAttribute("itemPedidos", itemPedidos);
+		map.addAttribute("tradicionais", tradicionais);
 		return "tradicional/listarTradicional";
 	}
 	
@@ -121,9 +122,11 @@ public class TradicionalController {
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/detalhar")
 	public String detalharPedido(@PathVariable Long id, ModelMap map){
-		ItemPedido itemPedido = funcionarioService.buscarItemPedido(id);
-		System.out.println("----------------------->" + itemPedido);
-		map.addAttribute("itemPedido", itemPedido);
+		List<ItemPedido> itemPedidos = funcionarioService.listarItemPedido(id);
+		Pedido pedido = funcionarioService.buscarPedidoTradicional(id);
+		System.out.println("----------------------->" + itemPedidos);
+		map.addAttribute("itemPedidos", itemPedidos);
+		map.addAttribute("pedido", pedido);
 		return "detalharPedido/detalhePedido";
 	}
 	

@@ -51,15 +51,15 @@
 								</table>
 								<article class="scrollContainer">
 									<table>
-									<c:forEach var="itemPedido" items="${itemPedidos}" >
+									<c:forEach var="tradicional" items="${tradicionais}" >
 										<tr>
-											<td class="tabela-coluna"><span>${itemPedido.pedido.id}</span></td>
-											<td class="tabela-coluna"><span><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${itemPedido.pedido.data.getTime()}" /></span></td>
-											<td class="tabela-coluna"><span>${itemPedido.pedido.total}</span></td>
-											<td class="tabela-coluna"><span>${itemPedido.pedido.status}</span></td>
+											<td class="tabela-coluna"><span>${tradicional.id}</span></td>
+											<td class="tabela-coluna"><span><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${tradicional.data.getTime()}" /></span></td>
+											<td class="tabela-coluna"><span>${tradicional.total}</span></td>
+											<td class="tabela-coluna"><span>${tradicional.status}</span></td>
 											<td class="tabela-coluna">
 												<span>
-													<a href='<c:url value="/tradicional/${itemPedido.id}/detalhar"/>' >[Detalhar]</a>
+													<a href='<c:url value="/tradicional/${tradicional.id}/detalhar"/>' >[Detalhar]</a>
 													<a href="Comando para excluir"> [excluir]</a>
 												</span>
 											</td>

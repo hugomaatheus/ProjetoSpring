@@ -1,3 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <!-- para estruturas de controle e repetição e setar variáveis -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt" %> <!-- para formatações -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  <!-- para funções -->
+
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>Detalhe Pedido</title>
@@ -12,20 +21,19 @@
 			
 			<fieldset id="criar"><legend>Detalhe Pedidos</legend>
 				<article id="pesquisa">
-					<tr> 
-						<td align="right">
-							<label id="labelnumero"><em>Numero:${itemPedido.pedido.id}</em></label>
-						</td>
-						<td align="right">
-							<label id="labelstatus"><em>Status:${itemPedido.pedido.status}</em></label>
-						</td>
-						<td align="right">
+	
+							<label id="labelnumero"><em>Numero:${pedido.id}</em></label>
+
+							<label id="labelstatus"><em>Status:${pedido.status}</em></label>
+
+<%-- 						<td align="right">
 							<label id="labelqtd"><em>Quantidade:${itemPedido.quantidade}</em></label>
 						</td>
 						<td align="right">
 							<label id="labeltroco"><em>Troco para:</em></label>
-						</td>
-					</tr>			
+						</td> --%>
+					</tr>
+				</table>		
 				</article>
 
 				<article class="tabContainer" id="lista">
@@ -43,7 +51,7 @@
 					<table>
 					<c:forEach var="itemPedido" items="${itemPedidos}" >
 						<tr>
-							<td class="tabela-coluna"><span>${itemPedido.pedido.id}</span></td>
+							<td class="tabela-coluna"><span>${itemPedido.id}</span></td>
 							<td class="tabela-coluna"><span>${itemPedido.cardapio.nome}</span></td>
 							<td class="tabela-coluna"><span>${itemPedido.quantidade}</span></td>
 							<td class="tabela-coluna"><span>${itemPedido.cardapio.preco}</span></td>

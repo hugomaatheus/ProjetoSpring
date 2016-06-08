@@ -173,13 +173,15 @@ public void cadastrarPedidoTradicional(Usuario usuario, List<ItemPedido> itens) 
 		return tradicionais; 
 	}
 
+
 	public ItemPedido buscarItemPedido(Long id){
 		return iDao.getById(id);
 	}
 
-	public List<ItemPedido> listarItemPedido() {
+	public List<ItemPedido> listarItemPedido(Long id) {
 		List<ItemPedido> itemPedido = new ArrayList<>();
-		itemPedido = iDao.listar();
+		itemPedido = iDao.listarItensPedidos(id);
+
 		return itemPedido;
 	}
 	
