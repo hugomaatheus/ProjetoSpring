@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import br.com.model.Cliente;
 import br.com.model.Funcionario;
 import br.com.service.FuncionarioService;
 

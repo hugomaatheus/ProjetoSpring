@@ -29,7 +29,8 @@
                             <form:input id="txtlogin" type="text" path="login"/>
                         <br />
                             <label for="txtsenha" id="labelsenha"><em>Senha:</em></label>
-                       		<form:input id="txtsenha" type="password" path="senha"/>                        <br />
+                       		<form:input id="txtsenha" type="password" path="senha"/>                        
+                       	<br />
                             <input id="logar" class="btn" type="submit" value="Logar"></input>
                          <c:url var="url2" value="/cliente/form" />
                             <input id="novo" class="btn" type="button" onclick="window.location.href='${url2}'" value="Novo Usuario"></input>

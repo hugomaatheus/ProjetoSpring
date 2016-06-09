@@ -21,10 +21,27 @@ public class MesaDao extends AbstractDao<Mesa> {
 		Query query = eM.createQuery("select m from Mesa m where m.numero = :numero").setParameter("numero", numero);
 		return query.getSingleResult();
 	}
-
-	public List<Mesa> filtrar(Mesa filtro) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Mesa> filtrar(Mesa filtro){
+		String str = "select m from Mesa m where m.numero = :numero";
+		if(filtro.getNumero() == null){
+			filtro.setNumero(0);
+		}
+				
+		if(filtro.getStatus() != null){
+			str+=" and m.status = :status";
+		}
+		
+		Query query = eM.createQuery(str);
+		
+		query.setParameter("numero", filtro.getNumero());
+		
+		if(filtro.getStatus() != null){
+			query.setParameter("status", filtro.getStatus());
+		}
+		
+		return query.getResultList();
+
+	}
 }

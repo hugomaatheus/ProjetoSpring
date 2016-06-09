@@ -30,8 +30,7 @@ public class MesaController {
 			return "redirect:/";
 		}
 		
-		List<Mesa> mesas = mesaService.listar();
-		map.addAttribute("mesas", mesas);
+		map.addAttribute("mesas",mesaService.listar());
 		map.addAttribute("filtro", new Mesa());
 		return "mesa/listarMesa";
 	}

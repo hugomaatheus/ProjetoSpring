@@ -19,21 +19,22 @@
 			<header>
 				<input id="cadatrar" class="novo" type="button" onclick="location.href='${url}'"; value="Cadatrar Cardapio" />
 				<c:url var="urlOut" value="/logout/"/> 				
-						<input id="btnSair" class="botao" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
+				<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 			</header>
 			
 				<article id="pesquisa">
-				<form:form action="filtrar" method="get">
+				<form:form action="filtrar" method="get" modelAttribute="filtro">
 						<label for="txtNumero"><em>Filtrar por:</em></label>
 
 					<label for="txtNome"><em>nome:</em></label>
-					<input id="filtro" type="text" />
+					<form:input id="filtro" type="text" path="nome"/>
 					<label for="txtCategoria"><em>Categoria:</em></label>
-					<select id="OpCategoria" name="categoria" class="categoria">
+					<form:select id="OpCategoria" path="categoria.id" class="categoria">
 						<c:forEach var="categoria" items="${categorias}" >
-							<option value="${categoria.id}">${categoria.nome}</option>
+							<form:option value="">Selecione</form:option>
+							<form:option value="${categoria.id}">${categoria.nome}</form:option>
 						</c:forEach>
-					</select>
+					</form:select>
 					<input id="btnPesquisar" class="btn" type="submit" value="Pesquisar" />
 				</form:form>
 				</article>

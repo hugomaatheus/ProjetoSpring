@@ -17,7 +17,7 @@
 
 		<header>
 			<c:url var="urlOut" value="/logout/"/> 				
-						<input id="btnSair" class="botao" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
+			<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 		</header>
 		
 		<c:url var="url" value="/mesa/update" />

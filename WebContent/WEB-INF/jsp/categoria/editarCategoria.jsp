@@ -20,7 +20,8 @@
 	<c:url var="url" value="/categoria/update" />
 	
 		<header>
-			<a id="sair" href="#Sair">Sair</a>
+			<c:url var="urlOut" value="/logout/"/> 				
+			<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 		</header>
 
 		<article class="cont_tab" id="Read">

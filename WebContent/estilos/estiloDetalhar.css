@@ -1,4 +1,4 @@
-﻿
+
 body{
 	font: normal 20px tahoma,arial,serif; 
 	color: black;
@@ -83,7 +83,6 @@ label{
 
 #btnPesquisar{
 	border-collapse:collapse;
-	border-spacing: 0%;
 	width: 100px;
 	height: 30px;
 }
@@ -107,12 +106,28 @@ header a{
 	text-align: center;
 	margin: auto;
 	margin-top: 5%;
-	border-color : 0px;
 	width: 400px;
 }
 
 legend{
 	font-size: 25px;
+}
+
+.novo{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #f7eff7;
+	padding: 10px 20px;
+	background: -moz-linear-gradient(top,#edcfb0 0%,#9e5200);
+	background: -webkit-gradient(linear, left top, left bottom, from(#edcfb0), to(#9e5200));
+	-moz-border-radius: 14px;
+	-webkit-border-radius: 14px;
+	border-radius: 14px;
+	border: 1px solid #f7f7f7;
+	-moz-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 2px rgba(255,255,255,1);
+	-webkit-box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 2px rgba(255,255,255,1);
+	box-shadow: 0px 1px 3px rgba(000,000,000,0.5), inset 0px 0px 2px rgba(255,255,255,1);
+	text-shadow: 0px -1px 0px rgba(242,233,242,0.2), 0px 1px 0px rgba(255,255,255,0.4);
 }
 
 .btn{

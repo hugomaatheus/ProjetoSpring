@@ -6,6 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt" %> <!-- para formatações -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  <!-- para funções -->
 
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>titulo da pagina</title>
@@ -15,8 +16,8 @@
 	<body>
 			<header><!-- CabeÃ§a da pagina -->
 				<p>Bem vindo, ${usuarioBD.nome}</p>
-				<c:url var="urlOut" value="/logout/"/> 				
-						<input id="btnSair" class="botao" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
+				<c:url var="urlOut" value="/logout/"/>
+				<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 			</header>
 
 						<fieldset><legend>Menu</legend>

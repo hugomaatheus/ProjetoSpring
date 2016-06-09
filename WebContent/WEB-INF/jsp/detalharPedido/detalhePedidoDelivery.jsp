@@ -16,8 +16,8 @@
 	<body>
 		<form id="form">
 			<header>
-					<c:url var="urlOut" value="/logout/"/> 				
-						<input id="btnSair" class="botao" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
+				<c:url var="urlOut" value="/logout/"/>
+				<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 			</header>
 			
 			<fieldset id="criar"><legend>Detalhe Deliverys</legend>

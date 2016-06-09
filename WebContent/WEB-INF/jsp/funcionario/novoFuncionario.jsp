@@ -18,8 +18,8 @@
 	<body>
 
 		<header>
-			<c:url var="urlOut" value="/logout/"/> 				
-						<input id="btnSair" class="botao" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
+			<c:url var="urlOut" value="/logout/"/>
+			<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 		</header>
 
 		<article class="cont_tab" id="Read">

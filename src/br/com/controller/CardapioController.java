@@ -53,6 +53,7 @@ public class CardapioController {
 			return "redirect:/";
 		}
 		
+		map.addAttribute("categorias", categoriaService.listar());
 		List<Cardapio> cardapios = cardapioService.buscar(filtro);
 		map.addAttribute("cardapios", cardapios);
 		map.addAttribute("filtro", filtro);
@@ -69,7 +70,7 @@ public class CardapioController {
 		Cardapio cardapio = new Cardapio();
 		cardapio.setCategoria(new Categoria());
 		map.addAttribute("cardapio", cardapio);
-		map.addAttribute("categoriasSelect",  selectCategoria());
+		map.addAttribute("categoriaSelect",  selectCategoria());
 		return "cardapio/novoCardapio";
 	}
 	
@@ -126,6 +127,7 @@ public class CardapioController {
 	public Map<Long, String> selectCategoria(){
 		List<Categoria> categorias  = categoriaService.listar();
 		Map<Long, String> mapa = new TreeMap<Long, String>();
+		mapa.put(0L, "Selecione");
 		for (Categoria categoria : categorias) {
 			mapa.put(categoria.getId(), categoria.getNome());
 		}

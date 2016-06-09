@@ -16,18 +16,18 @@
 	<body>
 			<c:url var="url" value="form"/>
 			<header><!-- Cabeça da pagina -->
-				<input id="novo" type="button" onclick="location.href='${url}'"; value="Cadatrar Reserva" />
-				<p>Bem vindo, ${usuarioBD.nome}</p>
+				<input id="cadastra" class="novo" type="button" onclick="location.href='${url}'"; value="Cadatrar Reserva" />
 				<c:url var="urlOut" value="/logout/"/> 				
-						<input id="btnSair" class="botao" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
+				<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
+				<p>Bem vindo, ${usuarioBD.nome}</p>
 			</header>
 							<article class="tab_container" id="pesquisa"><!-- Centro da pagina -->
-									<label for="labelfiltrar"><em>Filtrar por:</em></label>
+									<label for="labelfiltrar"><em>Filtrar por:</em></label><br />
 									<label for="labelinicio"><em>Data Inicio:</em></label>
-									<input id="txtinicio" type="date" maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$"/>
+									<input id="txtinicial" type="text" maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$"/>
 									
 									<label for="labelfim"><em>Data Fim:</em></label>
-									<input id="txtfim" type="date" maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$"/>
+									<input id="txtfinal" type="text" maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$"/>
 									
 									<label for="labelmesa"><em>Mesa:</em></label>
 									<select id="OpCategoria" class = "categoria" name = "categoria" size=1>

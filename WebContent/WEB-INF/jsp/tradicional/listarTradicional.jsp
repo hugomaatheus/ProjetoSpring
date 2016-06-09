@@ -19,9 +19,9 @@
 			<header><!-- Cabeça da pagina -->
 			<p>Bem vindo, ${usuarioBD.nome}</p>
 				<c:url var="url" value="form"/>
-				<input id="novo" type="button" onclick="location.href='${url}'"; value="Realizar Pedidos" />
-				<c:url var="urlOut" value="/logout/"/> 				
-						<input id="btnSair" class="botao" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
+				<input id="cardapio" class="novo" type="button" onclick="location.href='${url}'"; value="Realizar Pedidos" />
+			<c:url var="urlOut" value="/logout/"/> 				
+			<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 			</header>
 		
 							<article class="tab_container" id="pesquisa">

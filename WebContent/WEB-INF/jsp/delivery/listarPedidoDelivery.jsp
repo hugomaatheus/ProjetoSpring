@@ -18,13 +18,13 @@
 		<header>
 			<input id="novo" type="button" onclick="location.href='${url}'"; value="Realizar Pedidos" />
 			<p>Bem vindo, ${usuarioBD.nome}</p>
-				<c:url var="urlOut" value="/logout/"/> 				
-						<input id="btnSair" class="botao" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
+			<c:url var="urlOut" value="/logout/"/>
+			<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 		</header>	
 			
 			<article id="pesquisa">
 						<label for="txtNumero"><em>Numero do Pedido:</em></label>
-						<input id="caixa_Numero" title="Digite apenas numeros" type="text" pattern="[0-9]+$" autofocus="" required="" />
+						<input id="caixa_Numero" title="Digite apenas numeros" type="text" pattern="[0-9]+$"/>
 						<label for="txtStatus"><em>Status:</em></label>
 						<SELECT name = "menuStatus" size=1>
 							<OPTION></OPTION>

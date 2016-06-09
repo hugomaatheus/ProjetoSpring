@@ -20,7 +20,7 @@
 		<header>
 			<p>Bem vindo, ${usuarioBD.nome}</p>
 			<c:url var="urlOut" value="/logout/"/> 				
-						<input id="btnSair" class="botao" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
+			<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 		</header>
 		<c:url var="urlR" value="/reserva/save" />
 		<fieldset id="criar"><legend>Cadastrar Reserva</legend>

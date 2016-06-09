@@ -45,7 +45,13 @@ public class CardapioService {
 	}
 
 	public List<Cardapio> buscar(Cardapio filtro) {
-		return cardapioDao.filtrar(filtro);
+		List<Cardapio> lista = new ArrayList<Cardapio>();
+		for (Cardapio cardapio : cardapioDao.filtrar(filtro)) {
+			if(cardapio.getStatus() != Status.INATIVO)
+				lista.add(cardapio);
+		}
+		
+		return lista;
 	}
 	
 	public Cardapio cancelar(Long id) {

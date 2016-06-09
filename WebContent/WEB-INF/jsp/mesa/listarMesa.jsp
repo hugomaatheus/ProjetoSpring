@@ -15,24 +15,25 @@
 	</head>
 		<c:url var="url" value="form"/>
 			<header><!-- Cabeça da pagina -->
-				<input id="novo" type="button" onclick="location.href='${url}'"; value="Cadatrar Mesa" />
-				<c:url var="urlOut" value="/logout/"/> 				
-						<input id="btnSair" class="botao" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
+				<input id="cadastra" class="novo" type="button" onclick="location.href='${url}'"; value="Cadatrar Mesa" />
+			<c:url var="urlOut" value="/logout/"/> 				
+			<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 			</header>
 			<article id="pesquisa">
-				<form action="filtrar" method="get">
+				<form:form action="filtrar" method="get" modelAttribute="filtro">
 					<label for="txtNumero"><em>Filtrar por:</em></label>
-					
+					<br />
 					<label for="filtroNome"><em>numero:</em></label>
-					<input id="filtroNome" type="text" name="numero"/>
+					<form:input id="filtroNome" type="text" path="numero"/>
 					
 					<label for="txtreserva"><em>De reserva:</em></label>
-					<select id="OpCategoria" class="categoria" name="categoria">
-						<option value="sim">Sim</option>
-						<option value="nao">Nao</option>
-					</select>
+					<form:select id="OpCategoria" class="categoria" path="status">
+						<form:option value="">Selecione</form:option>
+						<form:option value="SIM">Sim</form:option>
+						<form:option value="NAO">Nao</form:option>
+					</form:select>
 					<input id="btnPesquisar" class="btn" type="submit" value="Pesquisar" />
-				</form>
+				</form:form>
 			</article>
 			
 			<article class="tabContainer" id="lista">

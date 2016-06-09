@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.dao.CategoriaDao;
-import br.com.model.Cardapio;
 import br.com.model.Categoria;
 import br.com.util.Status;
 

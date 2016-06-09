@@ -15,8 +15,9 @@
 	<body>
 		<header>
 			<c:url var="url" value="/categoria/form" />
-			<input id="novo" type="button" onclick="location.href='${url}'"; value="Cadatrar Categoria" />
-			<a href="#Sair">Sair</a>
+			<input id="cadatrar" class="novo" type="button" onclick="location.href='${url}'"; value="Cadatrar Categoria" />
+			<c:url var="urlOut" value="/logout/"/> 				
+			<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 		</header>
 			
 		<article id="pesquisa"><!-- Centro da pagina -->
