@@ -45,7 +45,7 @@ public class CategoriaController {
 		}
 		
 		List<Categoria> categorias = categoriaService.buscar(filtro);
-		map.addAttribute("cardapios", categorias);
+		map.addAttribute("categorias", categorias);
 		map.addAttribute("filtro", filtro);
 		return "categoria/listarCategoria";
 	}

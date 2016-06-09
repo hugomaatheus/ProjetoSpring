@@ -82,7 +82,7 @@ public class Mesa implements AbstractEntity {
 		return numero;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(Integer numero) {
 		this.numero = numero;
 	}
 

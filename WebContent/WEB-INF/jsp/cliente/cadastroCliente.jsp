@@ -19,8 +19,7 @@
 		<c:url var="url" value="/cliente/save" />
 		
 		<header>
-			<c:url var="urlOut" value="/logout/"/> 				
-						<input id="btnSair" class="botao" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
+
 		</header>
 		
 			<section>
@@ -106,12 +105,11 @@
 							</article>
 						</fieldset>
 					</article>
-				</form>
+				</form:form> 
 			</section>
 
 			<footer><!-- cabeçalho da pagina -->
 				
 			</footer>
-		</form:form> 
 	</body>
 </html>

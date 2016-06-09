@@ -8,7 +8,7 @@
  	
 <html>
 	<head>
-		<title>titulo da pagina</title>
+		<title>Categoria</title>
 		<meta charset="utf-8" />
 		<link rel="stylesheet" type="text/css" href="../estilos/estiloCategoria.css">
 	</head>
@@ -21,13 +21,14 @@
 		</header>
 			
 		<article id="pesquisa"><!-- Centro da pagina -->
-			<form method="get" action="filtrar">
-					<label for="txtNumero"><em>Filtrar por nome:</em></label>
-
-					<input id="filtro" name="nome" type="text" />
+			<form:form method="get" action="filtrar" modelAttribute="filtro">
+					<label for="txtNumero"><em>Filtrar por:</em></label>
+				<br/>
+				<label for="txtNumero"><em>Nome:</em></label>
+					<form:input id="filtro" path="nome" type="text" />
 
 					<input id="btnPesquisar" type="submit" value="Pesquisar" />
-			</form>
+			</form:form>
 		</article>
 		
 		<article class="tabContainer" id="lista">

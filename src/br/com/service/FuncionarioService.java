@@ -15,12 +15,14 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.dao.DeliveryDao;
 import br.com.dao.FuncionarioDao;
 import br.com.dao.ItemPedidoDao;
+import br.com.dao.PedidoDao;
 import br.com.dao.ReservaDao;
 import br.com.dao.TradicionalDao;
 import br.com.model.Delivery;
 import br.com.model.Funcionario;
 import br.com.model.ItemPedido;
 import br.com.model.Mesa;
+import br.com.model.Pedido;
 import br.com.model.Reserva;
 import br.com.model.Tradicional;
 import br.com.model.Usuario;
@@ -50,6 +52,8 @@ public class FuncionarioService extends UsuarioService {
 	@Autowired
 	private FuncionarioDao funcionarioDao;
 	
+	@Autowired
+	private PedidoDao pedidoDao;
 	
 	//Manter Reserva - OK
 	public void cadastrarReserva(Reserva reserva, Funcionario funcionario) {
@@ -171,6 +175,17 @@ public void cadastrarPedidoTradicional(Usuario usuario, List<ItemPedido> itens) 
 		for (Tradicional tradicional : tradicionalDao.listar()) {
 			if(tradicional.getStatus() != Status.INATIVO)
 				listar.add(tradicional);
+		}
+
+		return listar; 
+	}
+
+	public List<Pedido> listarPedidos() {
+		
+		List<Pedido> listar = new ArrayList<Pedido>();
+		for (Pedido pedido : pedidoDao.listar()) {
+			if(pedido.getStatus() != Status.INATIVO)
+				listar.add(pedido);
 		}
 
 		return listar; 

@@ -1,4 +1,4 @@
-package interceptors;
+package br.com.interceptors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,9 +14,10 @@ public class AutorizadorInterceptor extends HandlerInterceptorAdapter{
 	       HttpSession session = request.getSession();
 	       String uri = request.getRequestURI();
 	       
-	       if(uri.endsWith("login") || uri.endsWith("logar") || uri.endsWith("cliente/form") || uri.endsWith("cliente/save")){
+	       if(uri.endsWith("login") || uri.endsWith("logar") || uri.endsWith("cadastroClientesWebString/cliente/form") || uri.endsWith("/cliente/save") ){
 	           return true; 
 	       } 
+	       
 	       if(session.getAttribute("usuario") != null) {  
 	         return true; 
 	       }

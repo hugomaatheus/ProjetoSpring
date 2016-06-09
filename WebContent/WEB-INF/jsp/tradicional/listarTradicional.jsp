@@ -25,20 +25,24 @@
 			</header>
 		
 							<article class="tab_container" id="pesquisa">
+							<form:form action="filtrar" method="get" modelAttribute="filtro">
 								<label id="labelnumero"><em>Numero do Pedido:</em></label>
-								<input id="caixa_Numero" title="Digite apenas numeros" type="text" pattern="[0-9]+$"/>
-								<label id="labeltipo"><em>Tipo:</em></label>
-								<select name = "menuTipo">
-									<OPTION>
-									<OPTION>Todos os Tipos
-								</select>
+								<form:input id="caixa_Numero" path="id" title="Digite apenas numeros" type="text" pattern="[0-9]+$"/>
+								
+<%-- 								<label id="labeltipo"><em>Tipo:</em></label>
+								<form:select path="tipo">
+									<form:option value=""></form:option>
+									<form:option value=""></form:option>
+								</form:select> --%>
 								<label id="labelstatus"><em>Status:</em></label>	
-								<select name = "menuStatus">
-									<option value="ATENDIDO">ATENDIDO</option>
-									<option value="PENDENTE">PENDENTE</option>
-									<option value="CANCELADO">CANCELADO</option>
-								</select>
-											<input id="btnPesquisar" type="submit" value="Pesquisar" />
+								<form:select path="status">
+									<form:option value=""></form:option>
+									<form:option value="ATENDIDO">ATENDIDO</form:option>
+									<form:option value="PENDENTE">PENDENTE</form:option>
+									<form:option value="CANCELADO">CANCELADO</form:option>
+								</form:select>
+									<input id="btnPesquisar" type="submit" value="Pesquisar" />
+								</form:form>
 							</article>	
 							<article class="tabContainer" id="lista">
 								<table>
@@ -52,15 +56,15 @@
 								</table>
 								<article class="scrollContainer">
 									<table>
-									<c:forEach var="tradicional" items="${tradicionais}" >
+									<c:forEach var="pedido" items="${pedidos}" >
 										<tr>
-											<td class="tabela-coluna"><span>${tradicional.id}</span></td>
-											<td class="tabela-coluna"><span><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${tradicional.data.getTime()}" /></span></td>
-											<td class="tabela-coluna"><span>${tradicional.total}</span></td>
-											<td class="tabela-coluna"><span>${tradicional.status}</span></td>
+											<td class="tabela-coluna"><span>${pedido.id}</span></td>
+											<td class="tabela-coluna"><span><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${pedido.data.getTime()}" /></span></td>
+											<td class="tabela-coluna"><span>${pedido.total}</span></td>
+											<td class="tabela-coluna"><span>${pedido.status}</span></td>
 											<td class="tabela-coluna">
 												<span>
-													<a href='<c:url value="/tradicional/${tradicional.id}/detalhar"/>' >[Detalhar]</a>
+													<a href='<c:url value="/tradicional/${pedido.id}/detalhar"/>' >[Detalhar]</a>
 <%-- 													<a href="/cadastroClientesWebString/tradicional/${tradicional.id}/remove"> [Inativar]</a> --%>
 												</span>
 											</td>

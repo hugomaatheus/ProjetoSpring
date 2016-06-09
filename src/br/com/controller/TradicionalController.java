@@ -52,21 +52,22 @@ public class TradicionalController {
 		
 		Funcionario funcionario = (Funcionario) session.getAttribute("usuario");
 		
-		List<Tradicional> tradicionais = funcionarioService.listarTradicional();
+		List<Pedido> pedidos = funcionarioService.listarPedidos();
 		map.addAttribute("usuarioBD", funcionario);
-		map.addAttribute("tradicionais", tradicionais);
+		map.addAttribute("pedidos", pedidos);
+		map.addAttribute("filtro", new Pedido());
 		return "tradicional/listarTradicional";
 	}
 	
 	@RequestMapping(value="filtrar", method=RequestMethod.GET)
-	public String filtrar(@ModelAttribute("filtro") Cardapio filtro, ModelMap map, HttpSession session){
+	public String filtrar(@ModelAttribute("filtro") Pedido filtro, ModelMap map, HttpSession session){
 		
 		if(session.getAttribute("usuario") == null) {
 			return "redirect:/";
 		}
 		
-		List<Cardapio> cardapios = cardapioService.buscar(filtro);
-		map.addAttribute("cardapios", cardapios);
+		List<Pedido> pedidos = funcionarioService.listarPedidos();
+		map.addAttribute("pedidos", pedidos);
 		map.addAttribute("filtro", filtro);
 		return "tradicional/listarTradicional";
 	}

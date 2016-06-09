@@ -42,6 +42,10 @@ public class MesaController {
 			return "redirect:/";
 		}
 		
+		if(filtro.getNumero() == null && filtro.getStatus() == null){
+			return "redirect:/mesa/listar";
+		}
+		
 		List<Mesa> mesas = mesaService.buscar(filtro);
 		map.addAttribute("mesas", mesas);
 		map.addAttribute("filtro", filtro);
