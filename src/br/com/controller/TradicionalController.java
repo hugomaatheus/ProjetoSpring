@@ -116,7 +116,7 @@ public class TradicionalController {
 			}
 		}
 		total += itemPedido.getQuantidade() * itemPedido.getCardapio().getPreco();
-		itemPedido.getPedido().setTotal(total);
+
 		if(!existe){
 			carrinho.add(itemPedido);
 		}
@@ -184,6 +184,7 @@ public class TradicionalController {
 	public Map<Long, String> selectCardapio(){
 		List<Cardapio> cardapios  = cardapioService.listar();
 		Map<Long, String> mapa = new HashMap<Long, String>();
+		mapa.put(0L, "selecione");
 		for (Cardapio cardapio : cardapios) {
 			mapa.put(cardapio.getId(), cardapio.getNome() + " - " + cardapio.getPreco());
 		}
@@ -193,6 +194,7 @@ public class TradicionalController {
 	public Map<Long, String> selectMesa(){
 		List<Mesa> mesas  = mesaService.listar();
 		Map<Long, String> mapa = new HashMap<Long, String>();
+		mapa.put(0L, "selecione");
 		for (Mesa mesa : mesas) {
 			mapa.put(mesa.getId(), "Mesa - " + mesa.getNumero());
 		}

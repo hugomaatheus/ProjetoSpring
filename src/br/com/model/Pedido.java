@@ -18,6 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import br.com.util.Status;
+import br.com.util.TipoPedido;
 
 
 
@@ -40,6 +41,8 @@ public class Pedido implements AbstractEntity {
 	@OneToMany(mappedBy="pedido", fetch=FetchType.EAGER) 
 	private List<ItemPedido> itens = new ArrayList<ItemPedido>();
 	
+	@Enumerated(EnumType.STRING)
+	private TipoPedido tipo;
 
 	public Pedido(Long id) {
 		this.id = id;
@@ -47,6 +50,14 @@ public class Pedido implements AbstractEntity {
 	
 	public Pedido(){
 		
+	}
+	
+	public TipoPedido getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(TipoPedido tipo) {
+		this.tipo = tipo;
 	}
 
 	public Double getTotal() {

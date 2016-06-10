@@ -28,6 +28,7 @@ import br.com.model.Tradicional;
 import br.com.model.Usuario;
 import br.com.util.Status;
 import br.com.util.Tipo;
+import br.com.util.TipoPedido;
 
 
 @Service
@@ -127,6 +128,7 @@ public void cadastrarPedidoTradicional(Usuario usuario, List<ItemPedido> itens) 
 		
 		Tradicional tradicional = new Tradicional((Funcionario) usuario);
 		tradicional.setData(calendar);
+		tradicional.setTipo(TipoPedido.TRADICIONAL);
 		tradicional.setStatus(Status.ANDAMENTO);
 		tradicionalDao.save(tradicional);
 		

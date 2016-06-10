@@ -23,6 +23,7 @@ import br.com.model.ItemPedido;
 import br.com.model.Usuario;
 import br.com.util.Status;
 import br.com.util.Tipo;
+import br.com.util.TipoPedido;
 
 
 
@@ -111,6 +112,7 @@ public void cadastrarPedidoDelivery(Usuario cliente, List<ItemPedido> itens) {
 		c.setTime(data);
 		
 		Delivery delivery = new Delivery((Cliente) cliente);
+		delivery.setTipo(TipoPedido.DELIVERY);
 		delivery.setStatus(Status.ANDAMENTO);
 		delivery.setData(c);
 		deliveryDao.save(delivery);

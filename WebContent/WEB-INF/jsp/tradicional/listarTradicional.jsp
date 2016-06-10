@@ -29,11 +29,12 @@
 								<label id="labelnumero"><em>Numero do Pedido:</em></label>
 								<form:input id="caixa_Numero" path="id" title="Digite apenas numeros" type="text" pattern="[0-9]+$"/>
 								
-<%-- 								<label id="labeltipo"><em>Tipo:</em></label>
+ 								<label id="labeltipo"><em>Tipo:</em></label>
 								<form:select path="tipo">
-									<form:option value=""></form:option>
-									<form:option value=""></form:option>
-								</form:select> --%>
+								<form:option value=""></form:option>
+									<form:option value="DELIVERY">Delivery</form:option>
+									<form:option value="TRADICIONAL">Tradicional</form:option>
+								</form:select>
 								<label id="labelstatus"><em>Status:</em></label>	
 								<form:select path="status">
 									<form:option value=""></form:option>
