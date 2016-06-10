@@ -76,14 +76,12 @@ public class FuncionarioService extends UsuarioService {
 		List<Reserva> reservas = new ArrayList<Reserva>();
 		
 		reservas = reservaDao.listar();
-
 		
 		return reservas; 
 	}
 	
 	//OK
 	public void atualizarReserva(Reserva reserva) {
-
 		reservaDao.update(reserva);		
 	}
 	
@@ -164,6 +162,19 @@ public void cadastrarPedidoTradicional(Usuario usuario, List<ItemPedido> itens) 
 		
 		tradicionalDao.update(tradicional);
 	}
+	
+public List<Pedido> filtrarPedidos(Pedido filtro) {
+		
+		List<Pedido> listar = new ArrayList<Pedido>();
+		for (Pedido pedido : pedidoDao.filtrar(filtro)) {
+			if(pedido.getStatus() != Status.INATIVO)
+				listar.add(pedido);
+		}
+
+		return listar;
+	}	
+	
+	
 	///////////////////////////////////////////
 	
 	

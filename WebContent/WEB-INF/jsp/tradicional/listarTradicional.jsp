@@ -31,15 +31,15 @@
 								
  								<label id="labeltipo"><em>Tipo:</em></label>
 								<form:select path="tipo">
-								<form:option value=""></form:option>
-									<form:option value="DELIVERY">Delivery</form:option>
-									<form:option value="TRADICIONAL">Tradicional</form:option>
+									<form:option value=""></form:option>
+									<form:option value="DELIVERY">DELIVERY</form:option>
+									<form:option value="TRADICIONAL">TRADICIONAL</form:option>
 								</form:select>
 								<label id="labelstatus"><em>Status:</em></label>	
 								<form:select path="status">
 									<form:option value=""></form:option>
 									<form:option value="ATENDIDO">ATENDIDO</form:option>
-									<form:option value="PENDENTE">PENDENTE</form:option>
+									<form:option value="ANDAMENTO">ANDAMENTO</form:option>
 									<form:option value="CANCELADO">CANCELADO</form:option>
 								</form:select>
 									<input id="btnPesquisar" type="submit" value="Pesquisar" />

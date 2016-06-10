@@ -66,7 +66,11 @@ public class TradicionalController {
 			return "redirect:/";
 		}
 		
-		List<Pedido> pedidos = funcionarioService.listarPedidos();
+		if(filtro.getId() == null && filtro.getStatus() == null && filtro.getTipo() == null){
+			return "redirect:/tradicional/listar";
+		}
+		
+		List<Pedido> pedidos = funcionarioService.filtrarPedidos(filtro);
 		map.addAttribute("pedidos", pedidos);
 		map.addAttribute("filtro", filtro);
 		return "tradicional/listarTradicional";
