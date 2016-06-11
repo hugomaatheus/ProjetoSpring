@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.com.dao.CardapioDao;
 import br.com.dao.CategoriaDao;
@@ -12,7 +13,6 @@ import br.com.dao.ItemPedidoDao;
 import br.com.dao.MesaDao;
 import br.com.model.Cardapio;
 import br.com.model.Categoria;
-import br.com.model.Cliente;
 import br.com.model.Funcionario;
 import br.com.model.Gerente;
 import br.com.model.ItemPedido;
@@ -21,7 +21,7 @@ import br.com.util.Status;
 import br.com.util.Tipo;
 
 
-
+@Service
 public class GerenteService extends UsuarioService {
 	
 	@Autowired
@@ -241,13 +241,13 @@ public List<Mesa> consultarTodosMesas() {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Cliente> listarTodosClientes() {
+	public List<Funcionario> listarTodosFuncionarios() {
 		
 
-		List<Cliente> clientes = null;
-		clientes = (List<Cliente>) usuarioDao.listarCliente();
+		List<Funcionario> funcionarios = null;
+		funcionarios = (List<Funcionario>) funcionarioDao.listar();
 		
-		return clientes; 
+		return funcionarios; 
 	}
 	
 	public Mesa buscar(int numero) {

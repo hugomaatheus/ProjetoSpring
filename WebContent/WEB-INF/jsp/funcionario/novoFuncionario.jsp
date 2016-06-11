@@ -48,7 +48,7 @@
 					<form:input id="txtcargo" type="text" required="" path="cargo" />
 
 					<label id="labelsalario"><em>Salario:</em></label>
-					<form:input id="txtsalario" type="tel" required="required" maxlength="15" path="salario" pattern="([0-9]{1,3}\.)?[0-9]{1,3},[0-9]{2}$" title="Digite no seguinte formato min: x,xx  max: x.xxx,xx ou " />
+					<form:input id="txtsalario" required="required" maxlength="15" path="salario" pattern="([0-9]{1,3}\.)?[0-9]{1,3},[0-9]{2}$" title="Digite no seguinte formato min: x,xx  max: x.xxx,xx ou " />
 				<br/>
 					<input id="btnsalvar" class="btn" type="submit" value="Salvar" />
 
