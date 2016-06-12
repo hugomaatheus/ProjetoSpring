@@ -17,14 +17,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.model.Cardapio;
-import br.com.model.Funcionario;
 import br.com.model.ItemPedido;
 import br.com.model.Mesa;
 import br.com.model.Pedido;
 import br.com.model.Tradicional;
+import br.com.model.Usuario;
 import br.com.service.CardapioService;
 import br.com.service.FuncionarioService;
 import br.com.service.MesaService;
+import br.com.util.Tipo;
 
 @RequestMapping(value="tradicional")
 @Controller
@@ -45,28 +46,15 @@ public class TradicionalController {
 	
 	@RequestMapping(value="listar", method=RequestMethod.GET)
 	public String list(ModelMap map, HttpSession session){
+		Usuario  usuario = (Usuario) session.getAttribute("usuario");
 		
-		if(session.getAttribute("usuario") == null) {					
+		if(usuario == null || usuario.getTipo().equals(Tipo.CLIENTE)) {
 			return "redirect:/";
 		}
+
+		List<Pedido> pedidos = funcionarioService.listarPedidos();
 		
-//		Usuario usuario = (Usuario) session.getAttribute("usuario");
-		
-//		if(usuario.getTipo().name() == "FUNCIONARIO") {
-			Funcionario funcionario = (Funcionario) session.getAttribute("usuario");
-			map.addAttribute("usuarioBD", funcionario);
-//		}
-			
-			
-		
-//		if(usuario.getTipo().name() == "GERENTE") {
-//			Gerente gerente = (Gerente) session.getAttribute("usuario");
-//			System.out.println("entrou em gerente");
-//			map.addAttribute("usuarioBD", gerente);
-//		}
-//		
-		
-		List<Pedido> pedidos = funcionarioService.listarPedidos();		
+		map.addAttribute("usuarioBD", usuario);		
 		map.addAttribute("pedidos", pedidos);
 		map.addAttribute("filtro", new Pedido());
 		return "tradicional/listarTradicional";
@@ -91,12 +79,11 @@ public class TradicionalController {
 	
 	@RequestMapping(value="form", method=RequestMethod.GET)
 	public String createForm(ModelMap map, HttpSession session){
+		Usuario  usuario = (Usuario) session.getAttribute("usuario");
 		
-		if(session.getAttribute("usuario") == null) {
+		if(usuario == null || usuario.getTipo().equals(Tipo.CLIENTE)) {
 			return "redirect:/";
 		}
-		
-		Funcionario funcionario = (Funcionario) session.getAttribute("usuario");
 		
 		ItemPedido itemPedido = new ItemPedido();
 		
@@ -105,7 +92,7 @@ public class TradicionalController {
 		
 		map.addAttribute("itemPedido", itemPedido);
 		map.addAttribute("listarItens", carrinho);
-		map.addAttribute("usuarioBD", funcionario);
+		map.addAttribute("usuarioBD", usuario);
 		map.addAttribute("cardapioSelect",  selectCardapio());
 		map.addAttribute("mesaSelect", selectMesa());
 		return "tradicional/novoTradicional";
@@ -113,8 +100,9 @@ public class TradicionalController {
 	
 	@RequestMapping(value="carrinho", method=RequestMethod.POST)
 	public String addCarrinho(@ModelAttribute("itemPedido") ItemPedido itemPedido, BindingResult result, ModelMap map, HttpSession session){
+		Usuario  usuario = (Usuario) session.getAttribute("usuario");
 		
-		if(session.getAttribute("usuario") == null) {
+		if(usuario == null || usuario.getTipo().equals(Tipo.CLIENTE)) {
 			return "redirect:/";
 		}
 		
@@ -146,14 +134,13 @@ public class TradicionalController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="save")
 	public String save(ModelMap map, HttpSession session){
+		Usuario  usuario = (Usuario) session.getAttribute("usuario");
 		
-		if(session.getAttribute("usuario") == null) {
+		if(usuario == null || usuario.getTipo().equals(Tipo.CLIENTE)) {
 			return "redirect:/";
 		}
 		
-		Funcionario funcionario = (Funcionario) session.getAttribute("usuario");
-		
-		funcionarioService.cadastrarPedidoTradicional(funcionario, carrinho);
+		funcionarioService.cadastrarPedidoTradicional(usuario, carrinho);
 		
 		carrinho.clear();
 		
@@ -162,8 +149,9 @@ public class TradicionalController {
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/detalhar")
 	public String detalharPedido(@PathVariable Long id, ModelMap map, HttpSession session){
+		Usuario  usuario = (Usuario) session.getAttribute("usuario");
 		
-		if(session.getAttribute("usuario") == null) {
+		if(usuario == null || usuario.getTipo().equals(Tipo.CLIENTE)) {
 			return "redirect:/";
 		}
 		
@@ -177,8 +165,9 @@ public class TradicionalController {
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/cancelar")
 	public String cancelar(@PathVariable Long id, HttpSession session){
+		Usuario  usuario = (Usuario) session.getAttribute("usuario");
 		
-		if(session.getAttribute("usuario") == null) {
+		if(usuario == null || usuario.getTipo().equals(Tipo.CLIENTE)) {
 			return "redirect:/";
 		}
 		
@@ -188,8 +177,9 @@ public class TradicionalController {
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/atender")
 	public String atender(@PathVariable Long id, HttpSession session){
+		Usuario  usuario = (Usuario) session.getAttribute("usuario");
 		
-		if(session.getAttribute("usuario") == null) {
+		if(usuario == null || usuario.getTipo().equals(Tipo.CLIENTE)) {
 			return "redirect:/";
 		}
 		

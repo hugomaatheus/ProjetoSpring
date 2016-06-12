@@ -20,7 +20,6 @@ import br.com.model.Reserva;
 import br.com.model.Usuario;
 import br.com.service.FuncionarioService;
 import br.com.service.MesaService;
-import br.com.util.Status;
 import br.com.util.Tipo;
 
 @RequestMapping(value="reserva")
@@ -70,8 +69,7 @@ public class ReservaController {
 		map.addAttribute("filtro", filtro);
 		return "reserva/listarReserva";
 	}
-	
-	@SuppressWarnings("null")
+
 	@RequestMapping(value="form", method=RequestMethod.GET)
 	public String createForm(ModelMap map, HttpSession session){
 		
