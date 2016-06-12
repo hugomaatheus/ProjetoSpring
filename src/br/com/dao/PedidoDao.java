@@ -39,6 +39,7 @@ public class PedidoDao extends AbstractDao<Pedido> {
 			str+=" and tipo = :tipo";
 		}
 		
+		
 		Query query = eM.createQuery(str);
 	
 		if(filtro.getId() != null)

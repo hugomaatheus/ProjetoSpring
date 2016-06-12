@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -16,10 +15,12 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.dao.ClienteDao;
 import br.com.dao.DeliveryDao;
 import br.com.dao.ItemPedidoDao;
+import br.com.dao.PedidoDao;
 import br.com.dao.UsuarioDao;
 import br.com.model.Cliente;
 import br.com.model.Delivery;
 import br.com.model.ItemPedido;
+import br.com.model.Pedido;
 import br.com.model.Usuario;
 import br.com.util.Status;
 import br.com.util.Tipo;
@@ -42,6 +43,9 @@ public class ClienteService {
 	
 	@Autowired
 	private ItemPedidoDao itemPedidoDao;
+	
+	@Autowired
+	private PedidoDao pedidoDao;
 
 	//Manter cliente - OK
 	public void cadastrarUsuario(Usuario cliente) {
@@ -98,10 +102,14 @@ public class ClienteService {
 		return d;	
 	}
 	
-	public List<Delivery> listarTodos() {
-		List<Delivery> result = new LinkedList<Delivery>();
-		result = deliveryDao.listar();	
-		return result;
+	public List<Pedido> listarTodos() {
+		List<Pedido> listar = new ArrayList<Pedido>();
+		for (Pedido pedido : pedidoDao.listar()) {
+			if(pedido.getStatus() != Status.INATIVO)
+				listar.add(pedido);
+		}
+
+		return listar; 
 	}
 	//
 public void cadastrarPedidoDelivery(Usuario cliente, List<ItemPedido> itens) {
@@ -134,7 +142,12 @@ public void cadastrarPedidoDelivery(Usuario cliente, List<ItemPedido> itens) {
 	itemPedido = itemPedidoDao.listarItensPedidos(id);
 
 	return itemPedido;
-}
+	
+	}
+	
+	public ItemPedido buscarItem(Long id) {
+		return itemPedidoDao.getById(id);
+	}
 
 
 	///////////////////////////////////////////

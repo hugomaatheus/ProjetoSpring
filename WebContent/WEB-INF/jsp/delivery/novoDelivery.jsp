@@ -54,13 +54,13 @@
 				</table>
 				<article class="scrollContainer">
 					<table>
-						<c:forEach var="carrinho" items="${carrinho}">
+						<c:forEach var="carrinho" items="${itemCarrinho}">
 							<tr>
 							<td class="tabela-coluna"><span>${carrinho.cardapio.nome}</span></td>
 							<td class="tabela-coluna"><span>${carrinho.quantidade}</span></td>
-							<td class="tabela-coluna"><span>${carrinho.quantidade = carrinho.cardapio.preco * carrinho.quantidade}</span></td>
+							<td class="tabela-coluna"><span>${carrinho.cardapio.preco * carrinho.quantidade}</span></td>
 							<td class="tabela-coluna"><span> <a
-									href="Comando para excluir">[Excluir]</a>
+									href='<c:url value="/delivery/${itemCarrinho.indexOf(carrinho)}/removeCar" />'>[Excluir]</a>
 							</span></td>
 						</tr>
 						</c:forEach>

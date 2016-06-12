@@ -161,9 +161,10 @@ public void cadastrarPedidoTradicional(Usuario usuario, List<ItemPedido> itens) 
 		tradicionalDao.update(tradicional);
 	}
 	
-public List<Pedido> filtrarPedidos(Pedido filtro) {
+	public List<Pedido> filtrarPedidos(Pedido filtro) {
 		
 		List<Pedido> listar = new ArrayList<Pedido>();
+		
 		for (Pedido pedido : pedidoDao.filtrar(filtro)) {
 			if(pedido.getStatus() != Status.INATIVO)
 				listar.add(pedido);

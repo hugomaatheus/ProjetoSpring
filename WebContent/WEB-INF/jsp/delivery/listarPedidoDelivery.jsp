@@ -23,16 +23,24 @@
 		</header>	
 			
 			<article id="pesquisa">
+					<form:form action="filtrar" method="get" modelAttribute="filtro">
 						<label for="txtNumero"><em>Numero do Pedido:</em></label>
-						<input id="caixa_Numero" title="Digite apenas numeros" type="text" pattern="[0-9]+$"/>
+						<form:input id="caixa_Numero" path="id" title="Digite apenas numeros" type="text" pattern="[0-9]+$"/>
+						<label id="labeltipo"><em>Tipo:</em></label>
+								<form:select path="tipo">
+									<form:option value=""></form:option>
+									<form:option value="DELIVERY">DELIVERY</form:option>
+									<form:option value="TRADICIONAL">TRADICIONAL</form:option>
+								</form:select>
 						<label for="txtStatus"><em>Status:</em></label>
-						<SELECT name = "menuStatus" size=1>
-							<OPTION></OPTION>
-							<OPTION>Atendido</OPTION>
-							<OPTION>Pendente</OPTION>
-							<OPTION>Cancelado</OPTION>
-						</SELECT>
+						<form:select path="status">
+							<form:option value=""></form:option>
+								<form:option value="ATENDIDO">ATENDIDO</form:option>
+								<form:option value="ANDAMENTO">ANDAMENTO</form:option>
+								<form:option value="CANCELADO">CANCELADO</form:option>
+						</form:select>
 						<input id="btnPesquisar" class="btn" type="submit" value="Pesquisar" />
+					</form:form>	
 			</article>
 
 				<article class="tabContainer" id="lista">
@@ -47,16 +55,15 @@
 					</table>
 				<article class="scrollContainer">
 					<table>
-					    <c:forEach var="delivery" items="${deliverys}" >
+					    <c:forEach var="pedido" items="${pedidos}" >
 						<tr>
-							<td class="tabela-coluna"><span>${delivery.id}</span></td>
-							<td class="tabela-coluna"><span><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${delivery.data.getTime()}" /></span></td>
-							<td class="tabela-coluna"><span>${delivery.total}</span></td>
-							<td class="tabela-coluna"><span>${delivery.status}</span></td>
+							<td class="tabela-coluna"><span>${pedido.id}</span></td>
+							<td class="tabela-coluna"><span><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${pedido.data.getTime()}" /></span></td>
+							<td class="tabela-coluna"><span>${pedido.total}</span></td>
+							<td class="tabela-coluna"><span>${pedido.status}</span></td>
 							<td class="tabela-coluna">
 								<span>
-									<a href='<c:url value="/delivery/${delivery.id}/detalhar"/>' >[Detalhar]</a>
-									<a href="Comando para excluir">[Excluir]</a>
+									<a href='<c:url value="/delivery/${pedido.id}/detalhar"/>' >[Detalhar]</a>								
 								</span>
 							</td>
 						</tr>

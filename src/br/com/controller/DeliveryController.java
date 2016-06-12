@@ -23,6 +23,7 @@ import br.com.model.ItemPedido;
 import br.com.model.Pedido;
 import br.com.service.CardapioService;
 import br.com.service.ClienteService;
+import br.com.service.FuncionarioService;
 
 @RequestMapping(value="delivery")
 @Controller
@@ -33,6 +34,9 @@ public class DeliveryController {
 	
 	@Autowired
 	private ClienteService clienteService;
+	
+	@Autowired
+	private FuncionarioService funcionarioService;
 	
 	private List<ItemPedido> carrinho = null;
 	private Double total = 0.0;
@@ -46,21 +50,26 @@ public class DeliveryController {
 		
 		Cliente cliente = (Cliente) session.getAttribute("usuario");
 		
-		List<Delivery> deliverys = clienteService.listarTodos();
+		List<Pedido> deliverys = clienteService.listarTodos();
 		map.addAttribute("usuarioBD", cliente);
-		map.addAttribute("deliverys", deliverys);
+		map.addAttribute("pedidos", deliverys);
+		map.addAttribute("filtro", new Pedido());
 		return "delivery/listarPedidoDelivery";
 	}
 	
 	@RequestMapping(value="filtrar", method=RequestMethod.GET)
-	public String filtrar(@ModelAttribute("filtro") Cardapio filtro, ModelMap map, HttpSession session){
+	public String filtrar(@ModelAttribute("filtro") Pedido filtro, ModelMap map, HttpSession session){
 		
 		if(session.getAttribute("usuario") == null) {
 			return "redirect:/";
+		}		
+		
+		if(filtro.getId() == null && filtro.getStatus() == null && filtro.getTipo() == null){
+			return "redirect:/delivery/listar";
 		}
 		
-		List<Cardapio> cardapios = cardapioService.buscar(filtro);
-		map.addAttribute("cardapios", cardapios);
+		List<Pedido> pedidos = funcionarioService.filtrarPedidos(filtro);
+		map.addAttribute("pedidos", pedidos);
 		map.addAttribute("filtro", filtro);
 		return "delivery/listarPedidoDelivery";
 	}
@@ -110,12 +119,12 @@ public class DeliveryController {
 		}
 		
 		itemPedido.setCardapio(cardapioService.buscarPorId(itemPedido.getCardapio().getId()));
-		itemPedido.setPedido(new Delivery()); //gambiarra para Delivery vindo nulo
+		itemPedido.setPedido(new Delivery()); 
 		itemPedido.getPedido().setTotal(total);
 		
 		if(carrinho == null) {
 			carrinho = new ArrayList<ItemPedido>();
-			session.setAttribute("carrinho", carrinho);
+			session.setAttribute("itemCarrinho", carrinho);
 		}
 		
 		boolean existe = false;
@@ -132,14 +141,28 @@ public class DeliveryController {
 		}
 		
 		map.addAttribute("total", total);
-		map.addAttribute("carrinho", carrinho);
+		map.addAttribute("itemCarrinho", carrinho);
 		
 		return "redirect:/delivery/form";
 		
 	}
 	
+	@RequestMapping(method=RequestMethod.GET, value="{index}/removeCar")
+	public String removerCarrinho(@PathVariable int index, ModelMap map, HttpSession session) {
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
+		carrinho.remove(index);
+		
+		map.addAttribute("itemCarrinho", carrinho);
+		
+		return "redirect:/delivery/form";
+	}
+	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/detalhar")
-	public String detalharPedido(@PathVariable Long id, ModelMap map, HttpSession session){
+	public String detalharPedido(@PathVariable Long id, ModelMap map, HttpSession session) {
 		
 		if(session.getAttribute("usuario") == null) {
 			return "redirect:/";

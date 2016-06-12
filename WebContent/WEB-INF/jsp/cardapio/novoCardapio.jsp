@@ -31,7 +31,12 @@
  			<fieldset id = criar><legend>Cadastro Cardapio</legend>
  						
  						<label class="label" id="labelCateg"><em>Categoria:</em></label>
-                        <form:select id="OpCategoria" class="set" path="categoria.id" items="${categoriasSelect}" />
+                        <form:select id="OpCategoria" path="categoria.id" class="categoria">
+						<c:forEach var="categoria" items="${categoriaSelect}" >
+							<form:option value="">Selecione</form:option>
+							<form:option value="${categoria.id}">${categoria.nome}</form:option>
+						</c:forEach>
+					</form:select>
 					<br />
 						<label class="label" id="labelNome"><em>Nome:</em></label>
 						<form:input path="nome" class="set" id="txtNome" type="text"/>

@@ -70,7 +70,7 @@ public class CardapioController {
 		Cardapio cardapio = new Cardapio();
 		cardapio.setCategoria(new Categoria());
 		map.addAttribute("cardapio", cardapio);
-		map.addAttribute("categoriaSelect",  selectCategoria());
+		map.addAttribute("categoriaSelect",  categoriaService.listar());	
 		return "cardapio/novoCardapio";
 	}
 	
@@ -130,7 +130,8 @@ public class CardapioController {
 		mapa.put(0L, "Selecione");
 		for (Categoria categoria : categorias) {
 			mapa.put(categoria.getId(), categoria.getNome());
-		}
+			System.out.println(mapa);
+		}		
 		return mapa;
 	}
 

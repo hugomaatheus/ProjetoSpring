@@ -54,7 +54,8 @@ public class TradicionalController {
 
 		List<Pedido> pedidos = funcionarioService.listarPedidos();
 		
-		map.addAttribute("usuarioBD", usuario);		
+
+		map.addAttribute("usuarioBD", usuario);					
 		map.addAttribute("pedidos", pedidos);
 		map.addAttribute("filtro", new Pedido());
 		return "tradicional/listarTradicional";
@@ -110,7 +111,7 @@ public class TradicionalController {
 		itemPedido.getTradicional().setTotal(total);
 		if(carrinho == null) {
 			carrinho = new ArrayList<ItemPedido>();
-			session.setAttribute("carrinho", carrinho);
+			session.setAttribute("itemCarrinho", carrinho);
 		}
 		
 		boolean existe = false;
@@ -127,7 +128,21 @@ public class TradicionalController {
 		}
 		
 		map.addAttribute("total", total);
-		map.addAttribute("carrinho", carrinho);
+		map.addAttribute("itemCarrinho", carrinho);
+		
+		return "redirect:/tradicional/form";
+	}
+	
+	@RequestMapping(method=RequestMethod.GET, value="{index}/removeCar")
+	public String removerCarrinho(@PathVariable int index, ModelMap map, HttpSession session) {
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
+		carrinho.remove(index);
+		
+		map.addAttribute("itemCarrinho", carrinho);
 		
 		return "redirect:/tradicional/form";
 	}

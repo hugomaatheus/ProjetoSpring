@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import br.com.model.Mesa;
 import br.com.model.Reserva;
 import br.com.model.Usuario;
@@ -77,8 +76,8 @@ public class ReservaController {
 		
 		if(usuario == null || usuario.getTipo().equals(Tipo.CLIENTE)) {
 			return "redirect:/";
-		}
-		
+		}		
+				
 		Reserva reserva = new Reserva();
 		reserva.setMesa(new Mesa());
 		
