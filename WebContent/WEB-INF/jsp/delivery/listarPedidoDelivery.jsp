@@ -16,8 +16,8 @@
 	<body>	
 		<c:url var="url" value="form"/>
 		<header>
-			<input id="novo" type="button" onclick="location.href='${url}'"; value="Realizar Pedidos" />
 			<p>Bem vindo, ${usuarioBD.nome}</p>
+			<input id="cadastrar" class="novo" type="button" onclick="location.href='${url}'"; value="Realizar Pedidos" />
 			<c:url var="urlOut" value="/logout/"/>
 			<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 		</header>	
@@ -64,7 +64,5 @@
 					</table>
 				</article>
 		</article>
-		<c:url var="urlBack" value="/delivery/listar"/>
-		<a class="btn" href="${urlBack}">Voltar</a>	
 	</body>
 </html>

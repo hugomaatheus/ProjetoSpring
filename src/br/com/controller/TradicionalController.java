@@ -54,7 +54,7 @@ public class TradicionalController {
 
 		List<Pedido> pedidos = funcionarioService.listarPedidos();
 		
-		map.addAttribute("usuarioBD", usuario);		
+		map.addAttribute("usuarioBD", usuario);
 		map.addAttribute("pedidos", pedidos);
 		map.addAttribute("filtro", new Pedido());
 		return "tradicional/listarTradicional";
@@ -91,6 +91,7 @@ public class TradicionalController {
 		itemPedido.setPedido(new Tradicional());
 		
 		map.addAttribute("itemPedido", itemPedido);
+		map.addAttribute("mesa", new Mesa());
 		map.addAttribute("listarItens", carrinho);
 		map.addAttribute("usuarioBD", usuario);
 		map.addAttribute("cardapioSelect",  selectCardapio());
@@ -99,15 +100,15 @@ public class TradicionalController {
 	}
 	
 	@RequestMapping(value="carrinho", method=RequestMethod.POST)
-	public String addCarrinho(@ModelAttribute("itemPedido") ItemPedido itemPedido, BindingResult result, ModelMap map, HttpSession session){
+	public String addCarrinho(@ModelAttribute("itemPedido") ItemPedido itemPedido, ModelMap map, HttpSession session){
 		Usuario  usuario = (Usuario) session.getAttribute("usuario");
-		
+		System.out.println(usuario);
 		if(usuario == null || usuario.getTipo().equals(Tipo.CLIENTE)) {
 			return "redirect:/";
 		}
 		
 		itemPedido.setCardapio(cardapioService.buscarPorId(itemPedido.getCardapio().getId())); 
-		itemPedido.getTradicional().setTotal(total);
+		
 		if(carrinho == null) {
 			carrinho = new ArrayList<ItemPedido>();
 			session.setAttribute("carrinho", carrinho);
@@ -133,14 +134,14 @@ public class TradicionalController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="save")
-	public String save(ModelMap map, HttpSession session){
+	public String save(@ModelAttribute("mesa") Mesa mesa, BindingResult result, ModelMap map, HttpSession session){
 		Usuario  usuario = (Usuario) session.getAttribute("usuario");
 		
 		if(usuario == null || usuario.getTipo().equals(Tipo.CLIENTE)) {
 			return "redirect:/";
 		}
-		
-		funcionarioService.cadastrarPedidoTradicional(usuario, carrinho);
+
+		funcionarioService.cadastrarPedidoTradicional(usuario, carrinho, mesa);
 		
 		carrinho.clear();
 		

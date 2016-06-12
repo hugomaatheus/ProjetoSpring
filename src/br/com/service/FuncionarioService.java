@@ -35,8 +35,8 @@ import br.com.util.TipoPedido;
 @Transactional
 public class FuncionarioService extends UsuarioService {
 	
-	@Autowired
-	private MesaService mesaService;
+/*	@Autowired
+	private MesaService mesaService;*/
 	
 	@Autowired
 	private ReservaDao reservaDao;
@@ -114,15 +114,13 @@ public class FuncionarioService extends UsuarioService {
 	}
 	
 	//Problema com tabelas que estão mapeando as listas
-public void cadastrarPedidoTradicional(Usuario usuario, List<ItemPedido> itens) {
-		
-	System.out.println(itens);
+public void cadastrarPedidoTradicional(Usuario usuario, List<ItemPedido> itens, Mesa mesa) {
 	
 		Calendar calendar = new GregorianCalendar();
 		Date date = new Date();
 		calendar.setTime(date);
 		
-		Tradicional tradicional = new Tradicional((Funcionario) usuario);
+		Tradicional tradicional = new Tradicional(usuario);
 		tradicional.setData(calendar);
 		tradicional.setTipo(TipoPedido.TRADICIONAL);
 		tradicional.setStatus(Status.ANDAMENTO);
@@ -131,7 +129,7 @@ public void cadastrarPedidoTradicional(Usuario usuario, List<ItemPedido> itens) 
 		Double total = 0.0;
 		for (ItemPedido item : itens) {
 			total += item.getQuantidade() * item.getCardapio().getPreco();
-			tradicional.setMesa(mesaService.buscarPorId(item.getTradicional().getMesa().getId()));
+			tradicional.setMesa(mesa);
 			item.setCardapio(item.getCardapio());
 			item.setPedido(tradicional);
 			item.setQuantidade(item.getQuantidade());

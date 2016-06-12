@@ -16,7 +16,8 @@
 
     <body>
         <header>
-       		<p>Bem vindo, ${usuarioBD.nome}</p>
+			<c:url var="urlList" value="/delivery/listar"/>
+			<input id="btnVoltar" class="novo" type="button" onclick="window.location.href='${urlList}'" value="Voltar"/>
 			<c:url var="urlOut" value="/logout/"/>
 			<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
         </header>
@@ -69,14 +70,14 @@
 			</article>
 
 			<table id="TotalDoPedido">
-				<td align="left">Total - ${param.total}</td>
+				<tr>
+					<td align="left">Total - ${param.total}</td>
+				</tr>
 			</table>
 			<c:url var="urlS" value="/delivery/save" />
-			<c:url var="urlBack" value="/delivery/listar"/>
-                            <form:form method="post" action="${urlS}" >
-								<input id="btnConfirmar" class="btn" type="submit" value="Salvar" />
-								<a class="btn" href="${urlBack}">Voltar</a>
-							</form:form>
+				<form:form method="post" action="${urlS}" >
+					<input id="btnConfirmar" class="btn" type="submit" value="Salvar" />
+				</form:form>
                     </fieldset>
 			</article>>
 

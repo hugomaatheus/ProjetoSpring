@@ -34,6 +34,11 @@ public class LoginController {
 			return  "login/login";
 		}
 		
+		if(usuario.getLogin().equals("") || usuario.getSenha().equals("") ){
+			map.addAttribute("usuario", usuario);
+			return  "login/login";
+		}
+		
 		Usuario usuarioBD = usuarioService.logar(usuario.getLogin(), usuario.getSenha());
 		
 		if(usuarioBD == null){
