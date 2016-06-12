@@ -20,6 +20,8 @@
 	<c:url var="url" value="/categoria/save" />
 	
 		<header>
+			<c:url var="urlList" value="/categoria/listar"/>
+			<input id="btnVoltar" class="novo" type="button" onclick="window.location.href='${urlList}'" value="Voltar"/>
 			<c:url var="urlOut" value="/logout/"/> 				
 			<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 		</header>
@@ -38,8 +40,6 @@
 					</form:select>
 					<br />
 					<input id="btnAdicionar" class="btn" type="submit" value="Adicionar" />
-					<c:url var="urlBack" value="/categoria/listar"/>
-					<a class="btn" href="${urlBack}">Voltar</a>
 				</fieldset>
 			</form:form>
 		</article>

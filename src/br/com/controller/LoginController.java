@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.model.Usuario;
 import br.com.service.UsuarioService;
+import br.com.util.Status;
 
 @Controller
 public class LoginController {
@@ -38,6 +39,12 @@ public class LoginController {
 		if(usuarioBD == null){
 			usuario.setSenha("");
 			map.addAttribute("usuario", usuarioBD);
+			return  "login/login";
+		}
+
+		if(usuarioBD.getStatus() == Status.INATIVO){
+			usuario.setLogin("");
+			usuario.setSenha("");
 			return  "login/login";
 		}
 		

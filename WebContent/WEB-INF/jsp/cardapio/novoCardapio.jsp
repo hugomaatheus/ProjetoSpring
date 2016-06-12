@@ -22,6 +22,8 @@
 		<c:url var="url" value="/cardapio/save" />
 
 		<header>
+			<c:url var="urlList" value="/cardapio/listar"/>
+			<input id="btnVoltar" class="novo" type="button" onclick="window.location.href='${urlList}'" value="Voltar"/>
 			<c:url var="urlOut" value="/logout/"/> 				
 			<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 		</header>

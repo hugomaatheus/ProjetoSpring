@@ -18,7 +18,8 @@
 	<!-- pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" -->
 	
 		<header>
-			<p>Bem vindo, ${usuarioBD.nome}</p>
+			<c:url var="urlList" value="/reserva/listar"/>
+			<input id="btnVoltar" class="novo" type="button" onclick="window.location.href='${urlList}'" value="Voltar"/>
 			<c:url var="urlOut" value="/logout/"/> 				
 			<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 		</header>
@@ -52,9 +53,7 @@
 						<form:option value="OCUPADO">OCUPADO</form:option>
 					</form:select>
 					<br />
-					<c:url var="urlBack" value="/reserva/listar"/>
 					<input id="btnreservar" class="btn" type="submit" value="Reservar" />
-					<a class="btn" href="${urlBack}">Voltar</a>
 				</form:form>
 
 			</article>

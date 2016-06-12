@@ -16,7 +16,8 @@
 	<body>
 	
 		<header>
-			<p>Bem vindo, ${usuarioBD.nome}</p>
+			<c:url var="urlList" value="/reserva/listar"/>
+			<input id="btnVoltar" class="novo" type="button" onclick="window.location.href='${urlList}'" value="Voltar"/>
 			<c:url var="urlOut" value="/logout/"/> 				
 			<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 		</header>
@@ -25,7 +26,7 @@
 			<article class="tab_container">
 				<form:form method="post" action="${urlR}" modelAttribute="reserva" >
 					<form:hidden path="id"/>
-					<form:hidden path="funcionario.id" items="${usuarioBD}" />
+					<form:hidden path="usuario.id" items="${usuarioBD}" />
 						
 					<label id="labelmesa"><em>Mesa:</em></label>
 					<form:select id="Opmesa" path="mesa.id" items="${mesaSelect}" />
@@ -50,9 +51,7 @@
 						<form:option value="OCUPADO">OCUPADO</form:option>
 					</form:select>
 					<br />
-					<c:url var="urlBack" value="/reserva/listar"/>
 					<input id="btnreservar" class="btn" type="submit" value="Reservar" />
-					<a class="btn" href="${urlBack}">Voltar</a>
 				</form:form>
 
 			</article>

@@ -74,8 +74,6 @@
 									</table>									
 								</article>								
 							</article>
-							<c:url var="urlBack" value="/funcionario/indexFuncionario" />
-							<input id="btnVoltar" class="btn" type="button" onclick="window.location.href='${urlBack}'" value="Voltar" />
 			
 			<footer><!-- cabeçalho da pagina -->
 				

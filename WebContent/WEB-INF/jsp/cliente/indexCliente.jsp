@@ -27,7 +27,7 @@
 								<tr>
 									<c:url var="urlD" value="/delivery/listar" />
 									<td>
-										<input class="botao" type="button" onclick="window.location.href='${urlD}'" value="Pagina Pedido"></input>
+										<input class="botao" type="button" onclick="window.open('${urlD}')" value="Pagina Pedido"></input>
 									</td>
 								</tr>
 							</article>
@@ -35,7 +35,7 @@
 								<tr>
 									<c:url var="urlEdit" value="/cliente/${usuarioBD.id}/formUpdate" />
 									<td>
-										<input class="botao" type="button" onclick="window.location.href='${urlEdit}'" value="Editar Usuario"></input>
+										<input class="botao" type="button" onclick="window.open('${urlEdit}')" value="Editar Usuario"></input>
 									</td>
 								</tr>
 							</article>
