@@ -57,9 +57,8 @@ public class FuncionarioService extends UsuarioService {
 	private PedidoDao pedidoDao;
 	
 	//Manter Reserva - OK
-	public void cadastrarReserva(Reserva reserva, Funcionario funcionario) {
+	public void cadastrarReserva(Reserva reserva) {
 		
-		reserva.setFuncionario(funcionario);
 		reservaDao.save(reserva);
 
 	}

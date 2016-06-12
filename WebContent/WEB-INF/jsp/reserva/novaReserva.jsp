@@ -27,7 +27,7 @@
 			<article class="tab_container">
 				<form:form method="post" action="${urlR}" modelAttribute="reserva" >
 					
-					<form:input type="hidden" path="funcionario.id" items="${usuarioBD}" />
+					<form:input type="hidden" path="usuario.id" items="${usuarioBD}" />
 						
 					<label id="labelmesa"><em>Mesa:</em></label>
 					<form:select id="Opmesa" path="mesa.id" items="${mesaSelect}" />

@@ -42,8 +42,8 @@ public class Reserva implements AbstractEntity {
 	private Status status;
 	
 	@ManyToOne
-	@JoinColumn(name="fk_funcionario")
-	private Funcionario funcionario;
+	@JoinColumn(name="fk_Usuario")
+	private Usuario usuario;
 	
 	@ManyToOne
 	private Mesa mesa;
@@ -90,11 +90,11 @@ public class Reserva implements AbstractEntity {
 	public void setNome_Responsavel(String nome_Responsavel) {
 		this.nome_Responsavel = nome_Responsavel;
 	}
-	public Funcionario getFuncionario() {
-		return funcionario;
+	public Usuario getUsuario() {
+		return usuario;
 	}
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	public Mesa getMesa() {
 		return mesa;

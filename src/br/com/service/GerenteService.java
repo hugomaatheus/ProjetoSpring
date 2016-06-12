@@ -239,8 +239,7 @@ public List<Mesa> consultarTodosMesas() {
 		
 		return f;
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	public List<Funcionario> listarTodosFuncionarios() {
 		
 

@@ -18,12 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.model.Cardapio;
 import br.com.model.Funcionario;
-import br.com.model.Gerente;
 import br.com.model.ItemPedido;
 import br.com.model.Mesa;
 import br.com.model.Pedido;
 import br.com.model.Tradicional;
-import br.com.model.Usuario;
 import br.com.service.CardapioService;
 import br.com.service.FuncionarioService;
 import br.com.service.MesaService;
