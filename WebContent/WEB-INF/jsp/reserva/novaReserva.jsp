@@ -33,11 +33,11 @@
 					<form:select id="Opmesa" path="mesa.id" items="${mesaSelect}" />
 				<br />			
  					<label id="labelinicio"><em>Data Inicio:</em></label>
-					<form:input id="txtinicio" path="dataInicial"/>
-					<form:errors path="dataInicial"/>
+					<form:input id="txtinicio" path="dataInicial" placeholder="dd/mm/aaaa hh:mm"  maxlength="16" title="Digite no formato dd/mm/aaaa hh:mm" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4} [0-9]{2}:[0-9]{2}$"/>
+					<form:errors path="dataInicial" />
 				<br/>
 					<label id="labelfim"><em>Data Fim:</em></label>
-					<form:input id="txtfim" path="dataFinal"/>
+					<form:input id="txtfim" path="dataFinal" placeholder="dd/mm/aaaa hh:mm"  maxlength="16" title="Digite no formato dd/mm/aaaa hh:mm" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4} [0-9]{2}:[0-9]{2}$"/>
 					<form:errors path="dataFinal"/>
 				<br/>
 					<label id="labelrespon"><em>Responsavel:</em></label>

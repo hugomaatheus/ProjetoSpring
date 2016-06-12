@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,7 +27,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="logar", method=RequestMethod.POST)
-	public String logar(@ModelAttribute("usuario") Usuario usuario, HttpSession sessao, ModelMap map){
+	public String logar(@ModelAttribute("usuario") Usuario usuario, BindingResult result,HttpSession sessao, ModelMap map){
 		if(usuario.getLogin().equals("") || usuario.getSenha().equals("") ){
 			map.addAttribute("usuario", usuario);
 			return  "login/login";

@@ -22,22 +22,25 @@
 				<p>Bem vindo, ${usuarioBD.nome}</p>
 			</header>
 							<article class="tab_container" id="pesquisa"><!-- Centro da pagina -->
-									<label for="labelfiltrar"><em>Filtrar por:</em></label><br />
+							<form:form method="get" action="filtrar" modelAttribute="filtro">
+ 									<label for="labelfiltrar"><em>Filtrar por:</em></label><br />
 									<label for="labelinicio"><em>Data Inicio:</em></label>
-									<input id="txtinicial" type="text" maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$"/>
+									<form:input id="txtinicial" placeholder="dd/mm/aaaa hh:mm" path="dataInicial" maxlength="14" title="Digite no formato dd/mm/yy hh:mm"/>
 									
 									<label for="labelfim"><em>Data Fim:</em></label>
-									<input id="txtfinal" type="text" maxlength="10" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$"/>
+									<form:input id="txtfinal" placeholder="dd/mm/aaaa hh:mm" path="dataFinal" maxlength="14" title="Digite no formato dd/mm/yy hh:mm"/>
 									
 									<label for="labelmesa"><em>Mesa:</em></label>
-									<select id="OpCategoria" class = "categoria" name = "categoria" size=1>
-										<c:forEach var="mesa" items="${mesas}" >
-											<option value="${mesa.id}">Mesa - ${mesa.numero}</option>
-										</c:forEach>
-									</select>
+									<form:select id="Opmesa" path="mesa.id" >
+									<form:option value="">Selecione</form:option>
+									<c:forEach var="mesa" items="${mesas}" >
+										<form:option value="${mesa.id}">Mesa - ${mesa.numero}</form:option>
+									</c:forEach>
+									</form:select>
 									<label id="labelresponsavel"><em>Responsavel:</em></label>
-									<input id="txtresponsavel" type="text"/>
+									<form:input id="txtresponsavel" path="nome_Responsavel"/>
 									<input id="btnPesquisar" type="submit" value="Pesquisar" />
+							</form:form>
 							</article>
 							<article class="tabContainer" id="lista">
 								<table>
@@ -53,14 +56,14 @@
 									<table>
 										<c:forEach var="reserva" items="${reservas}" >
 											<tr>
-												<td class="tabela-coluna"><span><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${reserva.dataInicial.getTime()}" /></span></td>
-												<td class="tabela-coluna"><span><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${reserva.dataFinal.getTime()}" /></span></td>
+												<td class="tabela-coluna"><span>${reserva.dataInicial}</span></td>
+												<td class="tabela-coluna"><span>${reserva.dataFinal}</span></td>
 												<td class="tabela-coluna"><span>Mesa - ${reserva.mesa.numero}</span></td>
 												<td class="tabela-coluna"><span>${reserva.nome_Responsavel}</span></td>
 												<td class="tabela-coluna">
 													<span>
 													<a href="/cadastroClientesWebString/reserva/${reserva.id}/formUpdate"> [Editar]</a>
-													<a href="/cadastroClientesWebString/reserva/${reserva.id}/remove">[Inativar]</a>
+													<a href="/cadastroClientesWebString/reserva/${reserva.id}/remove">[Cancelar]</a>
 													</span>
 												</td>
 											</tr>

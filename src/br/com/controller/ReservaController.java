@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,14 +49,25 @@ public class ReservaController {
 		return "reserva/listarReserva";
 	}
 	
-//	@RequestMapping(value="filtrar", method=RequestMethod.GET)
-//	public String filtrar(@ModelAttribute("filtro") Cardapio filtro, ModelMap map){
-//		
-//		List<Cardapio> cardapios = funcionarioService.buscar(filtro);
-//		map.addAttribute("cardapios", cardapios);
-//		map.addAttribute("filtro", filtro);
-//		return "cardapio/listarCardapio";
-//	}
+	@RequestMapping(value="filtrar", method=RequestMethod.GET)
+	public String filtrar(@ModelAttribute("filtro") Reserva filtro, ModelMap map, HttpSession session){
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
+		System.out.println("------------------------------->" + filtro);
+		
+		if(filtro.getDataInicial().equals("") && filtro.getDataFinal().equals("") && filtro.getMesa().getId() == null && filtro.getNome_Responsavel().equals("")){
+			return "redirect:/reserva/listar";
+		}
+		
+		List<Reserva> reservas = funcionarioService.filtrarReservas(filtro);
+		map.addAttribute("reservas", reservas);
+		map.addAttribute("mesas", mesaService.listar());
+		map.addAttribute("filtro", filtro);
+		return "reserva/listarReserva";
+	}
 	
 	@RequestMapping(value="form", method=RequestMethod.GET)
 	public String createForm(ModelMap map, HttpSession session){
@@ -78,7 +88,7 @@ public class ReservaController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="save")
-	public String save(@ModelAttribute("reserva") @Valid Reserva reserva, BindingResult result, ModelMap map, HttpSession session) {
+	public String save(@ModelAttribute("reserva") Reserva reserva, BindingResult result, ModelMap map, HttpSession session) {
 		
 		if(session.getAttribute("usuario") == null) {
 			return "redirect:/";
@@ -86,11 +96,11 @@ public class ReservaController {
 		
 		Funcionario  funcionario = (Funcionario) session.getAttribute("usuario");
 		
-		if(result.hasErrors()){
-			map.addAttribute("reserva", reserva);
-			map.addAttribute("mesaSelect",  selectMesa());
-			return "cardapio/form";
-		}
+//		if(result.hasErrors()){
+//			map.addAttribute("reserva", reserva);
+//			map.addAttribute("mesaSelect",  selectMesa());
+//			return "cardapio/form";
+//		}
 		
 		funcionarioService.cadastrarReserva(reserva, funcionario);
 		
@@ -117,7 +127,7 @@ public class ReservaController {
 		
 		Reserva reserva = funcionarioService.buscarReserva(id);
 		map.addAttribute("reserva", reserva);
-		map.addAttribute("mesaSelect",  selectMesa());
+		map.addAttribute("mesaSelect", selectMesa());
 		return "/reserva/editarReserva";
 	}
 	
@@ -135,12 +145,12 @@ public class ReservaController {
 		return "redirect:/reserva/listar";
 	}
 	
-	public Map<Long, Integer> selectMesa(){
+	public Map<Long, String> selectMesa(){
 		List<Mesa> mesas  = mesaService.listar();
-		Map<Long, Integer> mapa = new TreeMap<Long, Integer>();
+		Map<Long, String> mapa = new TreeMap<>();
+		mapa.put(0L, "Selecione");
 		for (Mesa mesa : mesas) {
-			mapa.put(mesa.getId(), mesa.getNumero());
-			System.out.println(mapa);
+			mapa.put(mesa.getId(), "Mesa - " + mesa.getNumero());
 		}
 		return mapa;
 	}

@@ -60,8 +60,6 @@ public class FuncionarioService extends UsuarioService {
 	public void cadastrarReserva(Reserva reserva, Funcionario funcionario) {
 		
 		reserva.setFuncionario(funcionario);
-		reserva.getMesa().setStatus(Status.OCUPADA);
-		
 		reservaDao.save(reserva);
 
 	}
@@ -73,11 +71,13 @@ public class FuncionarioService extends UsuarioService {
 	
 	public List<Reserva> listarTodasReservas() {
 		
-		List<Reserva> reservas = new ArrayList<Reserva>();
-		
-		reservas = reservaDao.listar();
-		
-		return reservas; 
+		List<Reserva> listar = new ArrayList<>();
+		for (Reserva reserva : reservaDao.listar()) {
+			if(reserva.getStatus() != Status.CANCELADO)
+				listar.add(reserva);
+		}
+
+		return listar; 
 	}
 	
 	//OK
@@ -86,15 +86,14 @@ public class FuncionarioService extends UsuarioService {
 	}
 	
 	//OK
+	@SuppressWarnings("deprecation")
 	public void cancelarReserva(Long id) {
-		Calendar calendar = new GregorianCalendar();
 		Date date = new Date();
-		calendar.setTime(date);
 		
 		Reserva reserva = reservaDao.getById(id);
 
-		if(reserva.getStatus() == Status.LIVRE) {
-			reserva.setDataFinal(calendar);
+		if(reserva.getStatus() == Status.LIVRE || reserva.getStatus() == Status.OCUPADA) {
+			reserva.setDataFinal(date.toLocaleString());
 			reserva.setStatus(Status.CANCELADO);
 			reservaDao.update(reserva);
 		}
@@ -248,6 +247,16 @@ public List<Pedido> filtrarPedidos(Pedido filtro) {
 		funcionario.setStatus(Status.ATIVO);
 		funcionario.setTipo(Tipo.FUNCIONARIO);
 		funcionarioDao.save(funcionario);
+	}
+
+	public List<Reserva> filtrarReservas(Reserva filtro) {
+		List<Reserva> listar = new ArrayList<>();
+		for (Reserva reserva : reservaDao.filtrarReservas(filtro)) {
+			if(reserva.getStatus() != Status.CANCELADO)
+				listar.add(reserva);
+		}
+
+		return listar; 
 	}
 	
 }

@@ -9,38 +9,52 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Editar Cardapio</title>
+		<title>Editar Reserva</title>
 		<meta charset="utf-8" />
 		<link rel="stylesheet" type="text/css" href="../../estilos/estiloReserva.css">
 	</head>
 	<body>
+	
 		<header>
-			<input id="novo" type="button" onclick="location.href='novoCardapio.html'"; value="Cadatrar Cardapio" />
 			<p>Bem vindo, ${usuarioBD.nome}</p>
 			<c:url var="urlOut" value="/logout/"/> 				
 			<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 		</header>
-			<c:url var="url" value="/reserva/update" />
+		<c:url var="urlR" value="/reserva/update" />
 		<fieldset id="criar"><legend>Editar Reserva</legend>
 			<article class="tab_container">
-				<form:form method="post" action="${url}" modelAttribute="reserva">
-				<form:hidden path="id"/>	
-					<label id="labelinicio"><em>Data Inicio:</em></label>
-					<form:input id="txtinicio" type="text" maxlength="10" path="dataInicial" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$"/>
+				<form:form method="post" action="${urlR}" modelAttribute="reserva" >
+					<form:hidden path="id"/>
+					<form:hidden path="funcionario.id" items="${usuarioBD}" />
+						
+					<label id="labelmesa"><em>Mesa:</em></label>
+					<form:select id="Opmesa" path="mesa.id" items="${mesaSelect}" />
+				<br />			
+ 					<label id="labelinicio"><em>Data Inicio:</em></label>
+					<form:input id="txtinicio" path="dataInicial" placeholder="dd/mm/aaaa hh:mm"  maxlength="16" title="Digite no formato dd/mm/aaaa hh:mm" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4} [0-9]{2}:[0-9]{2}$"/>
+					<form:errors path="dataInicial" />
 				<br/>
 					<label id="labelfim"><em>Data Fim:</em></label>
-					<form:input id="txtfim" type="text" maxlength="10" path="dataFinal" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$"/>
+					<form:input id="txtfim" path="dataFinal" placeholder="dd/mm/aaaa hh:mm"  maxlength="16" title="Digite no formato dd/mm/aaaa hh:mm" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4} [0-9]{2}:[0-9]{2}$"/>
+					<form:errors path="dataFinal"/>
 				<br/>
 					<label id="labelrespon"><em>Responsavel:</em></label>
 					<form:input id="txtrespon" type="text" path="nome_Responsavel"/>
 				<br />
-					<label id="labelmesa"><em>Mesa:</em></label>
-					<form:select id="Opmesa" class="categoria" path="mesa.id" items="${mesaSelect}" />
+					<label class="label" id="N de Pessoas"><em>N Pessoas:</em></label>
+					<form:input class="set" id="txtpessoas" path="num_pessoa" />
 				<br />
-				<c:url var="urlBack" value="/reserva/listar"/>
+   					<label class="label" id="labelSituacao"><em>Situacao:</em></label>
+					<form:select id="Opstatus" class="set" path="status">
+						<form:option value="LIVRE">LIVRE</form:option>
+						<form:option value="OCUPADO">OCUPADO</form:option>
+					</form:select>
+					<br />
+					<c:url var="urlBack" value="/reserva/listar"/>
 					<input id="btnreservar" class="btn" type="submit" value="Reservar" />
 					<a class="btn" href="${urlBack}">Voltar</a>
 				</form:form>
+
 			</article>
 		</fieldset>
 	</body>

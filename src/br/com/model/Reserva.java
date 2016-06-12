@@ -1,7 +1,5 @@
 package br.com.model;
 
-import java.util.Calendar;
-
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -12,8 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -30,14 +26,14 @@ public class Reserva implements AbstractEntity {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long id;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+//	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="dd/MM/yyyy")
-	private Calendar dataInicial;
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern="dd/MM/yyyy")
-	private Calendar dataFinal;
-	
+	private String dataInicial;
+
+	//	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern="dd/MM/yyyy hh:mm")
+	private String dataFinal;
+
 	private int num_pessoa;
 	
 	private String nome_Responsavel;
@@ -58,6 +54,18 @@ public class Reserva implements AbstractEntity {
 	
 	public Reserva() {}
 	
+	public String getDataInicial() {
+		return dataInicial;
+	}
+	public String getDataFinal() {
+		return dataFinal;
+	}
+	public void setDataInicial(String dataInicial) {
+		this.dataInicial = dataInicial;
+	}
+	public void setDataFinal(String dataFinal) {
+		this.dataFinal = dataFinal;
+	}
 	public Status getStatus() {
 		return status;
 	}
@@ -69,18 +77,6 @@ public class Reserva implements AbstractEntity {
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-	public Calendar getDataInicial() {
-		return dataInicial;
-	}
-	public void setDataInicial(Calendar dataInicial) {
-		this.dataInicial = dataInicial;
-	}
-	public Calendar getDataFinal() {
-		return dataFinal;
-	}
-	public void setDataFinal(Calendar dataFinal) {
-		this.dataFinal = dataFinal;
 	}
 	public int getNum_pessoa() {
 		return num_pessoa;
@@ -103,18 +99,14 @@ public class Reserva implements AbstractEntity {
 	public Mesa getMesa() {
 		return mesa;
 	}
-
 	public void setMesa(Mesa mesa) {
 		this.mesa = mesa;
 	}
 	
-	
-	
 	@Override
 	public String toString() {
 		return "Reserva [id=" + id + ", dataInicial=" + dataInicial + ", dataFinal=" + dataFinal + ", num_pessoa="
-				+ num_pessoa + ", nome_Responsavel=" + nome_Responsavel + ", status=" + status + ", funcionario="
-				+ funcionario.getNome() + ", mesa=" + mesa.getNumero() + "]";
+				+ num_pessoa + ", nome_Responsavel=" + nome_Responsavel + ", status=" + status + ", mesa=" + mesa + "]";
 	}
 
 	public boolean hasValidId(){
