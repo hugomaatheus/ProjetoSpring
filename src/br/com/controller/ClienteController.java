@@ -24,11 +24,7 @@ public class ClienteController {
 	
 	
 	@RequestMapping(value="form", method=RequestMethod.GET)
-	public String createForm(ModelMap map, HttpSession session){
-		
-		if(session.getAttribute("usuario") == null) {
-			return "redirect:/";
-		}
+	public String createForm(ModelMap map){
 		
 		Cliente cliente = new Cliente();
 		map.addAttribute("cliente", cliente);
@@ -36,11 +32,7 @@ public class ClienteController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="save")
-	public String save(@ModelAttribute("cliente") @Valid Cliente cliente, BindingResult result, ModelMap map, HttpSession session) {
-		
-		if(session.getAttribute("usuario") == null) {
-			return "redirect:/";
-		}
+	public String save(@ModelAttribute("cliente") @Valid Cliente cliente, BindingResult result, ModelMap map) {	
 		
 		clienteService.cadastrarUsuario(cliente);
 		

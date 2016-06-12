@@ -70,7 +70,7 @@
 					</table>
 				</article>
 			</article>
-			<c:url var="urlBack" value="/gerente/indexGerente"/>
+			<c:url var="urlBack" value="/logar"/>
 			<a class="btn" href="${urlBack}">Voltar</a>
 			
 			<footer><!-- cabeçalho da pagina -->

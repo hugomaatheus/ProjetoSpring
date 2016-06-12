@@ -15,7 +15,7 @@
 	</head>
 	<body>
 			<header>
-			<c:url var="urlNewF"  value="/funcionario/novoFuncionario"/>
+			<c:url var="urlNewF"  value="/gerente/form"/>
 			<input id="novo" type="button" onclick="location.href='${urlNewF}'"; value="Cadatrar Funcionario" />
 				<c:url var="urlOut" value="/logout/"/>
 				<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
@@ -41,20 +41,25 @@
 				<article class="scrollContainer">
 					<table>
 						<tr>
-							<td class="tabela-coluna"><span>funcionario.nome</span></td>
-							<td class="tabela-coluna"><span>funcionario.cpf</span></td>
-							<td class="tabela-coluna"><span>funcionario.cargo</span></td>
-							<a href="">[inativar]</a>					
-							<td class="tabela-coluna">
+							<c:forEach var="funcionario" items="${funcionarios}">
+								<td class="tabela-coluna"><span>${funcionario.nome}</span></td>
+								<td class="tabela-coluna"><span>${funcionario.cpf}</span></td>
+								<td class="tabela-coluna"><span>${funcionario.cargo}</span></td>
+								<td class="tabela-coluna"><span>${funcionario.salario}</span></td>													
+								<td class="tabela-coluna">
 								<span>
 									<a href="Comando para excluir"> [excluir]</a>
 									<a href="Comando para inativar">[Inativar]</a>
+									<a href="<c:url value="/gerente/${funcionario.id}/formUpdate" />">[Editar]</a>
 								</span>
 							</td>
+							</c:forEach>
 						</tr>
 					</table>
 				</article>
 				</article>
+				<c:url var="urlBack" value="/gerente/indexGerente"/>
+				<a class="btn" href="${urlBack}">Voltar</a>
 			
 			<footer><!-- cabeçalho da pagina -->
 				

@@ -64,7 +64,7 @@
 		</article>
 		<article class="tabContainer" id="Funcionario">
 
-			<c:url var="urlF" value="/funcionario/listar" />
+			<c:url var="urlF" value="/gerente/listar" />
 			<input class="botao" type="button"
 				onclick="window.location.href=('${urlF}')"
 				value="Pagina Funcionario"></input>

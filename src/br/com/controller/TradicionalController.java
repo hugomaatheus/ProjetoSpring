@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.model.Cardapio;
 import br.com.model.Funcionario;
+import br.com.model.Gerente;
 import br.com.model.ItemPedido;
 import br.com.model.Mesa;
 import br.com.model.Pedido;
 import br.com.model.Tradicional;
+import br.com.model.Usuario;
 import br.com.service.CardapioService;
 import br.com.service.FuncionarioService;
 import br.com.service.MesaService;
@@ -46,14 +48,27 @@ public class TradicionalController {
 	@RequestMapping(value="listar", method=RequestMethod.GET)
 	public String list(ModelMap map, HttpSession session){
 		
-		if(session.getAttribute("usuario") == null) {
+		if(session.getAttribute("usuario") == null) {					
 			return "redirect:/";
 		}
 		
-		Funcionario funcionario = (Funcionario) session.getAttribute("usuario");
+//		Usuario usuario = (Usuario) session.getAttribute("usuario");
 		
-		List<Pedido> pedidos = funcionarioService.listarPedidos();
-		map.addAttribute("usuarioBD", funcionario);
+//		if(usuario.getTipo().name() == "FUNCIONARIO") {
+			Funcionario funcionario = (Funcionario) session.getAttribute("usuario");
+			map.addAttribute("usuarioBD", funcionario);
+//		}
+			
+			
+		
+//		if(usuario.getTipo().name() == "GERENTE") {
+//			Gerente gerente = (Gerente) session.getAttribute("usuario");
+//			System.out.println("entrou em gerente");
+//			map.addAttribute("usuarioBD", gerente);
+//		}
+//		
+		
+		List<Pedido> pedidos = funcionarioService.listarPedidos();		
 		map.addAttribute("pedidos", pedidos);
 		map.addAttribute("filtro", new Pedido());
 		return "tradicional/listarTradicional";

@@ -42,7 +42,7 @@ public class Usuario implements AbstractEntity {
 		this.id = id;
 	}
 	
-public Usuario() {
+	public Usuario() {
 		
 	}
 	

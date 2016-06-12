@@ -45,7 +45,7 @@ public class LoginController {
 			sessao.setAttribute("usuario", usuarioBD);
 			map.addAttribute("usuarioBD", usuarioBD);
 			return "cliente/indexCliente";
-		} else if (usuarioBD.getTipo().name() == ("FUNCIONARIO") || usuarioBD.getTipo().name() == "FUNCIONARIO") {
+		} else if (usuarioBD.getTipo().name() == ("FUNCIONARIO")) {
 			sessao.setAttribute("usuario", usuarioBD);
 			map.addAttribute("usuarioBD", usuarioBD);
 			return "funcionario/indexFuncionario";

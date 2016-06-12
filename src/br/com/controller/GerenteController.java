@@ -1,5 +1,7 @@
 package br.com.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -14,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.model.Funcionario;
+import br.com.service.CardapioService;
 import br.com.service.FuncionarioService;
+import br.com.service.GerenteService;
 
 @Controller
 @RequestMapping(value="gerente")
@@ -22,6 +26,12 @@ public class GerenteController {
 	
 	@Autowired
 	private FuncionarioService funcionarioService;
+	
+	@Autowired
+	private CardapioService cardapioService;
+	
+	@Autowired
+	private GerenteService gerenteService;
 	
 	@RequestMapping(value="form", method=RequestMethod.GET)
 	public String createForm(Model map, HttpSession session) {
@@ -33,7 +43,7 @@ public class GerenteController {
 			Funcionario funcionario = new Funcionario();
 			map.addAttribute("funcionario", funcionario);
 			return "funcionario/novoFuncionario";
-		}
+	}
 	
 	@RequestMapping(value="save", method=RequestMethod.POST)
 	public String save(@ModelAttribute("funcionario") @Valid Funcionario funcionario, BindingResult result, ModelMap map, HttpSession session) {
@@ -41,10 +51,12 @@ public class GerenteController {
 		if(session.getAttribute("usuario") == null) {
 			return "redirect:/";
 		}
+
 		
+		System.out.println("SALARIO" + funcionario.getSalario());
 		funcionarioService.cadastrarUsuario(funcionario);
 		
-		return "redirect:/login";
+		return "redirect:/gerente/listar";
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/formUpdate")
@@ -72,4 +84,22 @@ public class GerenteController {
 		
 		return "redirect:/";
 	}
+	
+	@RequestMapping(value="listar", method=RequestMethod.GET)
+	public String list(ModelMap map, HttpSession session){
+		
+		if(session.getAttribute("usuario") == null) {					
+			return "redirect:/";
+		}
+		
+		List<Funcionario> funcionarios = gerenteService.listarTodosFuncionarios();
+		
+		map.addAttribute("funcionarios", funcionarios);
+		
+		return "funcionario/listarFuncionario";
+	}
+	
+
+	
+	
 }
