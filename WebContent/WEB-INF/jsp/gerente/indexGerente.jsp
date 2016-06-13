@@ -12,13 +12,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>titulo da pagina</title>
+<title>Gerente</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="estilos/estiloGerente.css">
 </head>
 <body>
 
 	<header>
+		<p>Bem vindo, ${usuarioBD.nome}</p>
 		<c:url var="urlOut" value="/logout/" />
 		<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair" />
 	</header>

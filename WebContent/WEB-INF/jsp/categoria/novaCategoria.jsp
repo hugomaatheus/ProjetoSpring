@@ -34,7 +34,6 @@
 					<br />
 					<label for="Opstatus"><em>Status:</em></label>
 					<form:select id="Opstatus" class="categoria" path="status">
-						<form:option value=""></form:option>
 						<form:option value="ATIVO">ATIVO</form:option>
 						<form:option value="INATIVO">INATIVO</form:option>
 					</form:select>

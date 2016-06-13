@@ -25,10 +25,10 @@
 							<form:form method="get" action="filtrar" modelAttribute="filtro">
  									<label for="labelfiltrar"><em>Filtrar por:</em></label><br />
 									<label for="labelinicio"><em>Data Inicio:</em></label>
-									<form:input id="txtinicial" placeholder="dd/mm/aaaa hh:mm" path="dataInicial" maxlength="14" title="Digite no formato dd/mm/yy hh:mm"/>
+									<form:input id="txtinicial" placeholder="dd/mm/aaaa hh:mm" path="dataInicial" maxlength="14" title="Digite no formato dd/mm/yy hh:mm ou apenas uma parte"/>
 									
 									<label for="labelfim"><em>Data Fim:</em></label>
-									<form:input id="txtfinal" placeholder="dd/mm/aaaa hh:mm" path="dataFinal" maxlength="14" title="Digite no formato dd/mm/yy hh:mm"/>
+									<form:input id="txtfinal" placeholder="dd/mm/aaaa hh:mm" path="dataFinal" maxlength="14" title="Digite no formato dd/mm/yy hh:mm ou apenas uma parte"/>
 									
 									<label for="labelmesa"><em>Mesa:</em></label>
 									<form:select id="Opmesa" path="mesa.id" >

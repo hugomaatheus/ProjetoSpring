@@ -29,7 +29,7 @@
 					<form:form method="post" action="${url}" modelAttribute="mesa" >
 				<br />
 					<label id="labeldescricao"><em>Numero:</em></label>
-					<form:input id="txtdescricao" path="numero" type="text" />
+					<form:input id="txtdescricao" path="numero" title="Digite apenas numeros" placeholder="Somente numeros" pattern="[0-9]+$" />
 				<br />
 					<label id="labelcapacidade"><em>Capacidade:</em></label>
 					<form:input id="txtcapacidade" path="capacidade" type="text" pattern="[0-9]+$"/>

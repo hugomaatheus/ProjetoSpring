@@ -53,6 +53,14 @@ public class CardapioController {
 			return "redirect:/";
 		}
 		
+		if(filtro.getNome().equals("") && filtro.getCategoria().getId() == null){
+			return "redirect:/cardapio/listar";
+		}
+		
+//		Categoria categoria = categoriaService.buscarPorId(filtro.getCategoria().getId()); 
+		
+//		filtro.setCategoria(categoria);
+		
 		map.addAttribute("categorias", categoriaService.listar());
 		List<Cardapio> cardapios = cardapioService.buscar(filtro);
 		map.addAttribute("cardapios", cardapios);

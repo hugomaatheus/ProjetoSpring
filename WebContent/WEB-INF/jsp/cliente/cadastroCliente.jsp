@@ -33,19 +33,19 @@
 											<label id="labellogin"><em>Login:</em></label>
 										</td>
 										<td align="left">
-											<form:input id="txtlogin" type="text" path="login" required=""/>
+											<form:input id="txtlogin" type="text" path="login" />
 										</td>
 										<td align="right">
 											<label id="labelsenha"><em>Senha:</em></label>
 										</td>
 										<td align="left">
-											<form:input id="txtsenha" type="password" path="senha" required="" />
+											<form:input id="txtsenha" type="password" path="senha"  />
 										</td>
 										<td align="right">
 											<label id="labelNome"><em>Nome:</em></label>
 										</td>
 										<td align="left">
-											<form:input id="txtNome" type="text" path="nome" required="" />
+											<form:input id="txtNome" type="text" path="nome"/>
 										</td>
 										<td align="right">
 											<label id="labeltelefone"><em>Telefone:</em></label>

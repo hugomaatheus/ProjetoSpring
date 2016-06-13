@@ -27,7 +27,7 @@
 							<article class="tab_container" id="pesquisa">
 							<form:form action="filtrar" method="get" modelAttribute="filtro">
 								<label id="labelnumero"><em>Numero do Pedido:</em></label>
-								<form:input id="caixa_Numero" path="id" title="Digite apenas numeros" type="text" pattern="[0-9]+$"/>
+								<form:input id="caixa_Numero" path="id" title="Digite apenas numeros" placeholder="Somente numeros" type="text" pattern="[0-9]+$"/>
 								
  								<label id="labeltipo"><em>Tipo:</em></label>
 								<form:select path="tipo">

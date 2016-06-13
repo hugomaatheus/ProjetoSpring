@@ -24,7 +24,7 @@
 					<label for="txtNumero"><em>Filtrar por:</em></label>
 					<br />
 					<label for="filtroNome"><em>numero:</em></label>
-					<form:input id="filtroNome" type="text" path="numero"/>
+					<form:input id="filtroNome" type="text" path="numero" title="Digite apenas numeros" placeholder="Somente numeros" pattern="[0-9]+$"/>
 					
 					<label for="txtreserva"><em>De reserva:</em></label>
 					<form:select id="OpCategoria" class="categoria" path="status">

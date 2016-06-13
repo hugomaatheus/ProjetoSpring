@@ -54,12 +54,12 @@ public class Categoria implements AbstractEntity {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-
+	
 	@Override
 	public String toString() {
-		return String.format("Nome: %s\n", getNome());
+		return "Categoria [id=" + id + ", nome=" + nome + ", status=" + status + "]";
 	}
-	
+
 	public boolean hasValidId(){
 		return getId() != null && getId() != 0;
 	}

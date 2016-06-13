@@ -24,14 +24,15 @@
 			
 				<article id="pesquisa">
 				<form:form action="filtrar" method="get" modelAttribute="filtro">
-						<label for="txtNumero"><em>Filtrar por:</em></label>
-
-					<label for="txtNome"><em>nome:</em></label>
-					<form:input id="filtro" type="text" path="nome"/>
+						<label for="Nome"><em>Filtrar por:</em></label>
+					<br />
+					<label for="Nome"><em>nome:</em></label>
+					<form:input id="Nome" type="text" path="nome"/>
+					
 					<label for="txtCategoria"><em>Categoria:</em></label>
 					<form:select id="OpCategoria" path="categoria.id" class="categoria">
-						<c:forEach var="categoria" items="${categorias}" >
 							<form:option value="">Selecione</form:option>
+						<c:forEach var="categoria" items="${categorias}" >
 							<form:option value="${categoria.id}">${categoria.nome}</form:option>
 						</c:forEach>
 					</form:select>

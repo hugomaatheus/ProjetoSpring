@@ -122,8 +122,8 @@ legend{
 	font-size: 25px;
 }
 
-#Opcateg {
-	margin: 30px 90px 0px 50px;
+#OpCategoria {
+	margin: 30px 30px 0px 50px;
 }
 	
 #txtNome{
@@ -134,7 +134,7 @@ legend{
 	margin: 30px 0px 0px 75px;
 }
 	
-#Opsituacao{
+#Opstatus{
 	margin: 30px 100px 0px 50px;
 }
 

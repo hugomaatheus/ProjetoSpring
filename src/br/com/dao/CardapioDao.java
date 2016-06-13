@@ -19,15 +19,26 @@ public class CardapioDao extends AbstractDao<Cardapio> {
 	
 	@SuppressWarnings("unchecked")
 	public List<Cardapio> filtrar(Cardapio filtro){
-		String str = "select c from Cardapio c where upper(nome) like upper(:nome)";
-		if(filtro.getNome() == null){
-			filtro.setNome("");
+		String str="";
+		
+		if(!filtro.getNome().equals("")){
+			str = "select c from Cardapio c where upper(nome) like upper(:nome)";
+		}else if(filtro.getNome().equals("") && filtro.getCategoria().getId() != null){
+			str = "select c from Cardapio c where categoria_id = :categ";
 		}
 	
-		Query query = eM.createQuery(str);   
+		if(!filtro.getNome().equals("") && filtro.getCategoria().getId() != null){
+			str += " and categoria_id = :categ";
+		}
 		
-		query.setParameter("nome", "%"+filtro.getNome()+"%");
+		Query query = eM.createQuery(str);
 		
+		if(!filtro.getNome().equals(""))
+		query.setParameter("nome", "%" + filtro.getNome() + "%");
+		
+		if(filtro.getCategoria().getId() != null)
+			query.setParameter("categ", filtro.getCategoria().getId());
+			
 		return query.getResultList();
 	}
 
