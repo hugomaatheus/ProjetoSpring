@@ -26,13 +26,17 @@ public class ClienteController {
 	@RequestMapping(value="form", method=RequestMethod.GET)
 	public String createForm(ModelMap map){
 		
-		Cliente cliente = new Cliente();
+	 	Cliente cliente = new Cliente();
 		map.addAttribute("cliente", cliente);
 		return "cliente/cadastroCliente";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="save")
 	public String save(@ModelAttribute("cliente") @Valid Cliente cliente, BindingResult result, ModelMap map) {	
+		
+		if(result.hasErrors()) {
+			return "/cliente/cadastroCliente";
+		}
 		
 		clienteService.cadastrarUsuario(cliente);
 		

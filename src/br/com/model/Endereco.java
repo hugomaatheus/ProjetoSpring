@@ -2,20 +2,27 @@ package br.com.model;
 
 import javax.persistence.Embeddable;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Embeddable
 public class Endereco {
 	
-	
+	@NotEmpty(message="O campo deve ser preenchido")
 	private String rua;
 	
+	@NotEmpty(message="O campo deve ser preenchido")
 	private String bairro;
 	
+	@NotEmpty(message="O campo deve ser preenchido")
 	private String numero;
 	
+	@NotEmpty(message="O campo deve ser preenchido")
 	private String complemento;
 	
+	@NotEmpty(message="O campo deve ser preenchido")
 	private String telefone;
 	
+	@NotEmpty(message="O campo deve ser preenchido")
 	private String cep;
 	
 	public Endereco(String rua, String bairro, String numero, String complemento, String telefone, String cep) {

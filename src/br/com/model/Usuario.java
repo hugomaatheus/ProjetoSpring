@@ -29,7 +29,9 @@ public class Usuario implements AbstractEntity {
 	private String login;
 	@NotEmpty(message="O campo deve ser preenchido")
 	private String senha;
+	@NotEmpty(message="O campo deve ser preenchido")
 	private String email;
+	@NotEmpty(message="O campo deve ser preenchido")
 	private String nome;
 
 	
