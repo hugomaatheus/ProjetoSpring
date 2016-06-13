@@ -39,7 +39,7 @@
 						<form:input path="nome" class="set" id="txtNome" type="text"/>
 					<br />
 						<label class="label" id="labelpreco"><em>Preco:</em></label>
-						<form:input class="set" id="txtpreco" path="preco" />
+						<form:input class="set" id="txtpreco" path="preco" title="minimo n.nn ou maximo nnn.nn" pattern="[0-9]{1,3}.[0-9]{2}$" />
 					<br />
   						<label class="label" id="labelSituacao"><em>Situacao:</em></label>
 						<form:select id="Opstatus" class="set" path="status">
