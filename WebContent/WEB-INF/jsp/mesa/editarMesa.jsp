@@ -16,6 +16,8 @@
 	<body>
 
 		<header>
+			<c:url var="urlList" value="/mesa/listar"/>
+			<input id="btnVoltar" class="novo" type="button" onclick="window.location.href='${urlList}'" value="Voltar"/>
 			<c:url var="urlOut" value="/logout/"/> 				
 			<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 		</header>
@@ -41,7 +43,6 @@
 				<br />
 				<c:url var="urlBack" value="/mesa/listar"/>
 					<input id="btnAdicionar" class="btn" type="submit" value="Adicionar" />
-					<a class="btn" href="${urlBack}" >Voltar</a>
 				</form:form>
 			</fieldset>
 		</article>

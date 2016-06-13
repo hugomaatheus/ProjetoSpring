@@ -12,7 +12,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 public class Tradicional extends Pedido {
 	
 	@ManyToOne
-	private Funcionario vendedor;
+	private Usuario vendedor;
 	
 	@ManyToOne
 	private Mesa mesa;
@@ -24,15 +24,15 @@ public class Tradicional extends Pedido {
 	
 	public Tradicional() {}
 	
-	public Tradicional(Funcionario funcionario) {
-		this.vendedor = funcionario;
+	public Tradicional(Usuario usuario) {
+		this.vendedor = usuario;
 	}
 
-	public Funcionario getVendedor() {
+	public Usuario getVendedor() {
 		return vendedor;
 	}
 
-	public void setVendedor(Funcionario vendedor) {
+	public void setVendedor(Usuario vendedor) {
 		this.vendedor = vendedor;
 	}
 

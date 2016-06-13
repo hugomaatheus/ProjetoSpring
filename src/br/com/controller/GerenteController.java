@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.model.Funcionario;
-import br.com.service.CardapioService;
 import br.com.service.FuncionarioService;
 import br.com.service.GerenteService;
 
@@ -27,11 +26,42 @@ public class GerenteController {
 	@Autowired
 	private FuncionarioService funcionarioService;
 	
-	@Autowired
-	private CardapioService cardapioService;
+//	@Autowired
+//	private CardapioService cardapioService;
 	
 	@Autowired
 	private GerenteService gerenteService;
+	
+	@RequestMapping(value="listar", method=RequestMethod.GET)
+	public String list(ModelMap map, HttpSession session){
+		
+		if(session.getAttribute("usuario") == null) {					
+			return "redirect:/";
+		}
+		
+		List<Funcionario> funcionarios = gerenteService.listarTodosFuncionarios();
+		
+		map.addAttribute("funcionarios", funcionarios);
+		map.addAttribute("filtro", new Funcionario());
+		return "funcionario/listarFuncionario";
+	}
+	
+	@RequestMapping(value="filtrar", method=RequestMethod.GET)
+	public String filtrar(@ModelAttribute("filtro") Funcionario filtro, ModelMap map, HttpSession session){
+		
+		if(session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
+		
+		if(filtro.getNome().equals("")){
+			return "redirect:/gerente/listar";
+		}
+		
+		List<Funcionario> funcionarios = gerenteService.filtrar(filtro);
+		map.addAttribute("funcionarios", funcionarios);
+		map.addAttribute("filtro", filtro);
+		return "funcionario/listarFuncionario";
+	}
 	
 	@RequestMapping(value="form", method=RequestMethod.GET)
 	public String createForm(Model map, HttpSession session) {
@@ -52,8 +82,6 @@ public class GerenteController {
 			return "redirect:/";
 		}
 
-		
-		System.out.println("SALARIO" + funcionario.getSalario());
 		funcionarioService.cadastrarUsuario(funcionario);
 		
 		return "redirect:/gerente/listar";
@@ -85,21 +113,16 @@ public class GerenteController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value="listar", method=RequestMethod.GET)
-	public String list(ModelMap map, HttpSession session){
+	@RequestMapping(method=RequestMethod.GET, value="{id}/remove")
+	public String remove(@PathVariable Long id, HttpSession session){
 		
-		if(session.getAttribute("usuario") == null) {					
+		if(session.getAttribute("usuario") == null) {
 			return "redirect:/";
 		}
 		
-		List<Funcionario> funcionarios = gerenteService.listarTodosFuncionarios();
-		
-		map.addAttribute("funcionarios", funcionarios);
-		
-		return "funcionario/listarFuncionario";
+		gerenteService.cancelarFuncionario(id);
+		return "redirect:/gerente/listar";
 	}
-	
-
 	
 	
 }

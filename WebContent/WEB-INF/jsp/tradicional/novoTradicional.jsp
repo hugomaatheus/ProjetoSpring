@@ -18,7 +18,8 @@
 
 	<body>
 		<header>
-			<p>Bem vindo, ${usuarioBD.nome}</p>
+			<c:url var="urlList" value="/tradicional/listar"/>
+			<input id="btnVoltar" class="novo" type="button" onclick="window.location.href='${urlList}'" value="Voltar"/>
 			<c:url var="urlOut" value="/logout/"/> 				
 			<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 		</header>	
@@ -28,10 +29,6 @@
 			<c:url var="url" value="/tradicional/carrinho" />
 			
 			<form:form method="post" action="${url}" modelAttribute="itemPedido" >
-				<%-- <form:input type="hidden" path="id" items="${usuarioBD}" /> --%>
-				
-				<label id="labelmesa"><em>Mesa:</em></label>
-				<form:select id="Opmesa" class="set" path="tradicional.mesa.id" items="${mesaSelect}"/>
 				
 				<label id="labelStatus"><em>Item:</em></label>
 				<form:select id="OpCategoria" class="set" path="cardapio.id" items="${cardapioSelect}"/>
@@ -69,14 +66,16 @@
 					</table>
 				</article>
 			</article>
-			<table id="TotalDoPedido">
-				<td align="left">Total - ${param.total}</td>
-			</table>
 			<c:url var="urlS" value="/tradicional/save" />
-			<c:url var="urlBack" value="/tradicional/listar"/>
-			<form:form method="post" action="${urlS}" >
+			<form:form method="post" action="${urlS}" modelAttribute="mesa" >
+			<table id="TotalDoPedido">
+				<tr>
+					<td align="left">Total - ${param.total}</td>
+					<td align="right"><label id="labelmesa"><em>Mesa:</em></label>
+						<form:select id="Opmesa" class="set" path="id" items="${mesaSelect}"/></td>
+				</tr>			
+			</table>
 				<input id="btnConfirmar" class="btn" type="submit" value="Salvar" />
-				<a class="btn" href="${urlBack}">Voltar</a>
 			</form:form>
 		</fieldset>
 </body>

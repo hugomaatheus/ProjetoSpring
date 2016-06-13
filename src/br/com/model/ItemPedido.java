@@ -8,7 +8,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name="itempedido")
@@ -20,9 +19,6 @@ public class ItemPedido implements AbstractEntity {
 	private Long id;
 	
 	private Integer quantidade;
-	
-	@Transient
-	private Tradicional tradicional;
 	
 	@ManyToOne
 	@JoinColumn(name="fk_pedido")
@@ -70,14 +66,6 @@ public class ItemPedido implements AbstractEntity {
 		return pedido;
 	}
 	
-	public Tradicional getTradicional() {
-		return tradicional;
-	}
-
-	public void setTradicional(Tradicional tradicional) {
-		this.tradicional = tradicional;
-	}
-
 	@Override
 	public String toString() {
 		return "ItemPedido [id=" + id + ", quantidade=" + quantidade + ", pedido=" + pedido + ", cardapio=" + cardapio + "]";

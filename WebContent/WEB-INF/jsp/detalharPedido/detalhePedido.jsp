@@ -16,6 +16,8 @@
 	<body>
 		<form id="form">
 			<header>
+				<c:url var="urlList" value="/tradicional/listar"/>
+				<input id="btnVoltar" class="novo" type="button" onclick="window.location.href='${urlList}'" value="Voltar"/>
 				<c:url var="urlOut" value="/logout/"/>
 				<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 			</header>
@@ -65,8 +67,6 @@
 						<input id="btnAtender" class="btn" type="button" onclick="location.href='/cadastroClientesWebString/tradicional/${pedido.id}/atender'" value="atender" />
 
 						<input id="btnCancelar" class="btn" type="button" onclick="location.href='/cadastroClientesWebString/tradicional/${pedido.id}/cancelar'" value="cancelar" />
-
-						<input id="btnVoltar" class="btn" type="button" onclick="javascript:history.back(); self.location.reload();" value="Voltar" />
 
 				</article>
 			</fieldset>

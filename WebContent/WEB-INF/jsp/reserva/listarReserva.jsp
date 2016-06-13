@@ -16,10 +16,10 @@
 	<body>
 			<c:url var="url" value="form"/>
 			<header><!-- Cabeça da pagina -->
+				<p>Bem vindo, ${usuarioBD.nome}</p>
 				<input id="cadastra" class="novo" type="button" onclick="location.href='${url}'"; value="Cadatrar Reserva" />
 				<c:url var="urlOut" value="/logout/"/> 				
 				<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
-				<p>Bem vindo, ${usuarioBD.nome}</p>
 			</header>
 							<article class="tab_container" id="pesquisa"><!-- Centro da pagina -->
 							<form:form method="get" action="filtrar" modelAttribute="filtro">
@@ -71,8 +71,6 @@
 									</table>					
 								</article>
 							</article>
-							<c:url var="urlBack" value="/funcionario/indexFuncionario"/>
-							<a class="btn" href="${urlBack}">Voltar</a>
 			
 			<footer><!-- cabeçalho da pagina -->
 				

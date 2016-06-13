@@ -241,12 +241,13 @@ public List<Mesa> consultarTodosMesas() {
 	}
 
 	public List<Funcionario> listarTodosFuncionarios() {
+		List<Funcionario> lista = new ArrayList<Funcionario>();
+		for (Funcionario funcionario : funcionarioDao.listar()) {
+			if(funcionario.getStatus() != Status.INATIVO)
+				lista.add(funcionario);
+		}
 		
-
-		List<Funcionario> funcionarios = null;
-		funcionarios = (List<Funcionario>) funcionarioDao.listar();
-		
-		return funcionarios; 
+		return lista;
 	}
 	
 	public Mesa buscar(int numero) {
@@ -265,6 +266,23 @@ public List<Mesa> consultarTodosMesas() {
 		itemPedido = itemPedidoDao.getById(id);
 		
 		return itemPedido;
+	}
+
+	public List<Funcionario> filtrar(Funcionario filtro) {
+		List<Funcionario> listar = new ArrayList<Funcionario>();
+		for (Funcionario funcionario : funcionarioDao.filtrar(filtro)) {
+			if(funcionario.getStatus() != Status.INATIVO)
+				listar.add(funcionario);
+		}
+
+		return listar; 
+	}
+
+	public void cancelarFuncionario(Long id) {
+		Funcionario funcionario = funcionarioDao.getById(id);
+		if(funcionario.getStatus() == Status.ATIVO)
+			funcionario.setStatus(Status.INATIVO);
+		funcionarioDao.update(funcionario);
 	}
 
 }

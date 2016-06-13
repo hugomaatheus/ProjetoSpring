@@ -135,6 +135,21 @@ legend{
 	color: black;
 }
 
+/*
+#labelmesa {
+	position:absolute;
+	border-collapse:collapse;
+	left: 55%;
+	top: 69%;
+} 
+#Opmesa {
+	position:absolute;
+	border-collapse:collapse;
+	left: 60%;
+	top: 69%;
+}*/
+
+
 .btn{
 	font-size: 16px;
 	width: 120px;

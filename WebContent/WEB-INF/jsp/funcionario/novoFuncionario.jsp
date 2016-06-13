@@ -12,12 +12,14 @@
 	<head>
 		<title>Cadastro Funcionario</title>
 		<meta charset="utf-8" />
-		<link rel="stylesheet" type="text/css" href="../../estilos/estiloFuncionario.css">
+		<link rel="stylesheet" type="text/css" href="../estilos/estiloFuncionario.css">
 	</head>
 
 	<body>
 
 		<header>
+			<c:url var="urlList" value="/gerente/listar"/>
+			<input id="btnVoltar" class="novo" type="button" onclick="window.location.href='${urlList}'" value="Voltar"/>
 			<c:url var="urlOut" value="/logout/"/>
 			<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 		</header>

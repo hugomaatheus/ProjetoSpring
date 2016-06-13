@@ -11,20 +11,22 @@
 	<head>
 		<title>Lista Funcionarios</title>
 		<meta charset="utf-8" />
-		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="../estilos/estiloFuncionario.css">
 	</head>
 	<body>
 			<header>
 			<c:url var="urlNewF"  value="/gerente/form"/>
-			<input id="novo" type="button" onclick="location.href='${urlNewF}'"; value="Cadatrar Funcionario" />
+			<input id="cadastrar" class="novo" type="button" onclick="location.href='${urlNewF}'"; value="Cadatrar Funcionario" />
 				<c:url var="urlOut" value="/logout/"/>
 				<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 			</header>
 			
 				<article class="tab_container" id="pesquisa">
+				<form:form method="get" action="filtrar" modelAttribute="filtro">
 					<label for="txtNome"><em>Nome:</em></label>
-					<input id="filtro" type="text" />
+					<form:input path="nome" />
 					<input id="btnPesquisar" type="submit" value="Pesquisar" />
+				</form:form>
 				</article>
 				<article class="tabContainer" id="lista">
 					<table>
@@ -48,9 +50,8 @@
 								<td class="tabela-coluna"><span>${funcionario.salario}</span></td>													
 								<td class="tabela-coluna">
 								<span>
-									<a href="Comando para excluir"> [excluir]</a>
-									<a href="Comando para inativar">[Inativar]</a>
-									<a href="<c:url value="/gerente/${funcionario.id}/formUpdate" />">[Editar]</a>
+									<a href='<c:url value="/gerente/${funcionario.id}/remove"/>'>[Inativar]</a>
+									<a href='<c:url value="/gerente/${funcionario.id}/formUpdate" />'>[Editar]</a>
 								</span>
 							</td>
 							</c:forEach>
@@ -58,9 +59,6 @@
 					</table>
 				</article>
 				</article>
-				<c:url var="urlBack" value="/gerente/indexGerente"/>
-				<a class="btn" href="${urlBack}">Voltar</a>
-			
 			<footer><!-- cabeçalho da pagina -->
 				
 			</footer>
