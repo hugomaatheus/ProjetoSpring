@@ -11,6 +11,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.SequenceGenerator;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import br.com.util.Status;
 import br.com.util.Tipo;
 
@@ -23,7 +25,9 @@ public class Usuario implements AbstractEntity {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long id; 
 	
+	@NotEmpty(message="O campo deve ser preenchido")
 	private String login;
+	@NotEmpty(message="O campo deve ser preenchido")
 	private String senha;
 	private String email;
 	private String nome;

@@ -27,9 +27,6 @@ public class GerenteService extends UsuarioService {
 	@Autowired
 	private CardapioDao cardapioDao;
 	
-//	@Autowired
-//	private UsuarioDao gerenteDao;
-	
 	@Autowired
 	private CategoriaDao categoriaDao;
 	

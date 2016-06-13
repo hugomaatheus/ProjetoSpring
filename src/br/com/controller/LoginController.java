@@ -1,6 +1,7 @@
 package br.com.controller;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,16 +29,12 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="logar", method=RequestMethod.POST)
-	public String logar(@ModelAttribute("usuario") Usuario usuario, BindingResult result,HttpSession sessao, ModelMap map){
-		if(usuario.getLogin().equals("") || usuario.getSenha().equals("") ){
+	public String logar(@ModelAttribute("usuario") @Valid Usuario usuario, BindingResult result,HttpSession sessao, ModelMap map){
+		if(result.hasErrors()){			
 			map.addAttribute("usuario", usuario);
 			return  "login/login";
 		}
 		
-		if(usuario.getLogin().equals("") || usuario.getSenha().equals("") ){
-			map.addAttribute("usuario", usuario);
-			return  "login/login";
-		}
 		
 		Usuario usuarioBD = usuarioService.logar(usuario.getLogin(), usuario.getSenha());
 		

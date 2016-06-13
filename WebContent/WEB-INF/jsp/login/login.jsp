@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <!-- para estruturas de controle e repetição e setar variáveis -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt" %> <!-- para formatações -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  <!-- para funções -->
@@ -27,9 +28,11 @@
                     	<form:form action="${url}" method="post" modelAttribute="usuario"> 
                             <label for="txtlogin" id="labellogin"><em>Login:</em></label>
                             <form:input id="txtlogin" type="text" path="login"/>
+                             <form:errors path="login" cssStyle="color:red" />                                                         
                         <br />
                             <label for="txtsenha" id="labelsenha"><em>Senha:</em></label>
-                       		<form:input id="txtsenha" type="password" path="senha"/>                        
+                       		<form:input id="txtsenha" type="password" path="senha"/>
+                        	<form:errors path="senha" cssStyle="color:red" />                         
                        	<br />
                             <input id="logar" class="btn" type="submit" value="Logar"></input>
                          <c:url var="url2" value="/cliente/form" />
