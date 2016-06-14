@@ -20,7 +20,15 @@
    
             <header>
                  <c:url var="url" value="/logar" />
+                 <c:url var="urlAtivar" value="/cliente/ativarForm" />
             </header>
+            
+            <c:if test="${message != null}">
+			
+			<div id="alert">
+		    	<a href="${urlAtivar}" class="alert">${message}</a>	    	
+			</div>	
+            </c:if>
             
             <section>
                 <article>

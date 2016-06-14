@@ -68,6 +68,12 @@ public class ClienteService {
 		
 	}
 	
+	public void ativarUsuario(Cliente cliente) {
+		cliente.setStatus(Status.ATIVO);
+		clienteDao.update(cliente);
+	}
+
+	
 	//OK
 	public void atualizarUsuario(Cliente cliente) {
 		
@@ -144,6 +150,13 @@ public void cadastrarPedidoDelivery(Usuario cliente, List<ItemPedido> itens) {
 		return itemPedidoDao.getById(id);
 	}
 
+	public Cliente buscarPorEmail(String email) {
+
+		return clienteDao.buscarPorEmail(email);
+		
+	}
+
+	
 
 	///////////////////////////////////////////
 }

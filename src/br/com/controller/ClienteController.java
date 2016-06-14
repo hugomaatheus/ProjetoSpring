@@ -87,5 +87,33 @@ public class ClienteController {
 		
 		return "redirect:/";
 	}
+	
+	@RequestMapping(value="ativarForm", method=RequestMethod.GET)
+	public String activateForm(ModelMap map) {
+		
+		Cliente cliente = new Cliente();
+		
+		map.addAttribute("cliente", cliente);
+		
+		return "cliente/ativarForm";
+	}
+	
+	@RequestMapping(method=RequestMethod.POST, value="ativar")
+	public String activate(@ModelAttribute("cliente") Cliente cliente, ModelMap map) {
+		
+		System.out.println(cliente.getEmail());
+		Cliente c = clienteService.buscarPorEmail(cliente.getEmail());
+		
+		if(c == null) {
+			return "redirect:/";
+		}	
+		
+		
+		if(c.hasValidId()) {
+			clienteService.ativarUsuario(c);
+		}
+		
+		return "redirect:/";
+	}
 
 }

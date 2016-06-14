@@ -21,6 +21,8 @@ public class LoginController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
+	private String message;
+	
 	@RequestMapping(value={"/", "/login"}, method=RequestMethod.GET)
 	public String form(ModelMap map){
 		Usuario usuario = new Usuario();
@@ -47,9 +49,10 @@ public class LoginController {
 		}
 
 		if(usuarioBD.getStatus() == Status.INATIVO){
-			System.out.println(usuarioBD);
 			usuario.setLogin("");
 			usuario.setSenha("");
+			message = "Ops! Parece que você desativou sua conta :# ";
+			map.addAttribute("message", message);
 			return  "login/login";
 		}
 		
