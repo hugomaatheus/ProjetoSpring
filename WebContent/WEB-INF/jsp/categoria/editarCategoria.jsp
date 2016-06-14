@@ -31,7 +31,7 @@
 				<fieldset id="criar"><legend>Editar Categoria</legend>
 				<form:hidden path="id"/>
 					<label for="txtNome"><em>Nome:</em></label>
-					<form:input path="nome" id="txtNome" />
+					<form:input path="nome" id="txtNome" required="required" />
 					<br />
 					<label for="Opstatus"><em>Status:</em></label>
 					<form:select id="Opstatus" class="categoria" path="status">

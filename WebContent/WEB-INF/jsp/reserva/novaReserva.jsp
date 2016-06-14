@@ -28,24 +28,24 @@
 			<article class="tab_container">
 				<form:form method="post" action="${urlR}" modelAttribute="reserva" >
 					
-					<form:input type="hidden" path="usuario.id" items="${usuarioBD}" />
+					<form:input type="hidden" path="usuario.id" required="required" items="${usuarioBD}" />
 						
 					<label id="labelmesa"><em>Mesa:</em></label>
 					<form:select id="Opmesa" path="mesa.id" items="${mesaSelect}" />
 				<br />			
  					<label id="labelinicio"><em>Data Inicio:</em></label>
-					<form:input id="txtinicio" path="dataInicial" placeholder="dd/mm/aaaa hh:mm"  maxlength="16" title="Digite no formato dd/mm/aaaa hh:mm" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4} [0-9]{2}:[0-9]{2}$"/>
+					<form:input id="txtinicio" path="dataInicial" placeholder="dd/mm/aaaa hh:mm" required="required" maxlength="16" title="Digite no formato dd/mm/aaaa hh:mm" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4} [0-9]{2}:[0-9]{2}$"/>
 					<form:errors path="dataInicial" />
 				<br/>
 					<label id="labelfim"><em>Data Fim:</em></label>
-					<form:input id="txtfim" path="dataFinal" placeholder="dd/mm/aaaa hh:mm"  maxlength="16" title="Digite no formato dd/mm/aaaa hh:mm" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4} [0-9]{2}:[0-9]{2}$"/>
+					<form:input id="txtfim" path="dataFinal" placeholder="dd/mm/aaaa hh:mm" required="required" maxlength="16" title="Digite no formato dd/mm/aaaa hh:mm" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4} [0-9]{2}:[0-9]{2}$"/>
 					<form:errors path="dataFinal"/>
 				<br/>
 					<label id="labelrespon"><em>Responsavel:</em></label>
-					<form:input id="txtrespon" type="text" path="nome_Responsavel"/>
+					<form:input id="txtrespon" type="text" path="nome_Responsavel" required="required" title="Digite um nome" pattern="[a-zA-Z ]+$"/>
 				<br />
 					<label class="label" id="N de Pessoas"><em>N Pessoas:</em></label>
-					<form:input class="set" id="txtpessoas" path="num_pessoa" />
+					<form:input class="set" id="txtpessoas" path="num_pessoa" required="required" />
 				<br />
    					<label class="label" id="labelSituacao"><em>Situacao:</em></label>
 					<form:select id="Opstatus" class="set" path="status">

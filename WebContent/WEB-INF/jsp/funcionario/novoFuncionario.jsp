@@ -29,28 +29,28 @@
 			<form:form  method="post" action="${url}" modelAttribute="funcionario">
 				<fieldset id="criar"><legend>Cadastrar Funcionario</legend>
 					<label for="txtlogin" id="labellogin"><em>Login:</em></label>
-					<form:input id="txtlogin" path="login" type="text"/>
+					<form:input id="txtlogin" path="login" required="required" type="text"/>
 
 					<label id="labelsenha"><em>Senha:</em></label>
-					<form:input id="txtsenha" path="senha" type="password" />
+					<form:input id="txtsenha" path="senha" required="required" type="password" />
 				<br/>
 					<label id="labelNome"><em>Nome:</em></label>
-					<form:input id="txtNome" path="nome" type="text"/>
+					<form:input id="txtNome" path="nome" required="required" type="text"/>
 
 					<label id="labeltelefone"><em>Telefone:</em></label>
-					<form:input id="txttelefone" type="tel" maxlength="15" path="endereco.telefone" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}$" title="Digite no seguinte formato (xx) xxxxx-xxxx" />
+					<form:input id="txttelefone" type="tel" required="required" maxlength="15" path="endereco.telefone" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}$" title="Digite no seguinte formato (xx) xxxxx-xxxx" />
 				<br/>
 					<label id="labelemail"><em>Email:</em></label>
-					<form:input id="txtemail" type="email" class="input-text" path="email" pattern="[a-z0-9._%+-]+@[a-0-9.-]+\.[a-z]{2,4}$" />
+					<form:input id="txtemail" type="email" required="required" path="email" pattern="[a-z0-9._%+-]+@[a-0-9.-]+\.[a-z]{2,4}$" />
 		
 					<label id="labelcpf"><em>CPF:</em></label>
-					<form:input id="txtcpf" Title="Digite no formato mmm.mmm.mmm-mm" type="text" path="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}$"/>
+					<form:input id="txtcpf" Title="Digite no formato mmm.mmm.mmm-mm" required="required" type="text" path="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}$"/>
 				<br/>
 					<label id="labelcargo"><em>Cargo:</em></label>
-					<form:input id="txtcargo" type="text" required="" path="cargo" />
+					<form:input id="txtcargo" type="text" required="required" path="cargo" />
 
 					<label id="labelsalario"><em>Salario:</em></label>
-					<form:input id="txtsalario" required="required" maxlength="15" path="salario" pattern="([0-9]{1,3}\.)?[0-9]{1,3},[0-9]{2}$" title="Digite no seguinte formato min: x,xx  max: x.xxx,xx ou " />
+					<form:input id="txtsalario" required="required" maxlength="15" path="salario" pattern="[0-9]{1,3}\.[0-9]{2}$" title="Digite no seguinte formato min: x.xx  max: xxx.xx ou " />
 				<br/>
 					<input id="btnsalvar" class="btn" type="submit" value="Salvar" />
 

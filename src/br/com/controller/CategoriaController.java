@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.model.Categoria;
+import br.com.model.Usuario;
 import br.com.service.CategoriaService;
+import br.com.util.Tipo;
 
 @RequestMapping(value="categoria")
 @Transactional
@@ -27,8 +29,8 @@ public class CategoriaController {
 	
 	@RequestMapping(value="listar", method=RequestMethod.GET)
 	public String list(ModelMap map, HttpSession session){
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.GERENTE ) {
 			return "redirect:/";
 		}
 		
@@ -39,8 +41,8 @@ public class CategoriaController {
 	
 	@RequestMapping(value="filtrar", method=RequestMethod.GET)
 	public String filtrar(@ModelAttribute("filtro") Categoria filtro, ModelMap map, HttpSession session){
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.GERENTE ) {
 			return "redirect:/";
 		}
 		
@@ -52,8 +54,8 @@ public class CategoriaController {
 	
 	@RequestMapping(value="form", method=RequestMethod.GET)
 	public String createForm(ModelMap map, HttpSession session){
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.GERENTE ) {
 			return "redirect:/";
 		}
 		
@@ -63,8 +65,8 @@ public class CategoriaController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="save")
 	public String save(@ModelAttribute("categoria") Categoria categoria, ModelMap modelMap, HttpSession session){
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.GERENTE ) {
 			return "redirect:/";
 		}
 		
@@ -74,8 +76,8 @@ public class CategoriaController {
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/remove")
 	public String remove(@PathVariable Long id, HttpSession session){
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.GERENTE ) {
 			return "redirect:/";
 		}
 		
@@ -85,8 +87,8 @@ public class CategoriaController {
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/formUpdate")
 	public String updateForm(@PathVariable Long id, ModelMap map, HttpSession session){
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.GERENTE ) {
 			return "redirect:/";
 		}
 		
@@ -97,8 +99,8 @@ public class CategoriaController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="update")
 	public String update(@ModelAttribute("categoria") Categoria categoria, BindingResult result, ModelMap map, HttpSession session) {
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.GERENTE ) {
 			return "redirect:/";
 		}
 		

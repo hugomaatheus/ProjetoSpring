@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.model.Funcionario;
+import br.com.model.Usuario;
 import br.com.service.FuncionarioService;
 import br.com.service.GerenteService;
+import br.com.util.Tipo;
 
 @Controller
 @RequestMapping(value="gerente")
@@ -34,8 +36,8 @@ public class GerenteController {
 	
 	@RequestMapping(value="listar", method=RequestMethod.GET)
 	public String list(ModelMap map, HttpSession session){
-		
-		if(session.getAttribute("usuario") == null) {					
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.GERENTE ) {
 			return "redirect:/";
 		}
 		
@@ -48,8 +50,8 @@ public class GerenteController {
 	
 	@RequestMapping(value="filtrar", method=RequestMethod.GET)
 	public String filtrar(@ModelAttribute("filtro") Funcionario filtro, ModelMap map, HttpSession session){
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.GERENTE ) {
 			return "redirect:/";
 		}
 		
@@ -65,10 +67,10 @@ public class GerenteController {
 	
 	@RequestMapping(value="form", method=RequestMethod.GET)
 	public String createForm(Model map, HttpSession session) {
-			
-			if(session.getAttribute("usuario") == null) {
-				return "redirect:/";
-			}
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.GERENTE ) {
+			return "redirect:/";
+		}
 			
 			Funcionario funcionario = new Funcionario();
 			map.addAttribute("funcionario", funcionario);
@@ -77,8 +79,8 @@ public class GerenteController {
 	
 	@RequestMapping(value="save", method=RequestMethod.POST)
 	public String save(@ModelAttribute("funcionario") @Valid Funcionario funcionario, BindingResult result, ModelMap map, HttpSession session) {
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.GERENTE ) {
 			return "redirect:/";
 		}
 
@@ -89,8 +91,8 @@ public class GerenteController {
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/formUpdate")
 	public String updateForm(@PathVariable Long id, ModelMap map, HttpSession session){
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.GERENTE ) {
 			return "redirect:/";
 		}
 		
@@ -101,8 +103,8 @@ public class GerenteController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="update")
 	public String update(@ModelAttribute("funcionario") Funcionario funcionario, BindingResult result, ModelMap map, HttpSession session) {
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.GERENTE ) {
 			return "redirect:/";
 		}
 		

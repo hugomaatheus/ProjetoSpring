@@ -30,10 +30,10 @@
 				<br />
 					<form:hidden path="id"/>
 					<label id="labeldescricao"><em>Numero:</em></label>
-					<form:input id="txtdescricao" path="numero" type="text" />
+					<form:input id="txtdescricao" required="required" path="numero" title="Digite apenas numeros" placeholder="Somente numeros" pattern="[0-9]+$" />
 				<br />
 					<label id="labelcapacidade"><em>Capacidade:</em></label>
-					<form:input id="txtcapacidade" path="capacidade" type="text" pattern="[0-9]+$"/>
+					<form:input id="txtcapacidade" required="required" title="Somente numero" path="capacidade" type="text" pattern="[0-9]+$"/>
 				<br />
 					<label id="labelreserva"><em>De reserva?</em></label>
 					<form:select id="Opreserva" class = "categoria" path="status">

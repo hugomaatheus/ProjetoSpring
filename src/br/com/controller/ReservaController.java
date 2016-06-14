@@ -35,7 +35,6 @@ public class ReservaController {
 	public String list(ModelMap map, HttpSession session){
 		
 		Usuario  usuario = (Usuario) session.getAttribute("usuario");
-		System.out.println(usuario);
 		if(usuario == null || usuario.getTipo().equals(Tipo.CLIENTE)) {
 			return "redirect:/";
 		}

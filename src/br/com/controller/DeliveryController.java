@@ -21,9 +21,11 @@ import br.com.model.Cliente;
 import br.com.model.Delivery;
 import br.com.model.ItemPedido;
 import br.com.model.Pedido;
+import br.com.model.Usuario;
 import br.com.service.CardapioService;
 import br.com.service.ClienteService;
 import br.com.service.FuncionarioService;
+import br.com.util.Tipo;
 
 @RequestMapping(value="delivery")
 @Controller
@@ -43,8 +45,8 @@ public class DeliveryController {
 	
 	@RequestMapping(value="listar", method=RequestMethod.GET)
 	public String list(ModelMap map, HttpSession session){
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.CLIENTE ) {
 			return "redirect:/";
 		}
 		
@@ -59,10 +61,10 @@ public class DeliveryController {
 	
 	@RequestMapping(value="filtrar", method=RequestMethod.GET)
 	public String filtrar(@ModelAttribute("filtro") Pedido filtro, ModelMap map, HttpSession session){
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.CLIENTE ) {
 			return "redirect:/";
-		}		
+		}	
 		
 		if(filtro.getId() == null && filtro.getStatus() == null && filtro.getTipo() == null){
 			return "redirect:/delivery/listar";
@@ -76,8 +78,8 @@ public class DeliveryController {
 	
 	@RequestMapping(value="form", method=RequestMethod.GET)
 	public String createForm(ModelMap map, HttpSession session){
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.CLIENTE ) {
 			return "redirect:/";
 		}
 		
@@ -98,8 +100,8 @@ public class DeliveryController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="save")
 	public String save(ModelMap map, HttpSession session) {
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.CLIENTE ) {
 			return "redirect:/";
 		}
 		
@@ -113,8 +115,8 @@ public class DeliveryController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="addCarrinho")
 	public String addCarrinho(@ModelAttribute("itemPedido") ItemPedido itemPedido, BindingResult result, ModelMap map, HttpSession session)  {
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.CLIENTE ) {
 			return "redirect:/";
 		}
 		
@@ -149,8 +151,8 @@ public class DeliveryController {
 	
 	@RequestMapping(method=RequestMethod.GET, value="{index}/removeCar")
 	public String removerCarrinho(@PathVariable int index, ModelMap map, HttpSession session) {
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.CLIENTE ) {
 			return "redirect:/";
 		}
 		
@@ -163,8 +165,8 @@ public class DeliveryController {
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/detalhar")
 	public String detalharPedido(@PathVariable Long id, ModelMap map, HttpSession session) {
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.CLIENTE ) {
 			return "redirect:/";
 		}
 		
@@ -178,8 +180,8 @@ public class DeliveryController {
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/remove")
 	public String remove(@PathVariable Long id, HttpSession session){
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.CLIENTE ) {
 			return "redirect:/";
 		}
 		
@@ -189,8 +191,8 @@ public class DeliveryController {
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/formUpdate")
 	public String updateForm(@PathVariable Long id, ModelMap map, HttpSession session){
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.CLIENTE ) {
 			return "redirect:/";
 		}
 		
@@ -202,8 +204,8 @@ public class DeliveryController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="update")
 	public String update(@ModelAttribute("cardapio") Cardapio cardapio, BindingResult result, ModelMap map, HttpSession session) {
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.CLIENTE ) {
 			return "redirect:/";
 		}
 		

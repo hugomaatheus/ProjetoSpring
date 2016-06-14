@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.model.Cliente;
+import br.com.model.Usuario;
 import br.com.service.ClienteService;
+import br.com.util.Tipo;
 
 @RequestMapping(value="cliente")
 @Controller
@@ -41,8 +43,8 @@ public class ClienteController {
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/formUpdate")
 	public String updateForm(@PathVariable Long id, ModelMap map, HttpSession session){
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.CLIENTE ) {
 			return "redirect:/";
 		}
 		
@@ -53,8 +55,8 @@ public class ClienteController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="update")
 	public String update(@ModelAttribute("cliente") Cliente cliente, BindingResult result, ModelMap map, HttpSession session) {
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.CLIENTE ) {
 			return "redirect:/";
 		}
 		
@@ -65,10 +67,10 @@ public class ClienteController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="{id}/deactivate")
+	@RequestMapping(method=RequestMethod.POST, value="{id}/desativar")
 	public String deactivate(@ModelAttribute("cliente") Cliente cliente, BindingResult result, ModelMap map, HttpSession session) {
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.CLIENTE ) {
 			return "redirect:/";
 		}
 		
