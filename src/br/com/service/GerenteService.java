@@ -240,7 +240,6 @@ public List<Mesa> consultarTodosMesas() {
 	public List<Funcionario> listarTodosFuncionarios() {
 		List<Funcionario> lista = new ArrayList<Funcionario>();
 		for (Funcionario funcionario : funcionarioDao.listar()) {
-			if(funcionario.getStatus() != Status.INATIVO)
 				lista.add(funcionario);
 		}
 		
@@ -279,6 +278,9 @@ public List<Mesa> consultarTodosMesas() {
 		Funcionario funcionario = funcionarioDao.getById(id);
 		if(funcionario.getStatus() == Status.ATIVO)
 			funcionario.setStatus(Status.INATIVO);
+		else
+			funcionario.setStatus(Status.ATIVO);
+		
 		funcionarioDao.update(funcionario);
 	}
 

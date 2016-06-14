@@ -36,6 +36,7 @@
 								<th class="tabela-coluna"><span>CPF</span></th>
 								<th class="tabela-coluna"><span>Cargo</span></th>
 								<th class="tabela-coluna"><span>Salario</span></th>
+								<th class="tabela-coluna"><span>Status</span></th>
 								<th class="tabela-coluna"><span>Acoes</span></th>
 							</tr>
 						</thead>
@@ -47,10 +48,11 @@
 								<td class="tabela-coluna"><span>${funcionario.nome}</span></td>
 								<td class="tabela-coluna"><span>${funcionario.cpf}</span></td>
 								<td class="tabela-coluna"><span>${funcionario.cargo}</span></td>
-								<td class="tabela-coluna"><span>${funcionario.salario}</span></td>													
+								<td class="tabela-coluna"><span>${funcionario.salario}</span></td>
+								<td class="tabela-coluna"><span>${funcionario.status}</span></td>													
 								<td class="tabela-coluna">
 								<span>
-									<a href='<c:url value="/gerente/${funcionario.id}/remove"/>'>[Inativar]</a>
+									<a href='<c:url value="/gerente/${funcionario.id}/remove"/>'>[Inativar/Ativar]</a>
 									<a href='<c:url value="/gerente/${funcionario.id}/formUpdate" />'>[Editar]</a>
 								</span>
 							</td>
