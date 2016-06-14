@@ -30,7 +30,7 @@
 			<form:form method="post" action="${url}" modelAttribute="categoria">
 				<fieldset id="criar"><legend>Cadastrar Categoria</legend>
 					<label for="txtNome"><em>Nome:</em></label>
-					<form:input path="nome" id="txtNome" />
+					<form:input path="nome" id="txtNome" required="required" />
 					<br />
 					<label for="Opstatus"><em>Status:</em></label>
 					<form:select id="Opstatus" class="categoria" path="status">

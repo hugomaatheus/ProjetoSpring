@@ -33,35 +33,35 @@
 											<label id="labellogin"><em>Login:</em></label>
 										</td>
 										<td align="left">
-											<form:input id="txtlogin" type="text" path="login" />
+											<form:input id="txtlogin" type="text" required="required" path="login" />
 											<form:errors path="login" cssStyle="color:red" />
 										</td>
 										<td align="right">
 											<label id="labelsenha"><em>Senha:</em></label>
 										</td>
 										<td align="left">
-											<form:input id="txtsenha" type="password" path="senha"  />
+											<form:input id="txtsenha" type="password" required="required" path="senha"  />
 											<form:errors path="senha" cssStyle="color:red" />
 										</td>
 										<td align="right">
 											<label id="labelNome"><em>Nome:</em></label>
 										</td>
 										<td align="left">
-											<form:input id="txtNome" type="text" path="nome"/>
+											<form:input id="txtNome" type="text" required="required" path="nome"/>
 											<form:errors path="nome" cssStyle="color:red" />
 										</td>
 										<td align="right">
 											<label id="labeltelefone"><em>Telefone:</em></label>
 										</td>
 										<td align="left">
-											<form:input id="txttelefone" type="tel" path="endereco.telefone" placeholder="(xx)xxxxx-xxxx" maxlength="15" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}$" title="Digite no seguinte formato (xx) xxxxx-xxxx" />
+											<form:input id="txttelefone" type="tel" prequired="required" path="endereco.telefone" placeholder="(xx)xxxxx-xxxx" maxlength="15" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}$" title="Digite no seguinte formato (xx) xxxxx-xxxx" />
 											<form:errors path="endereco.telefone" cssStyle="color:red" />
 										<td>
 										<td align="right">
 											<label id="labelemail"><em>Email:</em></label>
 										</td>
 										<td align="left">
-											<form:input id="txtemail" type="email" path="email" name="email" pattern="[a-z0-9._%+-]+@[a-0-9.-]+\.[a-z]{2,4}$" />
+											<form:input id="txtemail" type="email" required="required" path="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
 											<form:errors path="email" cssStyle="color:red" />											
 										</td>
 									</tr>
@@ -74,14 +74,14 @@
 											<label id="labelrua"><em>Rua:</em></label>
 										</td>											
 										<td align="left">
-											<form:input id="txtrua" type="text" path="endereco.rua" required=""/>
+											<form:input id="txtrua" type="text" required="required" path="endereco.rua"/>
 											<form:errors path="endereco.rua" cssStyle="color:red" />
 										</td>											
 										<td align="right">
 											<label id="labelnumero"><em>Numero:</em></label>
 										</td>											
 										<td align="left">
-											<form:input id="txtnumero" type="text" path="endereco.numero" required="" pattern="[0-9]+$" />
+											<form:input id="txtnumero" type="text" required="required" path="endereco.numero" pattern="[0-9]+$" />
 											<form:errors path="endereco.numero" cssStyle="color:red" />
 										</td>											
 										<td align="right">
@@ -102,8 +102,8 @@
 											<label id="labelcep"><em>CEP:</em></label>
 										</td>											
 										<td align="left">
-											<form:input id="txtcep" path="endereco.cep" placeholder="xxxxx-xxx" maxlength="9" pattern="\d{5}-\d{3}$" />
-											<form:errors path="endereco.cep" cssStyle="color:red" />
+											<form:input id="txtcep" path="endereco.cep" required="required" placeholder="xxxxx-xxx" maxlength="9" pattern="\d{5}-\d{3}$" />
+											<form:errors path="endereco.cep" cssStyle="color:red" />											
 										</td>
 									</tr>
 								</table>

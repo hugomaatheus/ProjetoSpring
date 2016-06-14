@@ -39,31 +39,36 @@
 											<label id="labellogin"><em>Login:</em></label>
 										</td>
 										<td align="left">
-											<form:input id="txtlogin" path="login" type="text"/>
+											<form:input id="txtlogin" required="required" path="login" type="text"/>
+											<form:errors path="login" cssStyle="color:red" />
 										</td>
 										<td align="right">
 											<label id="labelsenha"><em>Senha:</em></label>
 										</td>
 										<td align="left">
-											<form:input id="txtsenha" path="senha" type="password"/>
+											<form:input id="txtsenha" required="required" path="senha" type="password"/>
+											<form:errors path="senha" cssStyle="color:red" />
 										</td>
 										<td align="right">
 											<label id="labelNome"><em>Nome:</em></label>
 										</td>
 										<td align="left">
-											<form:input id="txtNome" path="nome" type="text"/>
+											<form:input id="txtNome" required="required" path="nome" type="text"/>
+											<form:errors path="nome" cssStyle="color:red" />
 										</td>
 										<td align="right">
 											<label id="labeltelefone"><em>Telefone:</em></label>
 										</td>
 										<td align="left">
-											<form:input id="txttelefone" type="tel" path="endereco.telefone" maxlength="15" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}$" title="Digite no seguinte formato (xx) xxxxx-xxxx" />
+											<form:input id="txttelefone" required="required" type="tel" path="endereco.telefone" maxlength="15" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}$" title="Digite no seguinte formato (xx) xxxxx-xxxx" />
+											<form:errors path="endereco.telefone" cssStyle="color:red" />
 										<td>
 										<td align="right">
 											<label id="labelemail"><em>Email:</em></label>
 										</td>
 										<td align="left">
-											<form:input id="txtemail" path="email" type="email" pattern="[a-z0-9._%+-]+@[a-0-9.-]+\.[a-z]{2,4}$" />											
+											<form:input id="txtemail" path="email" required="required" type="email" pattern="[a-z0-9._%+-]+@[a-0-9.-]+\.[a-z]{2,4}$" />
+											<form:errors path="email" cssStyle="color:red" />											
 										</td>
 									</tr>
 								</table>
@@ -75,31 +80,32 @@
 											<label id="labelrua"><em>Rua:</em></label>
 										</td>											
 										<td align="left">
-											<form:input id="txtrua" path="endereco.rua" type="text"/>
+											<form:input id="txtrua" required="required" path="endereco.rua" type="text"/>
+											<form:errors path="endereco.rua" cssStyle="color:red" />
 										</td>											
 										<td align="right">
 											<label id="labelnumero"><em>Numero:</em></label>
 										</td>											
 										<td align="left">
-											<form:input id="txtnumero" path="endereco.numero" type="text" pattern="[0-9]+$" />
+											<form:input id="txtnumero" required="required" path="endereco.numero" type="text" pattern="[0-9]+$" />
 										</td>											
 										<td align="right">
 											<label id="labelcomplemento"><em>Complemento:</em></label>
 										</td>											
 										<td align="left">
-											<form:input id="txtcomplemento" path="endereco.complemento" name="complemento"/>
+											<form:input id="txtcomplemento" required="required" path="endereco.complemento" name="complemento"/>
 										</td>
 										<td align="right">
 											<label id="labelbairro"><em>Bairro:</em></label>
 										</td>											
 										<td align="left">
-											<form:input id="txtbairro" path="endereco.bairro" />
+											<form:input id="txtbairro" required="required" path="endereco.bairro" />
 										</td>
 										<td align="right">
 											<label id="labelcep"><em>CEP:</em></label>
 										</td>											
 										<td align="left">
-											<form:input id="txtcep" path="endereco.cep" maxlength="9" pattern="\d{5}-\d{3}$" />
+											<form:input id="txtcep" path="endereco.cep" required="required" maxlength="9" pattern="\d{5}-\d{3}$" />
 										</td>
 									</tr>
 								</table>
@@ -117,7 +123,7 @@
 									</td>
 								</tr>
 								<tr>
-									<c:url var="url" value="/cliente/${id}/deactivate }"/>
+									<c:url var="url" value="/cliente/${id}/desativar"/>
 									<td align="left">
 										<a href="${url}">Desativar conta</a>
 									</td>

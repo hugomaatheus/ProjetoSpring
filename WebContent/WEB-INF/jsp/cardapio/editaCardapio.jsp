@@ -36,10 +36,10 @@
                         <form:select id="OpCategoria" class="set" path="categoria.id" items="${categoriasSelect}" />
 					<br />
 						<label class="label" id="labelNome"><em>Nome:</em></label>
-						<form:input path="nome" class="set" id="txtNome" type="text"/>
+						<form:input path="nome" class="set" required="required" id="txtNome" type="text"/>
 					<br />
 						<label class="label" id="labelpreco"><em>Preco:</em></label>
-						<form:input class="set" id="txtpreco" path="preco" title="minimo n.nn ou maximo nnn.nn" pattern="[0-9]{1,3}.[0-9]{2}$" />
+						<form:input class="set" id="txtpreco" required="required" path="preco" title="minimo n.nn ou maximo nnn.nn" pattern="[0-9]{1,3}.[0-9]{2}$" />
 					<br />
   						<label class="label" id="labelSituacao"><em>Situacao:</em></label>
 						<form:select id="Opstatus" class="set" path="status">

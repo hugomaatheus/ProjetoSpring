@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.model.Cardapio;
 import br.com.model.Categoria;
+import br.com.model.Usuario;
 import br.com.service.CardapioService;
 import br.com.service.CategoriaService;
+import br.com.util.Tipo;
 
 @RequestMapping(value="cardapio")
 @Controller
@@ -33,8 +35,8 @@ public class CardapioController {
 	
 	@RequestMapping(value="listar", method=RequestMethod.GET)
 	public String list(ModelMap map, HttpSession session){
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.GERENTE ) {
 			return "redirect:/";
 		}
 		
@@ -48,8 +50,8 @@ public class CardapioController {
 	
 	@RequestMapping(value="filtrar", method=RequestMethod.GET)
 	public String filtrar(@ModelAttribute("filtro") Cardapio filtro, ModelMap map, HttpSession session){
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.GERENTE ) {
 			return "redirect:/";
 		}
 		
@@ -70,8 +72,8 @@ public class CardapioController {
 	
 	@RequestMapping(value="form", method=RequestMethod.GET)
 	public String createForm(ModelMap map, HttpSession session){
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.GERENTE ) {
 			return "redirect:/";
 		}
 		
@@ -84,8 +86,8 @@ public class CardapioController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="save")
 	public String save(@ModelAttribute("cardapio") @Valid Cardapio cardapio, BindingResult result, ModelMap map, HttpSession session) {
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.GERENTE ) {
 			return "redirect:/";
 		}
 		
@@ -96,8 +98,8 @@ public class CardapioController {
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/remove")
 	public String remove(@PathVariable Long id, HttpSession session){
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.GERENTE ) {
 			return "redirect:/";
 		}
 		
@@ -107,8 +109,8 @@ public class CardapioController {
 	
 	@RequestMapping(method=RequestMethod.GET, value="{id}/formUpdate")
 	public String updateForm(@PathVariable Long id, ModelMap map, HttpSession session){
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.GERENTE ) {
 			return "redirect:/";
 		}
 		
@@ -120,8 +122,8 @@ public class CardapioController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="update")
 	public String update(@ModelAttribute("cardapio") Cardapio cardapio, BindingResult result, ModelMap map, HttpSession session) {
-		
-		if(session.getAttribute("usuario") == null) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario");
+		if(usuario == null || usuario.getTipo() != Tipo.GERENTE ) {
 			return "redirect:/";
 		}
 		

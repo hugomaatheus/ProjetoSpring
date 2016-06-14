@@ -77,12 +77,7 @@ public class ClienteService {
 	
 	//OK
 	public Cliente buscarUsuario(Long id) {
-	
-		Cliente c = null;
-		
-		c = clienteDao.getById(id);
-		
-		return c;
+		return clienteDao.getById(id);
 	}
 	
 	public Cliente logar(String login, String senha){

@@ -30,7 +30,8 @@ public class LoginController {
 	
 	@RequestMapping(value="logar", method=RequestMethod.POST)
 	public String logar(@ModelAttribute("usuario") @Valid Usuario usuario, BindingResult result,HttpSession sessao, ModelMap map){
-		if(result.hasErrors()){			
+		if(result.hasErrors()){	
+			System.out.println(result.getAllErrors());
 			map.addAttribute("usuario", usuario);
 			return  "login/login";
 		}
@@ -40,11 +41,13 @@ public class LoginController {
 		
 		if(usuarioBD == null){
 			usuario.setSenha("");
+			System.out.println("usuarioBD null" + usuarioBD);
 			map.addAttribute("usuario", usuarioBD);
 			return  "login/login";
 		}
 
 		if(usuarioBD.getStatus() == Status.INATIVO){
+			System.out.println(usuarioBD);
 			usuario.setLogin("");
 			usuario.setSenha("");
 			return  "login/login";

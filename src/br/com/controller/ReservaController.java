@@ -35,7 +35,6 @@ public class ReservaController {
 	public String list(ModelMap map, HttpSession session){
 		
 		Usuario  usuario = (Usuario) session.getAttribute("usuario");
-		System.out.println(usuario);
 		if(usuario == null || usuario.getTipo().equals(Tipo.CLIENTE)) {
 			return "redirect:/";
 		}
@@ -95,12 +94,6 @@ public class ReservaController {
 		if(usuario == null || usuario.getTipo().equals(Tipo.CLIENTE)) {
 			return "redirect:/";
 		}
-		
-//		if(result.hasErrors()){
-//			map.addAttribute("reserva", reserva);
-//			map.addAttribute("mesaSelect",  selectMesa());
-//			return "cardapio/form";
-//		}
 		
 		reserva.setUsuario(usuario);
 		funcionarioService.cadastrarReserva(reserva);

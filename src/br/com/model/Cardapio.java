@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import br.com.util.Status;
 
 @Entity(name="Cardapio")
@@ -18,8 +20,10 @@ public class Cardapio implements AbstractEntity {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
+	@NotEmpty(message="O campo deve ser preenchido")
 	private String nome;
 
+	@NotEmpty(message="O campo deve ser preenchido")
 	private Double preco;
 	
 	@ManyToOne
