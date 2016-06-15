@@ -24,6 +24,17 @@ public class ClienteController {
 	@Autowired
 	private ClienteService clienteService;
 	
+	@RequestMapping(value="indexCliente", method=RequestMethod.GET)
+	public String index(ModelMap map, HttpSession sessao ) {
+		Usuario user  = (Usuario) sessao.getAttribute("usuario");
+		map.addAttribute("usuarioBD", user);
+		if(user.getTipo() != Tipo.CLIENTE ) {
+			return "redirect:/";
+		}
+		
+		return "cliente/indexCliente";
+		
+	}
 	
 	@RequestMapping(value="form", method=RequestMethod.GET)
 	public String createForm(ModelMap map){
@@ -83,6 +94,7 @@ public class ClienteController {
 		
 		if(c.hasValidId()) {
 			clienteService.desativarUsuario(c);
+			session.removeAttribute("usuario");
 		}
 		
 		return "redirect:/";

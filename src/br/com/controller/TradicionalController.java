@@ -140,8 +140,10 @@ public class TradicionalController {
 			return "redirect:/";
 		}
 		
+		total -= carrinho.get(index).getQuantidade() * carrinho.get(index).getCardapio().getPreco();
 		carrinho.remove(index);
 		
+		map.addAttribute("total", total);
 		map.addAttribute("itemCarrinho", carrinho);
 		
 		return "redirect:/tradicional/form";

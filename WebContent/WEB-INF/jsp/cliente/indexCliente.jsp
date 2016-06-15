@@ -13,6 +13,7 @@
 		<title>titulo da pagina</title>
 		<meta charset="utf-8" />
 		<link rel="stylesheet" type="text/css" href="estilos/estiloIndex.css">
+		<link rel="stylesheet" type="text/css" href="../estilos/estiloIndex.css">
 	</head>
 	<body>
 		<form id="form">
@@ -21,13 +22,12 @@
 				<c:url var="urlOut" value="/logout/"/>
 				<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 			</header>
-			
 						<fieldset><legend>Menu</legend>
 							<article class="tab_container" id="Pedidos">
 								<tr>
 									<c:url var="urlD" value="/delivery/listar" />
 									<td>
-										<input class="botao" type="button" onclick="window.open('${urlD}')" value="Pagina Pedido"></input>
+										<input class="botao" type="button" onclick="window.location.href='${urlD}'" value="Pagina Pedido"></input>
 									</td>
 								</tr>
 							</article>
@@ -35,7 +35,7 @@
 								<tr>
 									<c:url var="urlEdit" value="/cliente/${usuarioBD.id}/formUpdate" />
 									<td>
-										<input class="botao" type="button" onclick="window.open('${urlEdit}')" value="Editar Usuario"></input>
+										<input class="botao" type="button" onclick=".location.href='${urlEdit}'" value="Editar Usuario"></input>
 									</td>
 								</tr>
 							</article>

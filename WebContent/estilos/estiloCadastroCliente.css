@@ -195,6 +195,16 @@ header a{
 	font-size: 16px;
 }
 
+#btnVoltar{
+	position:absolute;
+	width: 100px;
+	height: 30px;
+	top: 400px;
+	left: 550px;
+	font-size: 16px;
+}
+
+
 .novo{
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;

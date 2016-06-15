@@ -15,6 +15,7 @@
 <title>Gerente</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="estilos/estiloGerente.css">
+<link rel="stylesheet" type="text/css" href="../estilos/estiloGerente.css">
 </head>
 <body>
 
@@ -28,22 +29,22 @@
 		<fieldset id="criar"><legend>Menu</legend>
 
 			<c:url var="urlT" value="/tradicional/listar" />
-			<input id="pedido" class="botao" type="button" onclick="window.open('${urlT}')" value="Pagina Pedido"/>
+			<input id="pedido" class="botao" type="button" onclick="window.location.href='${urlT}'" value="Pagina Pedido"/>
 
 			<c:url var="urlR" value="/reserva/listar" />
-			<input id="reserva" class="botao" type="button" onclick="window.open('${urlR}')" value="Pagina Reserva"/>
+			<input id="reserva" class="botao" type="button" onclick="window.location.href='${urlR}'" value="Pagina Reserva"/>
 
 			<c:url var="urlCat" value="/categoria/listar" />
-			<input id="categoria" class="botao" type="button" onclick="window.open('${urlCat}')" value="Pagina Categoria"/>
+			<input id="categoria" class="botao" type="button" onclick="window.location.href='${urlCat}'" value="Pagina Categoria"/>
 		<br />
 			<c:url var="urlC" value="/cardapio/listar" />
-			<input id="cardapio" class="botao" type="button" onclick="window.open('${urlC}')" value="Pagina Cardapio"/>
+			<input id="cardapio" class="botao" type="button" onclick="window.location.href='${urlC}'" value="Pagina Cardapio"/>
 
 			<c:url var="urlMesa" value="/mesa/listar" />
-			<input id="mesa" class="botao" type="button" onclick="window.open('${urlMesa}')" value="Pagina Mesa"/>
+			<input id="mesa" class="botao" type="button" onclick="window.location.href='${urlMesa}'" value="Pagina Mesa"/>
 
 			<c:url var="urlF" value="/gerente/listar" />
-			<input id="funcionario" class="botao" type="button" onclick="window.open('${urlF}')" value="Pagina Funcionario"/>
+			<input id="funcionario" class="botao" type="button" onclick="window.location.href='${urlF}'" value="Pagina Funcionario"/>
 			
 		</fieldset>
 	</article>

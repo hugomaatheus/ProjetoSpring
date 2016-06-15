@@ -38,7 +38,7 @@
 					</form:select>
 					
 					<label for="labelQtd"><em>Quantidade:</em></label>
-					<form:input id="txtQtd" title="Digite apenas numeros" type="text" path="quantidade" pattern="[0-9]+$" />
+					<form:input id="txtQtd" title="Digite apenas numeros" required="required" type="text" path="quantidade" pattern="[0-9]+$" />
 
 					<input id="btnInserir" type="submit" value="Adicionar Item" />
 				</form:form>

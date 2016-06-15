@@ -34,7 +34,7 @@
 				<form:select id="OpCategoria" class="set" path="cardapio.id" items="${cardapioSelect}"/>
  				
 				<label id="labelQtd"><em>Quantidade:</em></label>
-				<form:input id="txtQtd" placeholder="somente numeros" title="Digite apenas numeros" path="quantidade" pattern="[0-9]+$"/>
+				<form:input id="txtQtd" placeholder="somente numeros" required="required" title="Digite apenas numeros" path="quantidade" pattern="[0-9]+$"/>
 				
 				<input id="btnInserir" class="btn" type="submit" value="Adicionar Item" />
 			</form:form>

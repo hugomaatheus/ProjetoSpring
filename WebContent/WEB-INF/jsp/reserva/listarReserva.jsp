@@ -17,6 +17,8 @@
 			<c:url var="url" value="form"/>
 			<header><!-- Cabeça da pagina -->
 				<p>Bem vindo, ${usuarioBD.nome}</p>
+				<c:url var="urlM" value="/gerente/indexGerente"/>
+				<input id="menu" class="novo" type="button" onclick="location.href='${urlM}'"; value="Menu" />
 				<input id="cadastra" class="novo" type="button" onclick="location.href='${url}'"; value="Cadatrar Reserva" />
 				<c:url var="urlOut" value="/logout/"/> 				
 				<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>

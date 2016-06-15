@@ -32,6 +32,18 @@ public class GerenteController {
 	@Autowired
 	private GerenteService gerenteService;
 	
+	@RequestMapping(value="indexGerente", method=RequestMethod.GET)
+	public String index(ModelMap map, HttpSession sessao ) {
+		Usuario user  = (Usuario) sessao.getAttribute("usuario");
+		map.addAttribute("usuarioBD", user);
+		if(user.getTipo() == Tipo.GERENTE)
+		return "/gerente/indexGerente";
+		else{
+			return "/funcionario/indexFuncionario";
+		}
+		
+	}
+	
 	@RequestMapping(value="listar", method=RequestMethod.GET)
 	public String list(ModelMap map, HttpSession session){
 		Usuario usuario = (Usuario) session.getAttribute("usuario");

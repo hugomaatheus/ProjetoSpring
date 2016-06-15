@@ -106,7 +106,7 @@ public class ClienteService {
 	public List<Pedido> listarTodos() {
 		List<Pedido> listar = new ArrayList<Pedido>();
 		for (Pedido pedido : pedidoDao.listar()) {
-			if(pedido.getStatus() != Status.INATIVO)
+			if(pedido.getStatus() != Status.INATIVO && pedido.getTipo() != TipoPedido.TRADICIONAL)
 				listar.add(pedido);
 		}
 
@@ -126,11 +126,12 @@ public void cadastrarPedidoDelivery(Usuario cliente, List<ItemPedido> itens) {
 		delivery.setData(c);
 		deliveryDao.save(delivery);
 		
+		Double total = 0.0;
 		for (ItemPedido item : itens) {
+			total += item.getQuantidade() * item.getCardapio().getPreco();
+			delivery.setTotal(total);
 			i.setCardapio(item.getCardapio());
 			i.setPedido(delivery);
-			System.out.println(item.getPedido().getTotal());
-			delivery.setTotal(item.getPedido().getTotal());
 			i.setQuantidade(item.getQuantidade());
 			deliveryDao.update(delivery);
 			itemPedidoDao.update(i);

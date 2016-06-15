@@ -42,11 +42,9 @@
 					<br />
 						<label class="label" id="labelNome"><em>Nome:</em></label>
 						<form:input path="nome" class="set" id="txtNome" required="required" type="text"/>
-						<form:errors path="login" cssStyle="color:red" /> 
 					<br />
 						<label class="label" id="labelpreco"><em>Preco:</em></label>
 						<form:input class="set" id="txtpreco" required="required" placeholder="Digite xx.xx" title="minimo n.nn ou maximo nnn.nn utilizando .(ponto) nao ,(virgula)" pattern="[0-9]{1,3}\.[0-9]{2}$" path="preco" />
-						<form:errors path="login" cssStyle="color:red" /> 
 					<br />
   						<label class="label" id="labelSituacao"><em>Situacao:</em></label>
 						<form:select id="Opstatus" class="set" path="status">

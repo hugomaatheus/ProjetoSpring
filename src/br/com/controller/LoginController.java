@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import br.com.model.Usuario;
 import br.com.service.UsuarioService;
 import br.com.util.Status;
+import br.com.util.Tipo;
 
 @Controller
 public class LoginController {
@@ -24,11 +25,30 @@ public class LoginController {
 	private String message;
 	
 	@RequestMapping(value={"/", "/login"}, method=RequestMethod.GET)
-	public String form(ModelMap map){
-		Usuario usuario = new Usuario();
-		map.addAttribute("usuario", usuario);
-		return "login/login";
-	}
+	public String form(ModelMap map, HttpSession sessao){
+		
+		Usuario usuer = (Usuario) sessao.getAttribute("usuario");
+		
+				if(usuer != null){
+					if(usuer.getTipo().name() == "CLIENTE") {
+						sessao.setAttribute("usuario", usuer);
+						map.addAttribute("usuarioBD", usuer);
+						return "cliente/indexCliente";
+					} else if (usuer.getTipo().name() == "FUNCIONARIO") {
+						sessao.setAttribute("usuario", usuer);
+						map.addAttribute("usuarioBD", usuer);
+						return "funcionario/indexFuncionario";
+					} else if(usuer.getTipo().name() == "GERENTE") {
+							sessao.setAttribute("usuario", usuer);
+							map.addAttribute("usuarioBD", usuer);
+							return "gerente/indexGerente";
+					}
+				}else{
+					Usuario usuario = new Usuario();
+					map.addAttribute("usuario", usuario);
+				}
+				return "login/login";
+		}
 	
 	@RequestMapping(value="logar", method=RequestMethod.POST)
 	public String logar(@ModelAttribute("usuario") @Valid Usuario usuario, BindingResult result,HttpSession sessao, ModelMap map){
@@ -37,7 +57,6 @@ public class LoginController {
 			map.addAttribute("usuario", usuario);
 			return  "login/login";
 		}
-		
 		
 		Usuario usuarioBD = usuarioService.logar(usuario.getLogin(), usuario.getSenha());
 		
@@ -51,8 +70,10 @@ public class LoginController {
 		if(usuarioBD.getStatus() == Status.INATIVO){
 			usuario.setLogin("");
 			usuario.setSenha("");
-			message = "Ops! Parece que você desativou sua conta :# ";
-			map.addAttribute("message", message);
+			if(usuarioBD.getTipo() == Tipo.CLIENTE) {
+				message = "Ops! Parece que você desativou sua conta :# ";
+				map.addAttribute("message", message);
+			}
 			return  "login/login";
 		}
 		

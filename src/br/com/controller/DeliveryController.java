@@ -122,7 +122,7 @@ public class DeliveryController {
 		
 		itemPedido.setCardapio(cardapioService.buscarPorId(itemPedido.getCardapio().getId()));
 		itemPedido.setPedido(new Delivery()); 
-		itemPedido.getPedido().setTotal(total);
+
 		
 		if(carrinho == null) {
 			carrinho = new ArrayList<ItemPedido>();
@@ -137,7 +137,6 @@ public class DeliveryController {
 			}
 		}
 		total += itemPedido.getQuantidade() * itemPedido.getCardapio().getPreco();
-		itemPedido.getPedido().setTotal(total);
 		if(!existe){
 			carrinho.add(itemPedido);
 		}
@@ -156,9 +155,12 @@ public class DeliveryController {
 			return "redirect:/";
 		}
 		
+		
+		total -= carrinho.get(index).getQuantidade() * carrinho.get(index).getCardapio().getPreco();
 		carrinho.remove(index);
 		
 		map.addAttribute("itemCarrinho", carrinho);
+		map.addAttribute("total", total);
 		
 		return "redirect:/delivery/form";
 	}

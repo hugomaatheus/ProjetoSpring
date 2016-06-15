@@ -41,7 +41,7 @@
 					<form:input id="txttelefone" type="tel" required="required" maxlength="15" path="endereco.telefone" pattern="\([0-9]{2}\)[0-9]{4,6}-[0-9]{3,4}$" title="Digite no seguinte formato (xx) xxxxx-xxxx" />
 				<br/>
 					<label id="labelemail"><em>Email:</em></label>
-					<form:input id="txtemail" type="email" required="required" path="email" pattern="[a-z0-9._%+-]+@[a-0-9.-]+\.[a-z]{2,4}$" />
+					<form:input id="txtemail" type="email" required="required" path="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
 		
 					<label id="labelcpf"><em>CPF:</em></label>
 					<form:input id="txtcpf" Title="Digite no formato mmm.mmm.mmm-mm" required="required" type="text" path="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}$"/>

@@ -15,7 +15,9 @@ public class LogoutController {
 		
 		session = req.getSession(false);
 		
+		
 		if(!(session == null)) {
+			session.removeAttribute("usuario");
 			session.invalidate();
 		}
 		return "redirect:/";

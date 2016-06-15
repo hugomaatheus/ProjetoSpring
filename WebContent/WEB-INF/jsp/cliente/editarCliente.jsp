@@ -16,6 +16,8 @@
 	</head>
 	<body>
 			<header><!-- Cabeça da pagina -->
+			<c:url var="urlM" value="/cliente/indexCliente"/>
+				<input id="menu" class="novo" type="button" onclick="location.href='${urlM}'"; value="Menu" />
 				<c:url var="urlOut" value="/logout/"/> 				
 				<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>
 			</header>

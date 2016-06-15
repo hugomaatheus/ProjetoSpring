@@ -30,7 +30,7 @@ public class CategoriaController {
 	@RequestMapping(value="listar", method=RequestMethod.GET)
 	public String list(ModelMap map, HttpSession session){
 		Usuario usuario = (Usuario) session.getAttribute("usuario");
-		if(usuario == null || usuario.getTipo() != Tipo.GERENTE ) {
+		if(usuario == null || usuario.getTipo() != Tipo.GERENTE) {
 			return "redirect:/";
 		}
 		

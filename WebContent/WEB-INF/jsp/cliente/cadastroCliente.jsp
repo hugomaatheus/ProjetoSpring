@@ -109,9 +109,9 @@
 								</table>
 							</article>
 							<article id= caixa_3>
-								<c:url var="urlBack" value="/cliente/indexCliente"/>
+								<c:url var="urlBack" value="/"/>
 										<input id="btnsalvar" type="submit" value="Salvar" />
-										<a class="btn" href="${urlBack}"></a>
+										<input id="btnVoltar" type="button" onclick="location.href='${urlBack}'";  value="voltar" />
 							</article>
 						</fieldset>
 					</article>

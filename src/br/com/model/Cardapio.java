@@ -23,7 +23,6 @@ public class Cardapio implements AbstractEntity {
 	@NotEmpty(message="O campo deve ser preenchido")
 	private String nome;
 
-	@NotEmpty(message="O campo deve ser preenchido")
 	private Double preco;
 	
 	@ManyToOne

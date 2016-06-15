@@ -17,6 +17,8 @@
 	
 		<c:url var="url" value="form"/>
 			<header>
+				<c:url var="urlM" value="/gerente/indexGerente"/>
+				<input id="menu" class="novo" type="button" onclick="location.href='${urlM}'"; value="Menu" />
 				<input id="cadatrar" class="novo" type="button" onclick="location.href='${url}'"; value="Cadatrar Cardapio" />
 				<c:url var="urlOut" value="/logout/"/> 				
 				<input id="btnSair" class="novo" type="button" onclick="window.location.href='${urlOut}'" value="Sair"/>

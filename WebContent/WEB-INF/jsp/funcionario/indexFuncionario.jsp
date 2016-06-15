@@ -12,6 +12,7 @@
 		<title>titulo da pagina</title>
 		<meta charset="utf-8" />
 		<link rel="stylesheet" type="text/css" href="estilos/estiloIndex.css">
+		<link rel="stylesheet" type="text/css" href="../estilos/estiloIndex.css">
 	</head>
 	<body>
 			<header><!-- Cabeça da pagina -->
@@ -25,7 +26,7 @@
 								<tr>
 									<c:url var="urlT" value="/tradicional/listar" />
 									<td>
-										<input class="botao" type="button" onclick="window.open('${urlT}')" value="Pagina Pedido"></input>
+										<input class="botao" type="button" onclick="window.location.href='${urlT}'" value="Pagina Pedido"></input>
 									</td>
 								</tr>
 							</article>
@@ -33,7 +34,7 @@
 								<tr>
 								<c:url var="urlR" value="/reserva/listar" />									
 									<td>
-										<input class="botao" type="button" onclick="window.open('${urlR}')" value="Pagina Reserva"></input>
+										<input class="botao" type="button" onclick="window.location.href='${urlR}'" value="Pagina Reserva"></input>
 									</td>
 								</tr>
 							</article>

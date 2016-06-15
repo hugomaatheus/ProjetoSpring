@@ -18,6 +18,8 @@
 	<body>
 			<header><!-- Cabeça da pagina -->
 			<p>Bem vindo, ${usuarioBD.nome}</p>
+			<c:url var="urlM" value="/gerente/indexGerente"/>
+				<input id="menu" class="novo" type="button" onclick="location.href='${urlM}'"; value="Menu" />
 				<c:url var="url" value="form"/>
 				<input id="cardapio" class="novo" type="button" onclick="location.href='${url}'"; value="Realizar Pedidos" />
 			<c:url var="urlOut" value="/logout/"/> 				
